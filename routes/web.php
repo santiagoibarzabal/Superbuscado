@@ -15,6 +15,14 @@ Route::get('/', function() {
    return ('BIENVENIDO');
 });
 
+// RUTAS PARA LOGIN Y REGISTER
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+
 // RUTAS PARA ADDRESSES
 
 
