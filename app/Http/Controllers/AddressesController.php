@@ -43,7 +43,7 @@ class AddressesController extends Controller
 
           $this->validate($request, [
             'title' => 'required',
-
+            
           ]);
 
           )
