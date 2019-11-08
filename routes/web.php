@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function() {
-   return view('BIENVENIDO');
+   return ('BIENVENIDO');
 });
 
 // RUTAS PARA ADDRESSES
@@ -30,7 +30,7 @@ Route::patch('/addresses/{id}', 'AddressesController@update');
 
 Route::delete('/addresses/{id}', 'AddressesController@destroy');
 
-Route::get('/addresses/{id}', 'AddressesController@show');
+Route::get('/addresses/{address}', 'AddressesController@show');
 
 
 // RUTAS PARA CART

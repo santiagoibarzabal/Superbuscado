@@ -15,7 +15,10 @@ class AddressesController extends Controller
      */
     public function index()
     {
-        //
+        $direcciones = Address::paginate(12);
+        return view('addresses.index', [
+          'addresses' => $direcciones,
+        ]);
     }
 
     /**
@@ -25,7 +28,7 @@ class AddressesController extends Controller
      */
     public function create()
     {
-        //
+      return view ('addresses.create');
     }
 
     /**
@@ -34,10 +37,25 @@ class AddressesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function store(Request $req)
+
+      {
+
+          $this->validate($request, [
+            'title' => 'required',
+
+          ]);
+
+          )
+
+          Product::create($request->all());
+
+          return redirect('/addresses');
+
+
+      }
+
+
 
     /**
      * Display the specified resource.
@@ -45,9 +63,10 @@ class AddressesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Address $address)
     {
-        //
+        // $verDireccion = Address::find($id);
+        return view('show', ['address' => $address]);
     }
 
     /**
@@ -58,7 +77,9 @@ class AddressesController extends Controller
      */
     public function edit($id)
     {
-        //
+      $editarDireccion = Address::find($id);
+
+      return view('edit', ['address' => $editarDireccion]);
     }
 
     /**
@@ -69,9 +90,16 @@ class AddressesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
-    }
+      {
+
+        $this->validate($request, [
+          'campo1' => 'required',
+          'campo2' => 'regla'
+        ]);
+
+          Address::update($request->all());
+          return redirect('/addresses');
+      }
 
     /**
      * Remove the specified resource from storage.
@@ -81,6 +109,11 @@ class AddressesController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $id = $req['id'];
+      $eliminar = Address::find($id);
+      $eliminar->delete();
+      return redirect('/addresses');
     }
+
+
 }
