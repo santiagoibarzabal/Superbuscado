@@ -43,12 +43,12 @@ class AddressesController extends Controller
 
           $this->validate($request, [
             'title' => 'required',
-            
+
           ]);
 
           )
 
-          Product::create($request->all());
+          Address::create($request->all());
 
           return redirect('/addresses');
 
