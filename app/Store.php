@@ -8,6 +8,6 @@ class Store extends Model
 {
     public function market()
     {
-      $this->belongsTo("App\Market", "market_id")
+      $this->belongsTo("App\Market", "market_id_store")
     }
 }

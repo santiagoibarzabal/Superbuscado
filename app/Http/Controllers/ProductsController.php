@@ -13,9 +13,19 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if($request->has('query')){
+          $products = Product::where('name','like', '%' . $request->get('query') . '%')
+          ->paginate(12)
+          ->appends($request->only('query'));
+        } else {
+          $products = Product::paginate(12)->appends($request->only('query'));
+        }
+
+
+//
+        return view('products.index', ['products' => $products]);
     }
 
     /**
@@ -25,7 +35,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+          return view ('products.create');
     }
 
     /**
@@ -36,7 +46,9 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      Product::create($request->all());
+
+      return redirect('/products');
     }
 
     /**

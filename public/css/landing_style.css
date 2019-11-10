@@ -1,0 +1,404 @@
+/* ---------------------------------------------------
+    Nav
+----------------------------------------------------- */
+
+.linear-gradient {
+  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 100%);
+  width: 100%;
+  height: 12vh;
+}
+
+.logo-navbar-green {
+  height: 35px;
+  margin: 20px 0;
+}
+
+.btn-login {
+  color: #fff;
+  font-style: none;
+  font-size: 0.8rem;
+}
+
+.btn-login:hover {
+  color:#C0C0C0;
+  text-decoration: none;
+}
+
+.btn-register {
+  background-color: #69B948;
+  color: #fff;
+  border-radius: 25px;
+  border: 1px solid #69B948;
+  font-size: 0.8rem;
+}
+
+.btn-register:hover {
+  color: #fff;
+  border: 1px solid #fff;
+  background-color: rgba(0, 0, 0, 0);
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------
+    Header
+----------------------------------------------------- */
+
+/* ---------- Imagen fondo ---------- */
+
+.bg-img-food {
+  width: 100%;
+  height: 380px;
+  background-image: url(../assets/img/food.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: 56% 44%;
+  margin-bottom: 950px;
+}
+
+.titles-description {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.title h2 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.subtitle {
+  color: #fff;
+  font-size: 1rem;
+  padding: 0px 25px;
+  text-align: center;
+}
+
+.btn-comprar {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-comprar-ahora {
+  color: #fff;
+  background-color: #69B948;
+  border-radius: 7px;
+  border: 1px solid #69B948;
+  font-size: 0.8rem;
+}
+
+.btn-comprar-ahora:hover {
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid #fff;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+/* ---------------------------------------------------
+    Cards
+----------------------------------------------------- */
+
+.card-box {
+  margin-top: 15px;
+}
+
+.card-landing {
+  border: none;
+  box-shadow: 0 -39px 33px 0 rgba(0,0,0,.07);
+  padding: 35px 20px;
+  margin: 20px -10px -10px 0;
+}
+
+.card-compara {
+  z-index: 5;
+}
+
+.card-compra {
+  z-index: 4;
+}
+
+.icon-landing {
+  font-size: 3rem;
+  text-align: center;
+}
+
+h5.card-landing-title {
+  font-weight: 700;
+  color: #545454;
+}
+
+p.card-landing-text {
+  text-align: center;
+  color: #909090;
+}
+
+/* ---------------------------------------------------
+    Marcas Supermercados
+----------------------------------------------------- */
+
+.bg-logos-sup {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  background-color: #F2F2F2;
+}
+
+.logo-sp {
+  width:100%;
+  opacity: .4;
+  filter: grayscale(1);
+}
+
+.logo-sp:hover {
+  opacity: 1;
+  filter: none;
+}
+
+/* ---------------------------------------------------
+    Device
+----------------------------------------------------- */
+
+.bg-device {
+  background-color: #69B948;
+  height: 580px;
+}
+
+h3.title-2 {
+  color: #fff;
+  font-weight: 700;
+  margin-top: 40px;;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.subtitle-postal {
+  color: #fff;
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.form-postal {
+  display: flex;
+  justify-content: center;
+}
+
+.form-control {
+  border: none;
+}
+
+.display-device {
+  display: flex;
+  justify-content: center;
+}
+
+.img-device {
+  width: 90%;
+}
+
+/* ---------------------------------------------------
+    Footer
+----------------------------------------------------- */
+
+footer.bg-footer {
+  background-color: #F2F2F2;
+  height: 460px;
+  position: relative;
+}
+
+.display-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.iso-footer {
+  font-size: 50px;
+  margin-top: 40px;
+}
+
+.slogan-footer {
+  color: #B3B3B3;
+  margin-bottom: 0;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.border-footer {
+  border-top: 1px solid #B3B3B3;
+  border-bottom: 1px solid #B3B3B3;
+  margin: 40px;
+  padding: 40px 0;
+}
+
+.link-footer {
+  color: #69B948;
+  text-decoration: none;
+  text-align: center;
+}
+
+.link-footer:hover,
+.icon-social-footer:hover {
+  text-decoration: none;
+  color: #545454;
+}
+
+.icon-social-footer {
+  font-size: 35px;
+  margin-bottom: 40px;
+}
+
+/* ---------------------------------------------------
+    Media
+----------------------------------------------------- */
+
+@media (min-width: 321px) {
+  .bg-img-food {
+    margin-bottom: 920px;
+  }
+}
+
+@media (min-width: 370px) {
+  .bg-img-food {
+    margin-bottom: 840px;
+  }
+}
+
+@media (min-width: 430px) {
+  .bg-img-food {
+    margin-bottom: 800px;
+  }
+}
+
+@media (min-width: 767px) {
+  .bg-img-food {
+    margin-bottom: 780px;
+  }
+}
+
+@media (min-width: 768px) {
+
+  .bg-img-food {
+    margin-bottom: 240px;
+  }
+
+  .card-compra,
+  .card-compara {
+    z-index: 0;
+  }
+
+  .title h2,
+  .subtitle,
+  h3.title-2,
+  .subtitle-postal,
+  .slogan-footer,
+  .link-footer {
+    text-align: left;
+  }
+
+  .subtitle {
+    padding: 0;
+  }
+
+  .btn-comprar,
+  .titles-description,
+  .form-postal {
+    justify-content: flex-start;
+  }
+
+  .card-landing {
+    padding: 35px 15px;
+  }
+
+  .bg-device {
+    height: 340px;
+  }
+
+  .margin-device {
+    margin-top: 30px;
+  }
+
+  .border-footer {
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 1px solid #B3B3B3;
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+  }
+
+  footer.bg-footer {
+    height: 160px;
+    display: flex;
+    align-items: center;
+  }
+
+  .display-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .icon-social-footer,
+  .slogan-footer,
+  .iso-footer {
+    margin: 0;
+  }
+
+  .slogan-footer {
+    padding-left: 15px;
+  }
+
+}
+
+@media (min-width: 992px) {
+
+  .bg-img-food {
+    margin-bottom: 220px;
+  }
+
+  .logo-navbar-green {
+    height: 45px;
+  }
+
+  .btn-login,
+  .btn-register,
+  .btn-comprar-ahora,
+  .subtitle-postal {
+    font-size: 1rem;
+  }
+
+  h3.title-2 {
+    font-size: 1.75rem;
+  }
+
+  .title h2 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+  }
+
+  .bg-device {
+    height: 440px;
+  }
+
+  .margin-device {
+    margin-top: 70px;
+  }
+
+  .border-footer {
+    border-right: 1px solid #B3B3B3;
+    padding-right: 20px;
+  }
+
+}
+
+@media (min-width: 1200px) {
+
+  footer.bg-footer {
+    height: 210px;
+  }
+
+}

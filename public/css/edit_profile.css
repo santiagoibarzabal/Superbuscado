@@ -1,0 +1,71 @@
+/* ---------------------------------------------------
+    Edit profile
+----------------------------------------------------- */
+
+/* ---------- editar imagen de perfil ---------- */
+
+input.avatar[type="file"] {
+  display: none;
+}
+
+label.avatar[for="img-profile"] {
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  background-size: 100% auto;
+  border: 3px solid #61BC31;
+  z-index: 2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editar-avatar {
+  margin-bottom: 0;
+  background-color: #61BC31;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  z-index: 3;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  display: none;
+}
+
+label.avatar[for="img-profile"]:hover > .editar-avatar{
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- editar datos de perfil ---------- */
+
+.profile-edit {
+  margin-top: 60px;
+}
+
+.email-edit input,
+.nombre-edit input,
+.apellido-edit input,
+.dni-edit input,
+.tel-edit input {
+  border-radius: 25px;
+  border: 1px solid #61BC31;
+  width: 100%;
+  padding-left: 10px;
+}
+
+.email-edit label,
+.nombre-edit label,
+.apellido-edit label,
+.dni-edit label,
+.tel-edit label {
+  font-weight: bold;
+  margin-bottom: 0;
+  color: #545454;
+}

@@ -8,6 +8,6 @@ class Cart extends Model
 {
   public function lists()
   {
-    return $this->belongsToMany("App\List", "list_cart", "cart_id", "list_id");
+    return $this->belongsToMany("App\List", "list_cart", "cart_id_list_cart", "list_id_list_cart");
   }
 }

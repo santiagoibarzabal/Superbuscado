@@ -39,12 +39,12 @@ class User extends Authenticatable
 
     public function address()
     {
-        return $this->hasOne('App\Address', "user_id");
+        return $this->hasOne('App\Address', "user_id_address");
     }
 
     public function lists()
     {
-        return $this->hasMany('App\List', "user_id");
+        return $this->hasMany('App\List', "user_id_list");
     }
 
 

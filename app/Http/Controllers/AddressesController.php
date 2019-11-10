@@ -42,11 +42,11 @@ class AddressesController extends Controller
       {
 
           $this->validate($request, [
-            'title' => 'required',
-
+            'address' => 'required|string',
+            'city' => 'required|string',
+            'province' => 'required|string',
+            'zipCode' => 'required|string'
           ]);
-
-          )
 
           Address::create($request->all());
 
@@ -96,8 +96,9 @@ class AddressesController extends Controller
           'campo1' => 'required',
           'campo2' => 'regla'
         ]);
-
-          Address::update($request->all());
+          $address = Address::find($id);
+          $diff = array_diff($address, $request->all());
+          $address->update($diff);
           return redirect('/addresses');
       }
 
@@ -107,11 +108,9 @@ class AddressesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Address $address)
     {
-      $id = $req['id'];
-      $eliminar = Address::find($id);
-      $eliminar->delete();
+      $address->delete();
       return redirect('/addresses');
     }
 

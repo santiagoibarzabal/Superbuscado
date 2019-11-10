@@ -1,0 +1,172 @@
+/* Css para quital lineas de bootstrap */
+#cierre {
+  border-top: 0;
+}
+.modal-header {
+  border-bottom: 0;
+}
+​
+.modal-content{
+  box-sizing: border-box;
+}
+/* Titulo */
+h5 {
+  color: green;
+  font-size: 25px;
+  text-align: center;
+  font-family: lato;
+  width: 100%;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+/* Formulario */
+.modal-body{
+  margin-left: 50px;
+  margin-right: 50px;
+}
+​
+#direccion {
+  border-radius: 50px;
+  width: 85%;
+  text-align: center;
+  margin: 0 auto;
+  color: grey;
+}
+​
+/* Boton regitracion final */
+#botonR{
+  border-radius: 50px;
+  width: 90%;
+  margin: 0 auto;
+​
+}
+#botonF{
+  border-radius: 50px;
+  width: 40%;
+  margin: 0 auto;
+​
+}
+​
+/* Parrafo */
+p {
+  text-align: center;
+  color: #61BC31;
+}
+​
+​
+/* ---------------------------------------------------
+    Navbar
+----------------------------------------------------- */
+​
+.navbar-principal {
+  z-index: 100;
+}
+​
+.first-navbar {
+  background-color: #61BC31;
+}
+​
+/* ---------- logo ---------- */
+​
+.logo-navbar {
+  height: 58px;
+  padding: 10px 0;
+}
+​
+/* ---------- menu user ---------- */
+​
+.navbar-dark .navbar-toggler {
+  border-color: rgba(0,0,0,0);
+}
+​
+.navbar-toggler {
+  padding: 0;
+}
+​
+.navbar,
+.navbar-collapse {
+  display: flex;
+  justify-content: flex-end;
+}
+​
+.btn-category,
+.btn-location,
+.btn-account {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+​
+​
+.button-account,
+.btn-sections {
+  display: flex;
+  flex-direction: column;
+}
+​
+p.my-account,
+p.user-account,
+p.category-lists,
+p.products-lists,
+p.location {
+  margin: 0;
+  text-align: left;
+}
+​
+.category-lists:hover,
+.location:hover {
+  color: #61BC31;
+}
+​
+p.my-account {
+  color: #fff;
+}
+​
+p.user-account {
+  color: rgba(255, 255, 255, 0.6);
+}
+​
+.icon-arrow-down.white{
+  padding-left: 10px;
+  color: #fff;
+}
+​
+.dropdown-item:hover {
+  color: #61BC31;
+}
+​
+.dropdown-item:active {
+  background-color: #61BC31;
+  color: #fff;
+}
+​
+/* ---------------------------------------------------
+    Footer
+----------------------------------------------------- */
+footer.bg-footer {
+  background-color: #F2F2F2;
+  height: 30vh;
+  position: relative;
+}
+.iso-footer {
+  font-size: 50px;
+}
+.slogan-footer {
+  color: #B3B3B3;
+  margin-bottom: 0;
+}
+.border-left {
+  border-left: 1px solid #545454;
+}
+.link-footer {
+  color: #69B948;
+  text-decoration: none;
+}
+.link-footer:hover,
+.icon-social-footer:hover {
+  text-decoration: none;
+  color: #545454;
+}
+.icon-social-footer {
+  font-size: 35px;
+}

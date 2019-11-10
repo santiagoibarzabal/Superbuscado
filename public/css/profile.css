@@ -1,0 +1,138 @@
+/* ---------------------------------------------------
+    Profile
+----------------------------------------------------- */
+
+/* ---------- personal info ---------- */
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  background-size: 100% auto;
+  border: 3px solid #61BC31;
+  z-index: 2;
+}
+
+.card-profile {
+  border: none;
+  box-shadow: 0px 0px 20px -5px rgba(0,0,0,.07);
+  bottom: 50px;
+  padding: 0 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.email-profile {
+  padding-top: 70px;
+  padding-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+p.personal-info,
+p.address-info {
+  color: #a3a4a6;
+  padding-bottom: 16px;
+}
+
+p.personal-info b,
+p.address-info b {
+  color: #545454;
+}
+
+.brd-bottom-grey {
+  border-bottom: 1px solid #E6E6E6;
+}
+
+.brd-bottom-green {
+  border-bottom: 2px solid #61BC31;
+}
+
+/* ---------- Address ---------- */
+
+.card-address,
+.card-address2 {
+  border: none;
+  box-shadow: 0px 0px 20px -5px rgba(0,0,0,.07);
+  padding: 0 30px;
+}
+
+.card-title-address {
+  color: #61BC31;
+  text-align: center;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 0;
+}
+
+
+/* ---------- credit cards ---------- */
+
+.brd-bottom-white {
+  border-bottom: 2px solid #fff;
+  margin-bottom: 16px;
+}
+
+.card-bank {
+  background-color: #61BC31;
+  border: none;
+  box-shadow: 0px 0px 20px -5px rgba(0,0,0,.07);
+  padding: 0 30px;
+}
+
+.card-title-info {
+  color: #fff;
+  text-align: center;
+  margin-top: 15px;
+  padding-bottom: 15px;
+}
+
+.info-card-bank {
+  margin-bottom: 16px;
+}
+
+.info-card-bank2 {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #fff;
+}
+
+.logo-bank {
+  width: 60px;
+  height: 60px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  background-size: 100% auto;
+  margin-right: 30px;
+}
+
+.text-card-bank {
+  color: #fff;
+  margin-bottom: 0;
+}
+
+/* ---------------------------------------------------
+    Edit profile
+----------------------------------------------------- */
+
+
+
+/* ---------------------------------------------------
+    Media
+----------------------------------------------------- */
+
+@media (min-width: 430px) {
+
+  .email-profile {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+
+  .card-address {
+    margin-top: 50px;
+  }
+}
