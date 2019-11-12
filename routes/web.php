@@ -11,20 +11,22 @@
 |
 */
 
+
+// --------------------- Index --------------------- //
+
 Route::get('/', function() {
-   return ('BIENVENIDO');
+   return view ('landing');
 });
 
-// RUTAS PARA LOGIN Y REGISTER
+
+// --------------------- Login y Register --------------------- //
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-
-// RUTAS PARA ADDRESSES
-
+// --------------------- Addresses --------------------- //
 
 Route::get('/addresses', 'AddressesController@index');
 
@@ -41,7 +43,7 @@ Route::delete('/addresses/{id}', 'AddressesController@destroy');
 Route::get('/addresses/{address}', 'AddressesController@show');
 
 
-// RUTAS PARA CART
+// --------------------- Cart --------------------- //
 
 Route::get('/carts', 'CartsController@index');
 
@@ -58,7 +60,7 @@ Route::delete('/carts/{id}', 'CartsController@destroy');
 Route::get('/carts/{id}', 'CartsController@show');
 
 
-// // RUTAS PARA CATEGORY
+// --------------------- Categories --------------------- //
 
 Route::get('/categories', 'CategoriesController@index');
 
@@ -74,7 +76,8 @@ Route::delete('/categories/{id}', 'CategoriesController@destroy');
 
 Route::get('/categories/{id}', 'CategoriesController@show');
 
-// RUTAS PARA LIST
+
+// --------------------- Lists --------------------- //
 
 Route::get('/lists', 'ListsController@index');
 
@@ -91,7 +94,7 @@ Route::delete('/lists/{id}', 'ListsController@destroy');
 Route::get('/lists/{id}', 'ListsController@show');
 
 
-// RUTAS PARA MARKET
+// --------------------- Markets --------------------- //
 
 Route::get('/markets', 'MarketsController@index');
 
@@ -108,8 +111,7 @@ Route::delete('/markets/{id}', 'MarketsController@destroy');
 Route::get('/markets/{id}', 'MarketsController@show');
 
 
-
-// RUTAS PARA PRODUCTS
+// --------------------- Products --------------------- //
 
 Route::get('/products', 'ProductsController@index');
 
@@ -126,7 +128,7 @@ Route::delete('/products/{id}', 'ProductsController@destroy');
 Route::get('/products/{id}', 'ProductsController@show');
 
 
-// RUTAS PARA STOCKS
+// --------------------- Stocks --------------------- //
 
 Route::get('/stocks', 'StocksController@index');
 
@@ -143,7 +145,7 @@ Route::delete('/stocks/{id}', 'StocksController@destroy');
 Route::get('/stocks/{id}', 'StocksController@show');
 
 
-// RUTAS PARA STORE
+// --------------------- Stores --------------------- //
 
 Route::get('/stores', 'StoresController@index');
 
@@ -160,7 +162,7 @@ Route::delete('/stores/{id}', 'StoresController@destroy');
 Route::get('/stores/{id}', 'StoresController@show');
 
 
-// RUTAS PARA USER
+// --------------------- Users --------------------- //
 
 Route::get('/users', 'UsersController@index');
 

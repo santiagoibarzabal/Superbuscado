@@ -188,6 +188,7 @@ p.products-lists {
 
 .icon-happy-container,
 .icon-piggy-bank {
+  width: 100%;
   color: #61BC31;
   font-size: 80px;
   text-align: center;

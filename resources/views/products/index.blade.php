@@ -101,7 +101,7 @@
 
           <!-- logo -->
           <div class="col-4 col-sm-4 col-md-3 col-lg-2">
-            <a href="landing.php"><img class="logo-navbar" src="assets/img/logo-superbuscado-white.png" alt=""></a>
+            <a href="{{ url('/') }}"><img class="logo-navbar" src="{{ asset('img/logos/logo-superbuscado-white.png') }}" alt=""></a>
           </div>
 
           <!-- search -->
@@ -213,7 +213,7 @@
       <div class="col-6 col-md-4 col-lg-3 col-xl-2">
         <div class="card card-hover my-3 p-3">
           <a class="mb-3" href="producto_descripcion.php">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
+            <img class="icon-happy-container mb-3 d-flex justify-content-center" src="https://jumboargentina.vteximg.com.br/arquivos/ids/200732-750-750/Aceite-De-Girasol-Jumbo-900ml-Aceite-De-Girasol-Jumbo-900-Ml-1-37113.jpg?v=636383624783430000" alt="">
             <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
             <hr class="linea-separacion">
             <p class="costo">$45,99</p>
@@ -228,7 +228,7 @@
       <div class="col-6 col-md-4 col-lg-3 col-xl-2">
         <div class="card card-hover my-3 p-3">
           <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
+            <img class="icon-happy-container mb-3 d-flex justify-content-center" src="http://static.cotodigital.com.ar/sitios/fotos/full/00014000/00014076.jpg?3.0.93" alt="">
             <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
             <hr class="linea-separacion">
             <p class="costo">$45,99</p>
@@ -243,7 +243,7 @@
       <div class="col-6 col-md-4 col-lg-3 col-xl-2">
         <div class="card card-hover my-3 p-3">
           <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
+            <img class="icon-happy-container mb-3 d-flex justify-content-center" src="{{ asset('img/happy-container.jpg') }}" alt="">
             <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
             <hr class="linea-separacion">
             <p class="costo">$45,99</p>
