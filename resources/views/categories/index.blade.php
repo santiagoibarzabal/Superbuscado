@@ -41,50 +41,25 @@
         <p class="title-sidebar">Categorías</p>
       </div>
 
-      {{-- <ul>
-
-      @foreach ($categorias as $categoria)
-
-        @if ($categoria->subcategory_id == 0)
-
-        <li>{{ $categoria->name }}
-          @if ($categoria->children->count())
-            <ul>
-              @foreach ($categoria->children as $child)
-                <li>{{ $child->name }}</li>
-              @endforeach
-            </ul>
-          @endif
-        </li>
-
-        @endif
-
-      @endforeach
-
-      </ul> --}}
-
       <ul class="list-unstyled">
 
         @foreach ($categorias as $categoria)
-          @if ($categoria->subcategory_id == 0)
-
           <li>
-            <a href="#{{ $categoria->name }}" data-toggle="collapse" aria-expanded="false">{{ $categoria->name }}</a>
+            <a href="#category-{{ $categoria->id }}" data-toggle="collapse" aria-expanded="false">{{ $categoria->name }}</a>
 
-            <ul class="collapse list-unstyled" id="{{ $categoria->name }}">
-              @if ($categoria->children->count())
-                @foreach ($categoria->children as $child)
-                <li>
-                  <a href="#">{{ $child->name }}</a>
-                </li>
-                @endforeach
-              @endif
+            <ul class="collapse list-unstyled" id="category-{{ $categoria->id }}">
+              @foreach ($categoria->children as $child)
+              <li>
+                <a href="#">{{ $child->name }}</a>
+              </li>
+              @endforeach
             </ul>
-          </li>
 
-          @endif
+          </li>
         @endforeach
+
       </ul>
+
     </nav>
 
     <div class="overlay"></div>

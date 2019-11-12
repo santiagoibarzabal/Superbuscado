@@ -10,19 +10,24 @@ class Category extends Model
 
   public function products()
   {
-    return $this->hasMany("App\Product", "category_id_product");
+    return $this->hasMany(Product::class, "category_id_product");
   }
 
   // --------- Categorías Padres
 
+  public static function scopeSuper($builder)
+  {
+    return $builder->whereNull('category_id');
+  }
+
   public function parent() {
-    return $this->belongsToOne(static::class, 'subcategory_id');
+    return $this->belongsTo(self::class, 'category_id');
   }
 
   // --------- Categorías Hijas
 
   public function children() {
-    return $this->hasMany(static::class, 'subcategory_id')->orderBy('name', 'asc');
+    return $this->hasMany(self::class, 'category_id')->orderBy('name', 'asc');
   }
 
 
