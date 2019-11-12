@@ -46,8 +46,8 @@
         <!-- Botones login -->
 
         <div class="col-9 navbar">
-          <a class="btn-login mr-4" href="login.php">Iniciar sesión</a>
-          <a class="btn-register py-1 px-3" href="register.php">Registrate</a>
+          <a class="btn-login mr-4" href="login">Iniciar sesión</a>
+          <a class="btn-register py-1 px-3" href="register">Registrate</a>
         </div>
 
       </div>
