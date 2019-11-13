@@ -146,11 +146,47 @@ return [
     */
 
     'attributes' => [
+
+      // USER
+
       'title' => 'titulo',
-      'phone' => 'numero telefonico',
+      'phone' => 'numero telefónico',
       'first_name' => 'nombre',
       'last_name' => 'apellido',
       'password' => 'contraseña',
+      'avatar' => 'imagen',
+      'address' => 'dirección',
+      'date_of_birth' => 'fecha de nacimiento',
+
+      // ADDRESS
+
+      'city' => 'ciudad',
+      'province' => 'provincia',
+      'zip_code' => 'código postal',
+
+      // CATEGORIES
+
+      'name' => 'nombre',
+
+      // LISTS
+
+      'price' => 'precio',
+      'total_price' => 'precio total',
+
+      // MARKETS no tiene
+
+      // PRODUCTS
+
+      'suggested_price' => 'precio sugerido',
+      'brand' => 'marca',
+      'description' => 'descripción',
+      'net_weight' => 'peso neto',
+
+      // STOCKS
+
+      'list_price' => 'precio de lista',
+      'quantity' => 'cantidad',
+
 
     ],
 
