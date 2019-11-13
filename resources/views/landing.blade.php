@@ -74,7 +74,7 @@
             </div>
 
             <div class="col-12 mt-3 btn-comprar">
-              <a class="btn-comprar-ahora py-2 px-4 mt-2" href="register.php">Comprar ahora</a>
+              <a class="btn-comprar-ahora py-2 px-4 mt-2" href="register">Comprar ahora</a>
             </div>
 
 

@@ -116,7 +116,7 @@
 
               <p class="terminos-y-condiciones">Al hacer clic en "Registrate", acepta nuestros <a class="redirect-link" href="#">términos de servicio y política de privacidad.</a>  Ocasionalmente le enviaremos correos electrónicos relacionados con la cuenta.</p>
 
-              <p class="redirect">¿Ya tenes una cuenta? <a class="redirect-link" href="login.php">Iniciar sesión</a></p>
+              <p class="redirect">¿Ya tenes una cuenta? <a class="redirect-link" href="login">Iniciar sesión</a></p>
 
             </div>
 

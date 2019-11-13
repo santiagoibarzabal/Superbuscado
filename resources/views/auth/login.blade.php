@@ -94,7 +94,7 @@
                 </div>
               </form>
 
-              <p class="redirect">¿Todavía no tenés una cuenta? <a class="redirect-link" href="register.php">Registrate</a></p>
+              <p class="redirect">¿Todavía no tenés una cuenta? <a class="redirect-link" href="register">Registrate</a></p>
 
             </div>
 
