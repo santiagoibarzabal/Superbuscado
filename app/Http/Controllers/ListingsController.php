@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\List;
+use App\Listing;
 
-class ListsController extends Controller
+class ListingsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,10 @@ class ListsController extends Controller
      */
     public function index()
     {
-        //
+      $listings = Listing::paginate(12);
+      return view('listings.index', [
+        'listings' => $listings,
+      ]);
     }
 
     /**

@@ -18,9 +18,9 @@ class Product extends Model
     return $this->belongsToMany("App\Stock");
   }
 
-  public function lists()
+  public function listings()
   {
-    return $this->belongsToMany("App\List");
+    return $this->belongsToMany("App\Listing");
   }
 
 

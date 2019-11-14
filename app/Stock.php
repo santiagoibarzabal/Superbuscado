@@ -8,12 +8,12 @@ class Stock extends Model
 {
   public function market()
   {
-    return $this->belongsTo("App\Market", "market_id_stock");
+    return $this->belongsTo("App\Market");
   }
 
 
   public function products()
   {
-    return $this->belongsToMany("App\Product", "product_stock", "stock_id_product_stock", "product_id_product_stock");
+    return $this->belongsToMany("App\Product");
   }
 }

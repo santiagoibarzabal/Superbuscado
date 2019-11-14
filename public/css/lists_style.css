@@ -123,6 +123,52 @@
 }
 
 /* ---------------------------------------------------
+    products_list
+----------------------------------------------------- */
+
+.sinbordefondo {
+  background-color: #fff;
+  color: #69B948;
+  font-weight: bold;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  margin: 4px 8px;
+}
+
+.btn-border-hover:hover {
+  border: 1px solid #69B948;
+}
+
+.btn-buy {
+  background-color: #69B948;
+  border: 1px solid #69B948;
+  cursor: pointer;
+}
+
+.sinbordefondo-green {
+  background-color: #69B948;
+  color: #fff;
+  font-weight: bold;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  padding: 4px 8px;
+}
+
+.btn-buy:hover,
+.sinbordefondo-green:hover {
+  background-color: #4B9F1E;
+}
+
+button.delete-product {
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------
     Footer
 ----------------------------------------------------- */
 

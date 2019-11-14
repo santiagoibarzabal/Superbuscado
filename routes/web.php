@@ -79,19 +79,19 @@ Route::get('/categories/{id}', 'CategoriesController@show');
 
 // --------------------- Lists --------------------- //
 
-Route::get('/lists', 'ListsController@index');
+Route::get('/listings', 'ListingsController@index');
 
-Route::get('/lists/new', 'ListsController@create');
+Route::get('/listings/new', 'ListingsController@create');
 
-Route::post('/lists', 'ListsController@store');
+Route::post('/listings', 'ListingsController@store');
 
-Route::get('/lists/{id}/edit', 'ListsController@edit');
+Route::get('/listings/{id}/edit', 'ListingsController@edit');
 
-Route::patch('/lists/{id}', 'ListsController@update');
+Route::patch('/listings/{id}', 'ListingsController@update');
 
-Route::delete('/lists/{id}', 'ListsController@destroy');
+Route::delete('/listings/{id}', 'ListingsController@destroy');
 
-Route::get('/lists/{id}', 'ListsController@show');
+Route::get('/listings/{id}', 'ListingsController@show');
 
 
 // --------------------- Markets --------------------- //
@@ -177,3 +177,7 @@ Route::patch('/users/{id}', 'UsersController@update');
 Route::delete('/users/{id}', 'UsersController@destroy');
 
 Route::get('/users/{id}', 'UsersController@show');
+
+// --------------------- Profile --------------------- //
+
+Route::get('/profile', 'UsersController@profile');

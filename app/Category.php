@@ -10,7 +10,7 @@ class Category extends Model
 
   public function products()
   {
-    return $this->hasMany(Product::class, "category_id_product");
+    return $this->hasMany(Product::class);
   }
 
   // --------- Categorías Padres

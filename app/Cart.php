@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-  public function lists()
+  public function listings()
   {
-    return $this->belongsToMany("App\List", "list_cart", "cart_id_list_cart", "list_id_list_cart");
+    return $this->belongsToMany("App\Listing");
   }
 }
