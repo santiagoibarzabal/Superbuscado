@@ -1,0 +1,24 @@
+.card-market {
+  background-color: #F2F2F2;
+  border: 1px solid #61BC31;
+  padding: 16px;
+}
+
+.icon-market {
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-color: #fff;
+  border-radius: 50%;
+  background-size: 80% auto;
+}
+
+.detalle-orden {
+  border: 1px solid #61BC31;
+  border-radius: .25rem;
+}
+
+.espacio-vacio {
+  width: 44px;
+}
