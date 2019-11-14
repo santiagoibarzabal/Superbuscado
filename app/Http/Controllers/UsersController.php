@@ -8,6 +8,11 @@ use App\User;
 
 class UsersController extends Controller
 {
+    public function profile()
+    {
+      return view ('profile.index');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +52,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
