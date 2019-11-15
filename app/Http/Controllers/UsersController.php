@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\User;
 
+use Auth;
+
 class UsersController extends Controller
 {
     public function profile()
@@ -61,9 +63,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        $user = auth()->user();
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
@@ -73,9 +76,24 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        // validar
+        $this->validate($request, [
+          'first_name' => 'string|min:4|max:255|',
+          'last_name' => 'string|min:4|max:255|',
+          'phone' => 'string|min:4|max:30|',
+          'date_of_birth' => 'date',
+          'dni' => 'string|min:8|max:15',
+          // 'avatar' => 'file',
+
+        ]);
+
+        // $path = $request->file('avatar')->store('public');
+
+        $dataUsuario = auth()->user()->update($request->all());
+
+        return redirect('/profile');
     }
 
     /**
