@@ -101,16 +101,48 @@
       </div>
     </nav>
 
+    <!-- _____________________ Nav sections _____________________ -->
+
+    <nav class="second-navbar py-2">
+      <nav class="container">
+        <div class="row">
+
+          <!-- Ubicación -->
+
+          <nav class="display-flex col-12">
+            <a class="btn-location" href="#">
+              <span class="icon-location green"></span>
+              <p class="location">Capital Federal 1429</p>
+            </a>
+          </nav>
+
+
+        </div>
+      </nav>
+    </nav>
+
   </header>
 
-    @if ($listings)
-    <!-- _____________________ new_list _____________________ -->
+  @if ($listings->isEmpty())
 
+    <!-- _____________________ Sin listas _____________________ -->
+
+    <section class="container container-index list-center">
+      <div class="row">
+
+        <div class="col-12">
+          <p class="title-create-list">Crea tu primer lista del super!</p>
+          <a class="icon-plus-circle d-flex justify-content-center" href="{{asset('listings/new')}}"></a>
+        </div>
+
+      </div>
+    </section>
+
+  @else
     <section class="container container-index">
       <div class="row">
 
-        <!-- Titulo categoría -->
-
+        <!-- _____________________ create new list _____________________ -->
 
         <div class="col-12 d-flex justify-content-start">
           <a class="icon-plus-circle mr-2" style="font-size: 1.5rem;" href="{{ url('/listings/new') }}"></a>
@@ -120,6 +152,9 @@
         </div>
 
         @foreach ($listings as $listing)
+
+        <!-- _____________________ lists _____________________ -->
+
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card card-new-list hover-list p-3 mt-4">
 
@@ -146,34 +181,21 @@
               </div>
 
 
-              <div class="col-1 exit-icon">
-                <a class="icon-exit-circle" href="{{ url('/listings') }}"></a>
-              </div>
+              <form class="col-1 exit-icon" action="{{ url('/listings', $listing->id) }}" method="POST">
+                @csrf
+                @method('delete')
+                <button class="icon-exit-circle"></button>
+              </form>
 
             </div>
 
 
           </div>
         </div>
+
         @endforeach
       </div>
     </section>
-
-  @else
-
-    <!-- _____________________ Sin listas _____________________ -->
-
-    <section class="container container-index list-center">
-      <div class="row">
-
-        <div class="col-12">
-          <p class="title-create-list">Crea tu primer lista del super!</p>
-          <a class="icon-plus-circle d-flex justify-content-center" href="{{asset('listings/new')}}"></a>
-        </div>
-
-      </div>
-    </section>
-
   @endif
 
 

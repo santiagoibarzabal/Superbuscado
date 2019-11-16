@@ -89,8 +89,14 @@ class ListingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Listing $listing)
     {
-        //
+      if(auth()->id() != $listing->user_id) {
+        return redirect('/listings');
+      }
+
+      $listing->delete();
+
+      return redirect('/listings');
     }
 }
