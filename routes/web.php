@@ -92,7 +92,7 @@ Route::group(['middleware'=>'auth'],function(){
 
   Route::patch('/listings/{id}', 'ListingsController@update');
 
-  Route::delete('/listings/{id}', 'ListingsController@destroy');
+  Route::delete('/listings/{listing}', 'ListingsController@destroy');
 
   Route::get('/listings/{id}', 'ListingsController@show');
 
