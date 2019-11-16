@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Listing;
 
+use Auth;
+
 class ListingsController extends Controller
 {
     /**
@@ -15,7 +17,9 @@ class ListingsController extends Controller
      */
     public function index()
     {
-      $listings = Listing::paginate(12);
+      $listings = auth()->user()->listings()->paginate(12);
+
+
       return view('listings.index', [
         'listings' => $listings,
       ]);
@@ -28,7 +32,8 @@ class ListingsController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('listings.create');
     }
 
     /**
@@ -39,7 +44,9 @@ class ListingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      auth()->user()->listings()->create($request->all());
+
+      return redirect('/listings');
     }
 
     /**
@@ -50,7 +57,7 @@ class ListingsController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('listings.show');
     }
 
     /**
@@ -61,7 +68,7 @@ class ListingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view ('listings.edit');
     }
 
     /**

@@ -78,20 +78,26 @@ Route::get('/categories/{id}', 'CategoriesController@show');
 
 
 // --------------------- Lists --------------------- //
+// Validacion de User logeado para acceso a todas las Rutas
 
-Route::get('/listings', 'ListingsController@index');
+Route::group(['middleware'=>'auth'],function(){
 
-Route::get('/listings/new', 'ListingsController@create');
+  Route::get('/listings', 'ListingsController@index');
 
-Route::post('/listings', 'ListingsController@store');
+  Route::get('/listings/new', 'ListingsController@create');
 
-Route::get('/listings/{id}/edit', 'ListingsController@edit');
+  Route::post('/listings', 'ListingsController@store');
 
-Route::patch('/listings/{id}', 'ListingsController@update');
+  Route::get('/listings/{id}/edit', 'ListingsController@edit');
 
-Route::delete('/listings/{id}', 'ListingsController@destroy');
+  Route::patch('/listings/{id}', 'ListingsController@update');
 
-Route::get('/listings/{id}', 'ListingsController@show');
+  Route::delete('/listings/{id}', 'ListingsController@destroy');
+
+  Route::get('/listings/{id}', 'ListingsController@show');
+
+});
+
 
 
 // --------------------- Markets --------------------- //

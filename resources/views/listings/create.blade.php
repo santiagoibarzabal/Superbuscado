@@ -13,13 +13,13 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
   <!-- styles CSS -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/sidebar_style.css">
-  <link rel="stylesheet" href="css/landing_style.css">
-  <link rel="stylesheet" href="css/lists_style.css">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/sidebar_style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/landing_style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/lists_style.css') }}">
 
   <!-- icons -->
-  <link rel="stylesheet" href="assets/icons/icons.css">
+  <link rel="stylesheet" href="{{ asset('css/icons/icons.css') }}">
 
   <!-- Scrollbar Custom CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -28,7 +28,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap" rel="stylesheet">
 
   <!-- favicon -->
-  <link rel="shortcut icon" href="iso-superbuscado.ico" />
+  <link rel="shortcut icon" href="{{ asset('iso-superbuscado.ico')}}" />
 
 </head>
 
@@ -44,7 +44,7 @@
 
           <!-- logo -->
           <div class="col-4 col-sm-4 col-md-3 col-lg-2">
-            <a href="new_list.php"><img class="logo-navbar" src="assets/img/logo-superbuscado-white.png" alt=""></a>
+            <a href="{{ url('/') }}"><img class="logo-navbar" src="{{ asset('img/logo-superbuscado-white.png')}}" alt=""></a>
           </div>
 
           <!-- menu user -->
@@ -61,26 +61,34 @@
                   <a class="nav-link btn-account" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="button-account">
                       <p class="my-account">Mi cuenta</p>
-                      <p class="user-account"><?=$_SESSION['user']['email'] ?? ''?></p>
+                      <p class="user-account">{{auth()->user()->email}}</p>
                     </div>
                     <span class="icon-arrow-down white"></span>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                     <li>
-                      <a class="dropdown-item" href="mis_listas.php">Mis listas</a>
+                      <a class="dropdown-item" href="{{ url('/listings/{id}') }}">Mis listas</a>
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="#">Compras</a>
+                      <a class="dropdown-item" href="{{ url('/carts') }}">Compras</a>
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="profile.php">Mis datos</a>
+                      <a class="dropdown-item" href="{{ url('/profile') }}">Mis datos</a>
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="logout.php">Salir</a>
+                      <a class="dropdown-item" href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                          {{ __('Salir') }}
+                      </a>
+
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
                     </li>
 
                   </ul>
@@ -104,29 +112,25 @@
 
         <div class="card card-new-list">
           <div class="d-flex justify-content-end" style="height: 10px">
-            <a class="icon-exit-circle" href="create_list.php"></a>
+            <a class="icon-exit-circle" href="{{ url('/listings/new') }}"></a>
           </div>
 
           <p class="title-card-new-list">Agregar una nueva lista</p>
 
 
-          <form class="d-flex justify-content-center" action="index.php" method="post">
-
+          <form class="d-flex justify-content-center" action="{{ url('/listings') }}" method="post">
+              @csrf
             <div class="row">
 
               <div class="col-12 d-flex justify-content-center">
-                <input type="text" class="input-name-list" placeholder="Ingresa un nombre para tu lista">
+                <input type="text" name="name" class="input-name-list" placeholder="Ingresa un nombre para tu lista">
               </div>
 
               <div class="col-12 d-flex justify-content-center">
-                <a href="mis_listas.php">
-                  <button class="form-list-btn-crear" type="button" name="button">Crear</button>
-                </a>
-
+                  <button class="form-list-btn-crear">Crear</button>
               </div>
 
             </div>
-
           </form>
 
         </div>
