@@ -103,7 +103,10 @@
   <section class="container" style="padding-top:6em;">
     <div class="row d-flex justify-content-center">
 
-      <form class="col-12" action="{{}}" method="post" enctype="multipart/form-data">
+      <form class="col-12" action="{{url('profile')}}" method="post" enctype="multipart/form-data">
+        @csrf
+        @method('patch')
+
         <div class="row d-flex justify-content-center">
 
           <!-- editar imagen de perfil -->
@@ -111,8 +114,9 @@
           <div class="col-12">
             <div class="d-flex justify-content-center">
               <label class="avatar" for="img-profile" style="background-image: url(files/img_profile.jpg)"><p class="editar-avatar">Editar</p></label>
-              <input class="avatar" type="file" name="imagen" value="" id="img-profile" onchange='cambiar()'>
+              <input class="avatar form-control @error('avatar') is-invalid @enderror" type="file" name="avatar" value="" id="img-profile" onchange='cambiar()' >
             </div>
+
           </div>
 
           <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
@@ -134,7 +138,7 @@
                   <label for="">Email:</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
-                  <input type="email" name="email" value="<?=$_SESSION['user']['email'] ?? ''?>">
+                  <input readonly disabled type="email" value="{{auth()->user()->email}}">
                 </div>
               </div>
 
@@ -145,7 +149,12 @@
                   <label for="">Nombre:</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
-                  <input type="text" name="nombre" value="<?=$_SESSION['user']['name'] ?? ''?>">
+                  <input class="form-control @error('name') is-invalid @enderror" type="text" name="first_name" value="{{auth()->user()->first_name}}">
+                </div>
+                <div class="col-12 mb-2" style="color: #e03232; background-color: color: #f8d7da;">
+                  @error('first_name')
+                          {{ $message }}
+                  @enderror
                 </div>
               </div>
 
@@ -156,7 +165,12 @@
                   <label for="">Apellido:</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
-                  <input type="text" name="apellido" value="<?=$_SESSION['user']['lastname'] ?? ''?>">
+                  <input class="form-control @error('last_name') is-invalid @enderror" type="text" name="last_name" value="{{auth()->user()->last_name}}">
+                </div>
+                <div class="col-12 mb-2" style="color: #e03232; background-color: color: #f8d7da;">
+                  @error('last_name')
+                          {{ $message }}
+                  @enderror
                 </div>
               </div>
 
@@ -167,7 +181,12 @@
                   <label for="">DNI:</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
-                  <input type="number" name="dni" value="<?=$_SESSION['user']['dni'] ?? ''?>">
+                  <input class="form-control @error('dni') is-invalid @enderror" type="number" name="dni" value="{{auth()->user()->dni}}">
+                </div>
+                <div class="col-12 mb-2" style="color: #e03232; background-color: color: #f8d7da;">
+                  @error('dni')
+                          {{ $message }}
+                  @enderror
                 </div>
               </div>
 
@@ -178,7 +197,12 @@
                   <label for="">Teléfono:</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
-                  <input type="tel" name="tel" value="<?=$_SESSION['user']['tel'] ?? ''?>">
+                  <input class="form-control @error('phone') is-invalid @enderror" type="tel" name="phone" value="{{auth()->user()->phone}}">
+                </div>
+                <div class="col-12 mb-2" style="color: #e03232; background-color: color: #f8d7da;">
+                  @error('phone')
+                          {{ $message }}
+                  @enderror
                 </div>
               </div>
 
@@ -189,7 +213,12 @@
                   <label for="">Nacimiento:</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
-                  <input type="tel" name="tel" value="<?=$_SESSION['user']['date_of_birth'] ?? ''?>">
+                  <input class="form-control @error('date_of_birth') is-invalid @enderror" type="date" name="date_of_birth" value="{{auth()->user()->date_of_birth}}">
+                </div>
+                <div class="col-12 mb-2" style="color: #e03232; background-color: color: #f8d7da;">
+                  @error('date_of_birth')
+                          {{ $message }}
+                  @enderror
                 </div>
               </div>
 

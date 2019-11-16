@@ -170,6 +170,8 @@ Route::get('/stores/{id}', 'StoresController@show');
 
 // --------------------- Users --------------------- //
 
+Route::group(['middleware'=>'auth'],function(){
+
 Route::get('/users', 'UsersController@index');
 
 Route::get('/users/new', 'UsersController@create');
@@ -187,3 +189,7 @@ Route::get('/users/{id}', 'UsersController@show');
 // --------------------- Profile --------------------- //
 
 Route::get('/profile', 'UsersController@profile');
+
+Route::patch('/profile', 'UsersController@update');
+
+});
