@@ -51,13 +51,22 @@
 
 .icon-exit-circle {
   color: #fff;
-  margin-top: 8px;
-  margin-right: 8px;
   width: 16px;
+  outline: none;
 }
 
 .icon-exit-circle:hover {
   color: #C6F7AD;
+  outline: none;
+}
+
+button:focus {
+  outline:0;
+}
+
+button .btn-exit {
+  background-color: transparent;
+  border: none;
 }
 
 .input-name-list {
@@ -81,10 +90,6 @@
 /* ---------------------------------------------------
     mis_listas
 ----------------------------------------------------- */
-
-.hover-list:hover {
-  border: 1px solid #4B9F1E;
-}
 
 .card-quantity {
   border: none;
@@ -118,8 +123,9 @@
 }
 
 .exit-icon {
-  padding: 0;
-  margin-top: -8px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
 }
 
 /* ---------------------------------------------------

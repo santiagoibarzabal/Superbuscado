@@ -7,16 +7,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Mi primer lista</title>
+  <title>Mis listas</title>
 
   <!-- Bootstrap CSS CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
   <!-- styles CSS -->
+  <link rel="stylesheet" href="{{ asset('css/lists_style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sidebar_style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/landing_style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/lists_style.css') }}">
+
 
   <!-- icons -->
   <link rel="stylesheet" href="{{ asset('css/icons/icons.css') }}">
@@ -156,17 +157,23 @@
         <!-- _____________________ lists _____________________ -->
 
         <div class="col-12 col-md-6 col-lg-4">
-          <div class="card card-new-list hover-list p-3 mt-4">
+          <div class="card card-new-list sinbordefondo-green p-3 mt-4">
 
 
             <div class="row">
 
-              <div class="col-11">
+              <div class="col-10 pr-0">
                 <a href="{{ url('/listings/{id}/edit') }}">
                   <div class="row">
                     <div class="col-5 col-sm-4 col-md-5">
                       <div class="card card-quantity d-flex justify-content-center">
-                        <p class="quantity-list">{{$listing->quantity}}</p>
+                        <p class="quantity-list">
+                          @if($listing->quantity == null)
+                            {{'0'}}
+                          @else
+                            {{$listing->quantity}}
+                          @endif
+                          </p>
                         <p class="productos-list-1">Productos</p>
                       </div>
                     </div>
@@ -181,10 +188,10 @@
               </div>
 
 
-              <form class="col-1 exit-icon" action="{{ url('/listings', $listing->id) }}" method="POST">
+              <form class="col-2 exit-icon" action="{{ url('/listings', $listing->id) }}" method="POST">
                 @csrf
                 @method('delete')
-                <button class="icon-exit-circle"></button>
+                <button class="icon-exit-circle btn-exit p-0" style="background-color: transparent; border: none;"></button>
               </form>
 
             </div>
