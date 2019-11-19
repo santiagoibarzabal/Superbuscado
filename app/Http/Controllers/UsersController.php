@@ -83,15 +83,17 @@ class UsersController extends Controller
           'first_name' => 'string|min:4|max:255|',
           'last_name' => 'string|min:4|max:255|',
           'phone' => 'string|min:4|max:30|',
-          'date_of_birth' => 'date',
           'dni' => 'string|min:8|max:15',
-          // 'avatar' => 'file',
-
+          'avatar' => 'file',
         ]);
 
-        // $path = $request->file('avatar')->store('public');
+        $diff = array_diff($request->all(), auth()->user()->toArray());
 
-        $dataUsuario = auth()->user()->update($request->all());
+        if ($request->has('avatar')) {
+          $diff['avatar'] = $request->file('avatar')->store('public');
+        }
+
+        auth()->user()->update($diff);
 
         return redirect('/profile');
     }

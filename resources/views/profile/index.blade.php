@@ -63,7 +63,7 @@
                   <a class="nav-link btn-account" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="button-account">
                       <p class="my-account">Mi cuenta</p>
-                      <p class="user-account"><?=$_SESSION['user']['email'] ?? ''?></p>
+                      <p class="user-account">{{auth()->user()->email}}</p>
                     </div>
                     <span class="icon-arrow-down white"></span>
                   </a>
@@ -118,10 +118,10 @@
 
                     <div class="col-12">
                       <h6 class="email-profile green brd-bottom-green"><?=$_SESSION['user']['email'] ?? ''?></h6>
-                      <p class="personal-info mt-3 brd-bottom-grey"><b>Nombre: </b><?=$_SESSION['user']['name'] ?? ''?></p>
-                      <p class="personal-info brd-bottom-grey"><b>Apellido: </b> <?=$_SESSION['user']['lastname'] ?? ''?></p>
-                      <p class="personal-info brd-bottom-grey"><b>DNI: </b><?=$_SESSION['user']['dni'] ?? ''?></p>
-                      <p class="personal-info"><b>Teléfono: </b> <?=$_SESSION['user']['tel'] ?? ''?></p>
+                      <p class="personal-info mt-3 brd-bottom-grey"><b>Nombre: </b>{{auth()->user()->first_name}}</p>
+                      <p class="personal-info brd-bottom-grey"><b>Apellido: </b> {{auth()->user()->last_name}}</p>
+                      <p class="personal-info brd-bottom-grey"><b>DNI: </b>{{auth()->user()->dni}}</p>
+                      <p class="personal-info"><b>Teléfono: </b> {{auth()->user()->phone}}</p>
                     </div>
 
                     <div class="col-12">
