@@ -15,10 +15,7 @@ class AddressesController extends Controller
      */
     public function index()
     {
-        $direcciones = Address::paginate(12);
-        return view('addresses.index', [
-          'addresses' => $direcciones,
-        ]);
+    
     }
 
     /**
@@ -48,7 +45,7 @@ class AddressesController extends Controller
             'zipCode' => 'required|string'
           ]);
 
-          Address::create($request->all());
+          auth()->user()->address()->create($request->all());
 
           return redirect('/addresses');
 
@@ -75,11 +72,9 @@ class AddressesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-      $editarDireccion = Address::find($id);
-
-      return view('edit', ['address' => $editarDireccion]);
+      return view('addresses.edit');
     }
 
     /**
@@ -89,17 +84,20 @@ class AddressesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
       {
-
         $this->validate($request, [
-          'campo1' => 'required',
-          'campo2' => 'regla'
+          'address' => 'required|string',
+          'city' => 'required|string',
+          'province' => 'required|string',
+          'zip_code' => 'required|string'
         ]);
-          $address = Address::find($id);
-          $diff = array_diff($address, $request->all());
-          $address->update($diff);
-          return redirect('/addresses');
+
+        $address = auth()->user()->address;
+        $diff = array_diff($request->all(), $address->toArray());
+        $address->update($diff);
+
+          return redirect('/profile');
       }
 
     /**
