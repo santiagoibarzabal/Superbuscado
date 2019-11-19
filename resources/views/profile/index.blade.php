@@ -13,15 +13,15 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
   <!-- styles CSS -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/sidebar_style.css">
-  <link rel="stylesheet" href="css/landing_style.css">
-  <link rel="stylesheet" href="css/lists_style.css">
-  <link rel="stylesheet" href="css/profile.css">
-  <link rel="stylesheet" href="css/login_register_contact.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/sidebar_style.css">
+  <link rel="stylesheet" href="/css/landing_style.css">
+  <link rel="stylesheet" href="/css/lists_style.css">
+  <link rel="stylesheet" href="/css/profile.css">
+  <link rel="stylesheet" href="/css/login_register_contact.css">
 
   <!-- icons -->
-  <link rel="stylesheet" href="assets/icons/icons.css">
+  <link rel="stylesheet" href="{{asset('css/icons/icons.css')}}s">
 
   <!-- Scrollbar Custom CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -46,7 +46,7 @@
 
           <!-- logo -->
           <div class="col-4 col-sm-4 col-md-3 col-lg-2">
-            <a href="index.php"><img class="logo-navbar" src="assets/img/logo-superbuscado-white.png" alt=""></a>
+            <a href="index.php"><img class="logo-navbar" src="{{asset('img/logo-superbuscado-white.png')}}" alt=""></a>
           </div>
 
           <!-- menu user -->
@@ -110,14 +110,14 @@
           <div class="col-12 col-md-6 col-lg-4">
             <div class="row d-flex justify-content-center">
 
-              <div class="avatar" style="background-image: url(files/img_profile.jpg)"></div>
+              <div class="avatar" style="background-image: url({{Storage::url(auth()->user()->avatar)}})"></div>
 
               <div class="col-12">
                 <div class="card card-profile pb-4">
                   <div class="row">
 
                     <div class="col-12">
-                      <h6 class="email-profile green brd-bottom-green"><?=$_SESSION['user']['email'] ?? ''?></h6>
+                      <h6 class="email-profile green brd-bottom-green">{{auth()->user()->email}}</h6>
                       <p class="personal-info mt-3 brd-bottom-grey"><b>Nombre: </b>{{auth()->user()->first_name}}</p>
                       <p class="personal-info brd-bottom-grey"><b>Apellido: </b> {{auth()->user()->last_name}}</p>
                       <p class="personal-info brd-bottom-grey"><b>DNI: </b>{{auth()->user()->dni}}</p>

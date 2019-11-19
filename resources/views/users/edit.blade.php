@@ -13,16 +13,16 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
   <!-- styles CSS -->
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/sidebar_style.css">
-  <link rel="stylesheet" href="/css/landing_style.css">
-  <link rel="stylesheet" href="/css/lists_style.css">
-  <link rel="stylesheet" href="/css/profile.css">
-  <link rel="stylesheet" href="/css/login_register_contact.css">
-  <link rel="stylesheet" href="/css/edit_profile.css">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/sidebar_style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/landing_style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/lists_style.css')}}">
+  <link rel="stylesheet" href="{{ asset('css/profile.css')}}">
+  <link rel="stylesheet" href="{{ asset('css/login_register_contact.css')}}">
+  <link rel="stylesheet" href="{{ asset('css/edit_profile.css')}}">
 
   <!-- icons -->
-  <link rel="stylesheet" href="assets/icons/icons.css">
+  <link rel="stylesheet" href="{{ asset('css/icons/icons.css') }}">
 
   <!-- Scrollbar Custom CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -31,7 +31,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap" rel="stylesheet">
 
   <!-- favicon -->
-  <link rel="shortcut icon" href="iso-superbuscado.ico" />
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
 </head>
 
@@ -47,7 +47,7 @@
 
           <!-- logo -->
           <div class="col-4 col-sm-4 col-md-3 col-lg-2">
-            <a href="landing.html"><img class="logo-navbar" src="assets/img/logo-superbuscado-white.png" alt=""></a>
+            <a href="{{ url('/') }}"><img class="logo-navbar" src="{{ asset('img/logo-superbuscado-white.png')}}" alt=""></a>
           </div>
 
           <!-- menu user -->
@@ -64,26 +64,34 @@
                   <a class="nav-link btn-account" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="button-account">
                       <p class="my-account">Mi cuenta</p>
-                      <p class="user-account">       </p>
+                      <p class="user-account">{{auth()->user()->email}}</p>
                     </div>
                     <span class="icon-arrow-down white"></span>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                     <li>
-                      <a class="dropdown-item" href="mis_listas.html">Mis listas</a>
+                      <a class="dropdown-item" href="{{ url('/listings/{id}') }}">Mis listas</a>
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="#">Compras</a>
+                      <a class="dropdown-item" href="{{ url('/carts') }}">Compras</a>
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="profile.html">Mis datos</a>
+                      <a class="dropdown-item" href="{{ url('/profile') }}">Mis datos</a>
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="logout.php">Salir</a>
+                      <a class="dropdown-item" href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                          {{ __('Salir') }}
+                      </a>
+
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
                     </li>
 
                   </ul>
@@ -113,11 +121,11 @@
 
           <div class="col-12">
             <div class="d-flex justify-content-center">
-              <label class="avatar" for="img-profile" style="background-image: url(files/img_profile.jpg)"><p class="editar-avatar">Editar</p></label>
+              <label class="avatar" for="img-profile"  style="background-image: {{'storage'.auth()->user()->avatar}}"><p class="editar-avatar">Editar</p></label>
               <input class="avatar form-control @error('avatar') is-invalid @enderror" type="file" name="avatar" value="" id="img-profile" onchange='cambiar()' >
             </div>
-
           </div>
+
 
           <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
             <div class="card card-profile pb-4">
@@ -129,9 +137,15 @@
                   <div class="green" id="info"></div>
                   <div class="green">    </div>
                 </div>
+                <div class="col-12 d-flex justify-content-center text-center mb-3" style="color: #e03232; background-color: color: #f8d7da;">
+                  @error('avatar')
+                          {{ $message }}
+                  @enderror
+                </div>
               </div>
 
               <!-- editar email -->
+
 
               <div class="row email-edit mb-2">
                 <div class="col-4 col-lg-3 col-xl-3 d-flex justify-content-start align-items-center">
@@ -235,6 +249,7 @@
     </div>
   </section>
 
+
   <!-- _____________________ Footer _____________________  -->
 
   <footer class="footer-index">
@@ -250,7 +265,7 @@
         </div>
 
         <div class="col-10 col-md-3 col-lg-4 border-footer">
-          <a class="link-footer" href="contact_index.html"><p>Contactanos</p></a>
+          <a class="link-footer" href="contact_index.php"><p>Contactanos</p></a>
           <a class="link-footer" href="#"><p class="mb-0">Preguntas frecuentes</p></a>
         </div>
 
@@ -263,6 +278,7 @@
       </div>
     </div>
   </footer>
+
 
 
 
