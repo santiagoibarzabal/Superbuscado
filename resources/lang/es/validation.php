@@ -56,7 +56,7 @@ return [
         'string' => 'El :attribute must be greater than or equal :value characters.',
         'array' => 'El :attribute must have :value items or more.',
     ],
-    'image' => 'El :attribute debe ser una imagen.',
+    'image' => 'La :attribute cargada no tiene el formato indicado.',
     'in' => 'El selected :attribute is invalid.',
     'in_array' => 'El :attribute field does not exist in :other.',
     'integer' => 'El :attribute must be an integer.',
