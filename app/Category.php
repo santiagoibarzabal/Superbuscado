@@ -15,13 +15,9 @@ class Category extends Model
 
   // --------- Categorías Padres
 
-  public static function scopeSuper($builder)
+  public static function scopeParent($query)
   {
-    return $builder->whereNull('category_id');
-  }
-
-  public function parent() {
-    return $this->belongsTo(self::class, 'category_id');
+    return $query->whereNull('category_id');
   }
 
   // --------- Categorías Hijas
