@@ -28,19 +28,24 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // --------------------- Addresses --------------------- //
 
-Route::get('/addresses', 'AddressesController@index');
+Route::group(['middleware'=>'auth'],function(){
+
+
+// Route::get('/addresses', 'AddressesController@index');
 
 Route::get('/addresses/new', 'AddressesController@create');
 
 Route::post('/addresses', 'AddressesController@store');
 
-Route::get('/addresses/{id}/edit', 'AddressesController@edit');
+Route::patch('/addresses', 'AddressesController@update');
 
-Route::patch('/addresses/{id}', 'AddressesController@update');
+Route::get('/addresses/edit', 'AddressesController@edit');
 
-Route::delete('/addresses/{id}', 'AddressesController@destroy');
+Route::delete('/addresses', 'AddressesController@destroy');
 
-Route::get('/addresses/{address}', 'AddressesController@show');
+Route::get('/addresses', 'AddressesController@show');
+
+});
 
 
 // --------------------- Cart --------------------- //
