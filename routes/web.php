@@ -90,12 +90,29 @@ Route::group(['middleware'=>'auth'],function(){
 
   Route::get('/listings/{id}/edit', 'ListingsController@edit');
 
+  Route::get('/listings/{id}/products/add', 'ListingProductsController@index');
+
   Route::patch('/listings/{id}', 'ListingsController@update');
 
   Route::delete('/listings/{listing}', 'ListingsController@destroy');
 
   Route::get('/listings/{id}', 'ListingsController@show');
 
+});
+
+
+
+// --------------------- Listig Products --------------------- //
+
+Route::group(['middleware'=>'auth'],function(){
+
+  Route::get('/listings/{id}/products/add', 'ListingProductsController@index');
+
+  Route::get('/listings/{id}/products/{id}/add', 'ListingProductsController@show');
+
+  Route::post('/listings/{id}/products/add', 'ListingProductsController@store');
+
+  Route::delete('/listings/{id}/products/{product}', 'ListingProductsController@destroy');
 });
 
 

@@ -163,17 +163,13 @@
             <div class="row">
 
               <div class="col-10 pr-0">
-                <a href="{{ url('/listings/{id}/edit') }}">
+                <a href="{{ url('/listings/'. $listing->id .'/edit') }}">
                   <div class="row">
                     <div class="col-5 col-sm-4 col-md-5">
                       <div class="card card-quantity d-flex justify-content-center">
                         <p class="quantity-list">
-                          @if($listing->quantity == null)
-                            {{'0'}}
-                          @else
-                            {{$listing->quantity}}
-                          @endif
-                          </p>
+                          {{ $listing->quantity ?? 0 }}
+                        </p>
                         <p class="productos-list-1">Productos</p>
                       </div>
                     </div>

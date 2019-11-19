@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Listing;
-
-use Auth;
-
-class ListingsController extends Controller
+class ListingProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +13,7 @@ class ListingsController extends Controller
      */
     public function index()
     {
-      $listings = auth()->user()->listings()->paginate(12);
-
-
-      return view('listings.index', [
-        'listings' => $listings,
-      ]);
+        //productos de la lista
     }
 
     /**
@@ -30,10 +21,9 @@ class ListingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function add()
     {
-
-        return view('listings.create');
+        //agregar productos
     }
 
     /**
@@ -44,9 +34,7 @@ class ListingsController extends Controller
      */
     public function store(Request $request)
     {
-      auth()->user()->listings()->create($request->all());
-
-      return redirect('/listings');
+        //guardar en la db los productos
     }
 
     /**
@@ -57,7 +45,7 @@ class ListingsController extends Controller
      */
     public function show($id)
     {
-        return view('listings.show');
+        //descripcion del producto
     }
 
     /**
@@ -68,11 +56,7 @@ class ListingsController extends Controller
      */
     public function edit($id)
     {
-      $listing = Listing::find($id);
-
-      return view('listings.edit', [
-        'listing' => $listing,
-      ]);
+        // modificar la cantidad de un producto especifico de la lista
     }
 
     /**
@@ -84,7 +68,7 @@ class ListingsController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        //
     }
 
     /**
@@ -93,19 +77,8 @@ class ListingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Listing $listing)
+    public function destroy($id)
     {
-      if(auth()->id() != $listing->user_id) {
-        return redirect('/listings');
-      }
-
-      $listing->delete();
-
-      return redirect('/listings');
-    }
-
-    public function add($id)
-    {
-      return view('products.index');
+        //
     }
 }

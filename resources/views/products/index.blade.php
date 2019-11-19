@@ -13,9 +13,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
   <!-- styles CSS -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/sidebar_style.css">
-  <link rel="stylesheet" href="css/landing_style.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/sidebar_style.css">
+  <link rel="stylesheet" href="/css/landing_style.css">
 
   <!-- icons -->
   <link rel="stylesheet" href="css/icons/icons.css">

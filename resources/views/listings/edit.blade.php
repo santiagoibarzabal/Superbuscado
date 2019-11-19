@@ -153,14 +153,18 @@
 
             <!-- Botón agregar producto -->
 
-            <form class="card btn-border-hover text-center p-0" action="index.php" method="post">
-              <input class="sinbordefondo" type="button" name="add-product" value="Agregar productos">
-            </form>
+            <div class="card btn-border-hover text-center p-0">
+              <a href="{{url('/listings/' . $listing->id . '/products/add')}}">
+              <div class="sinbordefondo">Agregar productos</div>
+              </a>
+            </div>
 
             <!-- Botón eliminar lista -->
 
-            <form class="card btn-border-hover text-center p-0" action="mis_listas.php" method="post">
-              <input class="sinbordefondo" type="button" name="delete-list" value="Eliminar lista">
+            <form class="card btn-border-hover text-center p-0" action="{{ url('/listings', $listing->id) }}" method="post">
+              @csrf
+              @method('delete')
+              <input class="sinbordefondo" type="submit" name="delete-list" value="Eliminar lista">
             </form>
 
           </div>
