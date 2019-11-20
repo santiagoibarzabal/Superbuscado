@@ -13,7 +13,7 @@ class ListingProductsController extends Controller
      */
     public function index()
     {
-        //productos de la lista
+      return view('products.index');
     }
 
     /**

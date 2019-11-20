@@ -104,8 +104,4 @@ class ListingsController extends Controller
       return redirect('/listings');
     }
 
-    public function add($id)
-    {
-      return view('products.index');
-    }
 }
