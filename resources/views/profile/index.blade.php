@@ -13,15 +13,17 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
   <!-- styles CSS -->
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/sidebar_style.css">
-  <link rel="stylesheet" href="/css/landing_style.css">
-  <link rel="stylesheet" href="/css/lists_style.css">
-  <link rel="stylesheet" href="/css/profile.css">
-  <link rel="stylesheet" href="/css/login_register_contact.css">
+  <!-- styles CSS -->
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/sidebar_style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/landing_style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/lists_style.css')}}">
+  <link rel="stylesheet" href="{{ asset('css/profile.css')}}">
+  <link rel="stylesheet" href="{{ asset('css/login_register_contact.css')}}">
+  <link rel="stylesheet" href="{{ asset('css/edit_profile.css')}}">
 
   <!-- icons -->
-  <link rel="stylesheet" href="{{asset('css/icons/icons.css')}}s">
+  <link rel="stylesheet" href="{{ asset('css/icons/icons.css') }}">
 
   <!-- Scrollbar Custom CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -30,7 +32,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap" rel="stylesheet">
 
   <!-- favicon -->
-  <link rel="shortcut icon" href="iso-superbuscado.ico" />
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
 </head>
 
@@ -46,7 +48,7 @@
 
           <!-- logo -->
           <div class="col-4 col-sm-4 col-md-3 col-lg-2">
-            <a href="index.php"><img class="logo-navbar" src="{{asset('img/logo-superbuscado-white.png')}}" alt=""></a>
+            <a href="{{ url('/') }}"><img class="logo-navbar" src="{{ asset('img/logo-superbuscado-white.png')}}" alt=""></a>
           </div>
 
           <!-- menu user -->
@@ -70,19 +72,27 @@
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                     <li>
-                      <a class="dropdown-item" href="mis_listas.php">Mis listas</a>
+                      <a class="dropdown-item" href="{{ url('/listings/{id}') }}">Mis listas</a>
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="#">Compras</a>
+                      <a class="dropdown-item" href="{{ url('/carts') }}">Compras</a>
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="profile.php">Mis datos</a>
+                      <a class="dropdown-item" href="{{ url('/profile') }}">Mis datos</a>
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="logout.php">Salir</a>
+                      <a class="dropdown-item" href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                          {{ __('Salir') }}
+                      </a>
+
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
                     </li>
 
                   </ul>
@@ -125,7 +135,7 @@
                     </div>
 
                     <div class="col-12">
-                      <a class="btn-ingresar" href="edit_profile.php">Editar</a>
+                      <a class="btn-ingresar" href="{{ url('/users/edit') }}">Editar</a>
                     </div>
 
                   </div>
@@ -144,10 +154,10 @@
                 <div class="card card-address pb-4">
 
                    <p class="card-title-address brd-bottom-green"><b>Domicilio de envío</b></p>
-                   <p class="address-info mt-3 mb-1"><b>Av. Monrroe 860</b> <br>Capital Federal (1428), CABA</p>
+                   <p class="address-info mt-3 mb-1"><b>{{auth()->user()->address->address}}</b> <br>{{auth()->user()->address->city}} ({{auth()->user()->address->zip_code}}), {{auth()->user()->address->province}}</p>
 
                    <div class="">
-                     <a class="btn-ingresar" href="edit_address_shipping.php">Editar</a>
+                     <a class="btn-ingresar" href="{{ url('/addresses/edit') }}">Editar</a>
                    </div>
 
                 </div>
@@ -157,10 +167,10 @@
                 <div class="card card-address2 pb-4">
 
                    <p class="card-title-address brd-bottom-green"><b>Domicilio de facturación</b></p>
-                   <p class="address-info mt-3 mb-1"><b>Av. Monrroe 860</b> <br>Capital Federal (1428), CABA</p>
+                   <p class="address-info mt-3 mb-1"><b>{{auth()->user()->address->address}}</b> <br>{{auth()->user()->address->city}} ({{auth()->user()->address->zip_code}}), {{auth()->user()->address->province}}</p>
 
                    <div class="">
-                     <a class="btn-ingresar" href="edit_address_fact.php">Editar</a>
+                     <a class="btn-ingresar" href="{{ url('/addresses/edit') }}">Editar</a>
                    </div>
 
                 </div>

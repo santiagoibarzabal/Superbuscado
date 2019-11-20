@@ -108,7 +108,7 @@
 
   <!-- _____________________ Address _____________________ -->
 
-  <section class="container" style="padding-top:6em;">
+  <section class="container" style="padding-top:12em;">
     <div class="row d-flex justify-content-center">
 
       <form class="col-12" action="{{url('/addresses')}}" method="post">
@@ -126,8 +126,8 @@
 
               <!-- editar direccion -->
 
-
-              <div class="row email-edit mb-2">
+              <h6 class="email-profile green brd-bottom-green">Mi domicilio</h6>
+              <div class="row email-edit mt-4 mb-2">
                 <div class="col-4 col-lg-3 col-xl-3 d-flex justify-content-start align-items-center">
                   <label for="">Direccion:</label>
                 </div>
@@ -177,7 +177,7 @@
 
               <div class="row dni-edit mb-2">
                 <div class="col-4 col-lg-3 col-xl-3 d-flex justify-content-start align-items-center">
-                  <label for="">Código Postal:</label>
+                  <label for="">C.Postal:</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
                   <input class="form-control @error('zip_code') is-invalid @enderror" type="text" name="zip_code" value="{{auth()->user()->address->zip_code}}">
@@ -191,7 +191,7 @@
               </div>
 
               <div class="d-flex justify-content-end">
-                <input class="btn-ingresar mb-0" type="submit" name="" value="Guardar">
+                <input class="btn-ingresar mb-0 mt-0" type="submit" name="" value="Guardar">
               </div>
 
             </div>
