@@ -84,7 +84,7 @@ class UsersController extends Controller
           'last_name' => 'string|min:4|max:255|',
           'phone' => 'string|min:4|max:30|',
           'dni' => 'string|min:8|max:15',
-          'avatar' => 'file',
+          'avatar' => 'file|image',
         ]);
 
         $diff = array_diff($request->all(), auth()->user()->toArray());
