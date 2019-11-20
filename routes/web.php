@@ -113,7 +113,7 @@ Route::group(['middleware'=>'auth'],function(){
 
   Route::get('/listings/{id}/products/add', 'ListingProductsController@index');
 
-  Route::get('/listings/{id}/products/{id}/add', 'ListingProductsController@show');
+  // Route::get('/listings/{id}/products/{id}/add', 'ListingProductsController@show');
 
   Route::post('/listings/{id}/products/add', 'ListingProductsController@store');
 
@@ -200,9 +200,9 @@ Route::get('/users/new', 'UsersController@create');
 
 Route::post('/users', 'UsersController@store');
 
-Route::get('/users/{id}/edit', 'UsersController@edit');
+Route::get('/users/edit', 'UsersController@edit');
 
-Route::patch('/users/{id}', 'UsersController@update');
+Route::patch('/users', 'UsersController@update');
 
 Route::delete('/users/{id}', 'UsersController@destroy');
 
