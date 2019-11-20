@@ -121,7 +121,7 @@
 
           <div class="col-12">
             <div class="d-flex justify-content-center">
-              <label class="avatar" for="img-profile"  style="background-image: {{'storage'.auth()->user()->avatar}}"><p class="editar-avatar">Editar</p></label>
+              <label class="avatar" for="img-profile"  style="background-image:url({{Storage::url(auth()->user()->avatar)}})"><p class="editar-avatar">Editar</p></label>
               <input class="avatar form-control @error('avatar') is-invalid @enderror" type="file" name="avatar" value="" id="img-profile" onchange='cambiar()' >
             </div>
           </div>
