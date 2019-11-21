@@ -8,7 +8,7 @@ class Address extends Model
 {
 
   protected $fillable = [
-    'address', 'city', 'province','zip_code'
+    'address', 'city', 'province','zip_code', 'apartment'
   ];
 
 

@@ -108,7 +108,7 @@
 
   <!-- _____________________ Address _____________________ -->
 
-  <section class="container" style="padding-top:6em;">
+  <section class="container" style="padding-top:8em;">
     <div class="row d-flex justify-content-center">
 
       <form class="col-12" action="{{url('/addresses')}}" method="post">
@@ -121,16 +121,9 @@
           <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
             <div class="card card-profile pb-4">
 
-              <div class="col-12">
-                <div class="d-flex justify-content-center">
-                  <label class="avatar" for="img-profile"  style="background-image: "><p class="editar-avatar">Editar</p></label>
-                  <input class="avatar form-control @error('avatar') is-invalid @enderror" type="file" name="avatar" value="" id="img-profile" onchange='cambiar()' >
-                </div>
-              </div>
-
               <!-- editar direccion -->
 
-
+              <h6 class="email-profile green brd-bottom-green">Mi domicilio</h6>
               <div class="row email-edit mb-2">
                 <div class="col-4 col-lg-3 col-xl-3 d-flex justify-content-start align-items-center">
                   <label for="">Direccion:</label>
@@ -145,6 +138,23 @@
                 </div>
               </div>
 
+              <!-- editar departamento -->
+
+
+              <div class="row email-edit mb-2">
+                <div class="col-4 col-lg-3 col-xl-3 d-flex justify-content-start align-items-center">
+                  <label for="">Depto.:</label>
+                </div>
+                <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
+                  <input class="form-control @error('apartment') is-invalid @enderror" type="text" name="apartment" value="">
+                </div>
+                <div class="col-12 mb-2" style="color: #e03232; background-color: color: #f8d7da;">
+                  @error('apartment')
+                          {{ $message }}
+                  @enderror
+                </div>
+              </div>
+
               <!-- editar zona/ciudad -->
 
               <div class="row nombre-edit mb-2">
@@ -152,7 +162,7 @@
                   <label for="">Ciudad</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
-                  <input class="form-control @error('city') is-invalid @enderror" type="text" name="city" value="{{auth()->user()->city}}">
+                  <input class="form-control @error('city') is-invalid @enderror" type="text" name="city" value="">
                 </div>
                 <div class="col-12 mb-2" style="color: #e03232; background-color: color: #f8d7da;">
                   @error('city')
@@ -168,7 +178,7 @@
                   <label for="">Provincia:</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
-                  <input class="form-control @error('province') is-invalid @enderror" type="text" name="province" value="{{auth()->user()->province}}">
+                  <input class="form-control @error('province') is-invalid @enderror" type="text" name="province" value="">
                 </div>
                 <div class="col-12 mb-2" style="color: #e03232; background-color: color: #f8d7da;">
                   @error('province')
@@ -181,10 +191,10 @@
 
               <div class="row dni-edit mb-2">
                 <div class="col-4 col-lg-3 col-xl-3 d-flex justify-content-start align-items-center">
-                  <label for="">Código Postal:</label>
+                  <label for="">C.Postal:</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
-                  <input class="form-control @error('zip_code') is-invalid @enderror" type="text" name="zip_code" value="{{auth()->user()->zip_code}}">
+                  <input class="form-control @error('zip_code') is-invalid @enderror" type="text" name="zip_code" value="">
                 </div>
                 <div class="col-12 mb-2" style="color: #e03232; background-color: color: #f8d7da;">
                   @error('zip_code')

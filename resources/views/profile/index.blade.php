@@ -131,7 +131,9 @@
                       <p class="personal-info mt-3 brd-bottom-grey"><b>Nombre: </b>{{auth()->user()->first_name}}</p>
                       <p class="personal-info brd-bottom-grey"><b>Apellido: </b> {{auth()->user()->last_name}}</p>
                       <p class="personal-info brd-bottom-grey"><b>DNI: </b>{{auth()->user()->dni}}</p>
-                      <p class="personal-info"><b>Teléfono: </b> {{auth()->user()->phone}}</p>
+                      <p class="personal-info brd-bottom-grey"><b>Teléfono: </b>{{auth()->user()->phone}}</p>
+                      <p class="personal-info"><b>Nacimiento:</b>{{auth()->user()->date_of_birth}}</p>
+
                     </div>
 
                     <div class="col-12">
@@ -148,39 +150,33 @@
           <!-- Address -->
 
           <div class="col-12 col-md-6 col-lg-4">
-            <div class="row">
+            <div class="row d-flex justify-content-center">
 
-              <div class="col-12 mb-4">
-                <div class="card card-address pb-4">
+              <div class="avatar" style="background-image: url({{Storage::url(auth()->user()->avatar)}})"></div>
 
-                   <p class="card-title-address brd-bottom-green"><b>Domicilio de envío</b></p>
-                   <p class="address-info mt-3 mb-1"><b>{{auth()->user()->address->address}}</b> <br>{{auth()->user()->address->city}} ({{auth()->user()->address->zip_code}}), {{auth()->user()->address->province}}</p>
+              <div class="col-12">
+                <div class="card card-profile pb-4">
+                  <div class="row">
 
-                   <div class="">
-                     <a class="btn-ingresar" href="{{ url('/addresses/edit') }}">Editar</a>
-                   </div>
+                    <div class="col-12">
+                      <h6 class="email-profile green brd-bottom-green">Mi domicilio</h6>
+                      <p class="personal-info mt-3 brd-bottom-grey"><b>Dirección: </b>{{auth()->user()->address->address}}</p>
+                      <p class="personal-info brd-bottom-grey"><b>Departamento: </b> {{auth()->user()->address->apartment}}</p>
+                      <p class="personal-info brd-bottom-grey"><b>Ciudad: </b>{{auth()->user()->address->city}}</p>
+                      <p class="personal-info brd-bottom-grey"><b>Provincia: </b> {{auth()->user()->address->province}}</p>
+                      <p class="personal-info"><b>C.Postal: </b> {{auth()->user()->address->zip_code}}</p>
+                    </div>
 
-                </div>
-              </div>
+                    <div class="col-12">
+                      <a class="btn-ingresar" href="{{ url('/users/edit') }}">Editar</a>
+                    </div>
 
-              <div class="col-12 mb-4">
-                <div class="card card-address2 pb-4">
-
-                   <p class="card-title-address brd-bottom-green"><b>Domicilio de facturación</b></p>
-                   <p class="address-info mt-3 mb-1"><b>{{auth()->user()->address->address}}</b> <br>{{auth()->user()->address->city}} ({{auth()->user()->address->zip_code}}), {{auth()->user()->address->province}}</p>
-
-                   <div class="">
-                     <a class="btn-ingresar" href="{{ url('/addresses/edit') }}">Editar</a>
-                   </div>
-
+                  </div>
                 </div>
               </div>
 
             </div>
           </div>
-
-        </div>
-      </div>
 
       <!-- credit cards -->
 

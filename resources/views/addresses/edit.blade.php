@@ -141,6 +141,22 @@
                 </div>
               </div>
 
+              <!-- editar departamento -->
+
+              <div class="row nombre-edit mb-2">
+                <div class="col-4 col-lg-3 col-xl-3 d-flex justify-content-start align-items-center">
+                  <label for="">Depto.</label>
+                </div>
+                <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
+                  <input class="form-control @error('apartment') is-invalid @enderror" type="text" name="apartment" value="{{auth()->user()->address->apartment}}">
+                </div>
+                <div class="col-12 mb-2" style="color: #e03232; background-color: color: #f8d7da;">
+                  @error('apartment')
+                          {{ $message }}
+                  @enderror
+                </div>
+              </div>
+
               <!-- editar zona/ciudad -->
 
               <div class="row nombre-edit mb-2">
@@ -156,6 +172,7 @@
                   @enderror
                 </div>
               </div>
+
 
               <!-- editar provincia -->
 
