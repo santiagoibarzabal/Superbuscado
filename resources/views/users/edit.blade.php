@@ -224,7 +224,7 @@
 
               <div class="row tel-edit mb-2">
                 <div class="col-4 col-lg-3 col-xl-3 d-flex justify-content-start align-items-center">
-                  <label for="">Nacimiento:</label>
+                  <label for="">Nac.:</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
                   <input class="form-control @error('date_of_birth') is-invalid @enderror" type="date" name="date_of_birth" value="{{auth()->user()->date_of_birth}}">
