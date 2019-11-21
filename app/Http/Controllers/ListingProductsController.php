@@ -15,9 +15,12 @@ class ListingProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-      return view('products.index');
+      $products = Product::all();
+      $listing = Listing::find($id);
+
+      return view('products.index', ['products' => $products,'listing' => $listing]);
     }
 
     /**
@@ -30,7 +33,7 @@ class ListingProductsController extends Controller
         $product = Product::find($request->get('product_id'));
         $listing->products()->attach($product);
 
-       return redirect ('/listings')
+       return redirect ('/listings');
     }
 
     /**

@@ -129,8 +129,10 @@
 
   <section class="container container-index">
     <div class="row">
-      <div class="col-12">
-        <h5 class="mb-3 titulo-categoria"><b>Nombre de la lista</b></h5>
+      <div class="col-12 d-flex align-items-center mb-3">
+        <a class="d-contents" href="{{ url('/listings') }}"><span class="icon-arrow-left green pr-2"></span></a>
+
+        <h5 class="titulo-categoria mb-0"><b>{{$listing->name}}</b></h5>
       </div>
     </div>
   </section>
@@ -144,7 +146,7 @@
 
           <div class="col-4 pr-0">
             <div class="card card-quantity d-flex justify-content-center">
-              <p class="quantity-list">3</p>
+              <p class="quantity-list">{{ $listing->quantity ?? 0 }}</p>
               <p class="productos-list-1">Productos</p>
             </div>
           </div>
@@ -221,7 +223,7 @@
 
           <!-- Eliminar producto -->
 
-          <div class="col-2 col-sm-1 d-flex align-items-center justify-content-start">
+          <div class="col-2 col-sm-1 d-flex align-items-center justify-content-start mb-3">
             <button class="delete-product" type="button" name="delete-product">
               <span class="icon-exit-circle m-0" style="color: #69B948;"></span>
             </button>
@@ -264,7 +266,7 @@
 
           <!-- Eliminar producto -->
 
-          <div class="col-2 col-sm-1 d-flex align-items-center justify-content-start">
+          <div class="col-2 col-sm-1 d-flex align-items-center justify-content-start mb-3">
             <button class="delete-product" type="button" name="delete-product">
               <span class="icon-exit-circle m-0" style="color: #69B948;"></span>
             </button>
@@ -307,7 +309,7 @@
 
           <!-- Eliminar producto -->
 
-          <div class="col-2 col-sm-1 d-flex align-items-center justify-content-start">
+          <div class="col-2 col-sm-1 d-flex align-items-center justify-content-start mb-3">
             <button class="delete-product" type="button" name="delete-product">
               <span class="icon-exit-circle m-0" style="color: #69B948;"></span>
             </button>

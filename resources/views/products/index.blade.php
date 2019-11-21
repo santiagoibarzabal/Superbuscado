@@ -210,20 +210,27 @@
   <section class="container">
     <div class="row d-flex justify-content-center">
 
+      @foreach ($products as $product)
+
       <div class="col-6 col-md-4 col-lg-3 col-xl-2">
         <div class="card card-hover my-3 p-3">
           <a class="mb-3" href="producto_descripcion.php">
-            <img class="icon-happy-container mb-3 d-flex justify-content-center" src="https://jumboargentina.vteximg.com.br/arquivos/ids/200732-750-750/Aceite-De-Girasol-Jumbo-900ml-Aceite-De-Girasol-Jumbo-900-Ml-1-37113.jpg?v=636383624783430000" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
+            <img class="icon-happy-container mb-3 d-flex justify-content-center" src="{{$product->avatar}}" alt="">
+            <p class="descripcion-producto">{{$product->name}}</p>
             <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
+            <p class="costo">{{'$' . $product->suggested_price}}</p>
             <p class="preciopromedio">Precio promedio</p>
           </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
+
+          <form class="btn-agregar" action="{{ url('/listings') }}" method="post">
+            @csrf
+            <button style="border: none; background-color: transparent; color: #fff; font-weight: 700;">Agregar a la lista</button>
+          </form>
+
         </div>
       </div>
+
+      @endforeach
 
       <div class="col-6 col-md-4 col-lg-3 col-xl-2">
         <div class="card card-hover my-3 p-3">

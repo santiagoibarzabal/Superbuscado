@@ -71,20 +71,34 @@ button .btn-exit {
 
 .input-name-list {
   border: none;
-  border-radius: 25px;
-  padding: 0 15px;
+  border-radius: .30rem;
+  padding: 3px 15px;
   color: #B9B9B9;
   width: 85%;
   margin-bottom: 16px;
+  text-align: center;
 }
+
+.input-name-list:hover,
+.input-name-list:focus {
+  outline: none;
+}
+
 
 .form-list-btn-crear {
   background-color: #fff;
   border-style: none;
-  border-radius: 7px;
+  border-radius: 25px;
   color: #69B948;
   font-weight: bold;
   padding: 4px 10px;
+  cursor: pointer;
+}
+
+.form-list-btn-crear:hover{
+  background-color: #69B948;
+  box-shadow: inset 0 0 0 1px #fff;
+  color: #fff;
 }
 
 /* ---------------------------------------------------
@@ -131,6 +145,14 @@ button .btn-exit {
 /* ---------------------------------------------------
     products_list
 ----------------------------------------------------- */
+
+.d-contents {
+  display: contents;
+}
+
+.icon-arrow-left:hover {
+  color: #545454;
+}
 
 .sinbordefondo {
   background-color: #fff;

@@ -112,7 +112,7 @@
 
         <div class="card card-new-list">
           <div class="d-flex justify-content-end" style="height: 10px">
-            <a class="icon-exit-circle" href="{{ url('/listings') }}"></a>
+            <a class="icon-exit-circle mr-2 mt-2" href="{{ url('/listings') }}"></a>
           </div>
 
           <p class="title-card-new-list">Agregar una nueva lista</p>

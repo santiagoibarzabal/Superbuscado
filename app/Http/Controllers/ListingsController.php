@@ -32,8 +32,7 @@ class ListingsController extends Controller
      */
     public function create()
     {
-
-        return view('listings.create');
+      return view('listings.create');
     }
 
     /**
@@ -44,6 +43,10 @@ class ListingsController extends Controller
      */
     public function store(Request $request)
     {
+      $this->validate($request, [
+        'name' => 'required|string|max:13',
+      ]);
+
       auth()->user()->listings()->create($request->all());
 
       return redirect('/listings');
