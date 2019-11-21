@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Product;
+
+use App\Listing;
+
 class ListingProductsController extends Controller
 {
     /**
@@ -21,9 +25,12 @@ class ListingProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function add()
+    public function add(Listing $listing, Request $request)
     {
-        //agregar productos
+        $product = Product::find($request->get('product_id'));
+        $listing->products()->attach($product);
+
+       return redirect ('/listings')
     }
 
     /**
@@ -77,8 +84,12 @@ class ListingProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Listing $listing, Request $request)
     {
-        //
+       $product = Product::find($request->get('product_id'));
+       $listing->products()->detach($product);
+
+       return view('listings.edit', ['listing'=> $listing]);
+
     }
 }
