@@ -73,9 +73,9 @@
         <!-- Ubicación -->
 
         <nav class="display-flex col-12">
-          <a class="btn-location" href="#">
+          <a class="btn-location" href="{{url('addresses/edit')}}">
             <span class="icon-location green"></span>
-            <p class="location">Capital Federal 1429</p>
+            <p class="location">{{auth()->user()->address->address ?? "Ingresá tu dirección"}}</p>
           </a>
         </nav>
 
