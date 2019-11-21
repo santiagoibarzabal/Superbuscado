@@ -12,8 +12,8 @@
 
     <!-- styles CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/sidebar_style.css">
-    <link rel="stylesheet" href="css/landing_style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/landing.css">
 
     <!-- icons -->
     <link rel="stylesheet" href="css/icons/icons.css">
@@ -181,24 +181,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
   <!-- Sidebar JS -->
-  <script type="text/javascript">
-      $(document).ready(function () {
-          $("#sidebar").mCustomScrollbar({
-              theme: "minimal"
-          });
-
-          $('#dismiss, .overlay').on('click', function () {
-              $('#sidebar').removeClass('active');
-              $('.overlay').removeClass('active');
-          });
-
-          $('#sidebarCollapse').on('click', function () {
-              $('#sidebar').addClass('active');
-              $('.overlay').addClass('active');
-              $('.collapse.in').toggleClass('in');
-              $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-          });
-      });
-  </script>
+  <script src="{{ asset('js/main.js') }}"></script>
 
 </html>
