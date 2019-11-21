@@ -15,7 +15,7 @@ class AddressesController extends Controller
      */
     public function index()
     {
-    
+
     }
 
     /**
@@ -42,7 +42,8 @@ class AddressesController extends Controller
             'address' => 'required|string',
             'city' => 'required|string',
             'province' => 'required|string',
-            'zipCode' => 'required|string'
+            'zipCode' => 'required|string',
+            'apartment' => 'required|string'
           ]);
 
           auth()->user()->address()->create($request->all());
