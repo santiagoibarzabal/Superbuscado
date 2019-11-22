@@ -14,7 +14,7 @@
 
     <!-- styles CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/landing_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
 
     <!-- icons -->
     <link rel="stylesheet" href="{{ asset('css/icons/icons.css') }}">
