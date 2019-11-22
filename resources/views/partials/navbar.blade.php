@@ -73,7 +73,11 @@
         <!-- Ubicación -->
 
         <nav class="display-flex col-12">
-          <a class="btn-location" href="{{url('addresses/edit')}}">
+          @if(auth()->user()->address != null)
+            <a class="btn-location" href="{{url('/addresses/edit')}}">
+          @else
+              <a class="btn-location" href="{{url('/addresses/new')}}">
+          @endif
             <span class="icon-location green"></span>
             <p class="location">{{auth()->user()->address->address ?? "Ingresá tu dirección"}}</p>
           </a>

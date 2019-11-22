@@ -40,15 +40,15 @@ class AddressesController extends Controller
 
           $this->validate($request, [
             'address' => 'required|string',
+            'apartment' => 'required|string',
             'city' => 'required|string',
             'province' => 'required|string',
-            'zipCode' => 'required|string',
-            'apartment' => 'required|string'
+            'zip_code' => 'required|string',
           ]);
 
           auth()->user()->address()->create($request->all());
 
-          return redirect('/addresses');
+          return redirect('/profile');
 
 
       }
@@ -90,6 +90,7 @@ class AddressesController extends Controller
         $this->validate($request, [
           'address' => 'required|string',
           'city' => 'required|string',
+          'apartment' => 'required|string',
           'province' => 'required|string',
           'zip_code' => 'required|string'
         ]);
