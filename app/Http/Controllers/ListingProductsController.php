@@ -28,12 +28,19 @@ class ListingProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function add(Listing $listing, Request $request)
+    public function add(Listing $listing, $id)
     {
-        $product = Product::find($request->get('product_id'));
-        $listing->products()->attach($product);
+      $product = Product::find($id);
 
-       return redirect ('/listings');
+      $listing->products()->attach([
+        $product->id => ['quantity' => 1]
+      ]);
+
+      $listing->update([
+        'quantity' => $listing->fresh()->products_count
+      ]);
+
+      return redirect ("/listings/".$listing->id."/edit");
     }
 
     /**
@@ -87,12 +94,16 @@ class ListingProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Listing $listing, Request $request)
+    public function destroy(Listing $listing, $product)
     {
-       $product = Product::find($request->get('product_id'));
+
        $listing->products()->detach($product);
 
-       return view('listings.edit', ['listing'=> $listing]);
+       $listing->update([
+         'quantity' => $listing->fresh()->products_count
+       ]);
+
+       return redirect("/listings/".$listing->id."/edit");
 
     }
 }

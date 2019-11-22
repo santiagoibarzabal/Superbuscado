@@ -14,9 +14,9 @@
 
   <!-- styles CSS -->
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/sidebar_style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/landing_style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/lists_style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/listings.css') }}">
 
   <!-- icons -->
   <link rel="stylesheet" href="{{ asset('css/icons/icons.css') }} ">
@@ -146,7 +146,9 @@
 
           <div class="col-4 pr-0">
             <div class="card card-quantity d-flex justify-content-center">
-              <p class="quantity-list">{{ $listing->quantity ?? 0 }}</p>
+              <p class="quantity-list">
+                {{ $listing->products_count }}
+              </p>
               <p class="productos-list-1">Productos</p>
             </div>
           </div>
@@ -188,7 +190,8 @@
 
           <!-- Producto -->
 
-          <div class="col-10 col-sm-11 pr-0 mb-3">
+          @foreach($listing->products as $product)
+            <div class="col-10 col-sm-11 pr-0 mb-3">
             <div class="card card-hover">
 
               <!-- Foto + Descripcion -->
@@ -204,7 +207,7 @@
                     <div class="row">
 
                       <div class="col-12">
-                        <p class="descripcion-producto m-0">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
+                        <p class="descripcion-producto m-0">{{$product->name}}</p>
                       </div>
 
                       <div class="col-12 mt-2 d-flex justify-content-start align-items-center">
@@ -220,101 +223,23 @@
 
             </div>
           </div>
+          
 
-          <!-- Eliminar producto -->
 
-          <div class="col-2 col-sm-1 d-flex align-items-center justify-content-start mb-3">
+        <!-- Eliminar producto -->
+        <form class="col-2 col-sm-1 d-flex align-items-center justify-content-start mb-3" action="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}" method="POST">
+          @csrf
+          @method('delete')
+          <button class="delete-product icon-exit-circle m-0" style="color: #69B948;"></button>
+        </form>
+
+          {{-- <div class="col-2 col-sm-1 d-flex align-items-center justify-content-start mb-3">
             <button class="delete-product" type="button" name="delete-product">
               <span class="icon-exit-circle m-0" style="color: #69B948;"></span>
             </button>
-          </div>
+          </div> --}}
 
-          <!-- Producto -->
-
-          <div class="col-10 col-sm-11 pr-0 mb-3">
-            <div class="card card-hover">
-
-              <!-- Foto + Descripcion -->
-
-              <a class="" href="producto_descripcion.php">
-                <div class="row py-3 mx-0">
-
-                  <div class="col-4">
-                    <img class="icon-happy-container py-2 d-flex justify-content-center" style="font-size: 40px;" src="" alt="">
-                  </div>
-
-                  <div class="col-8 pl-0">
-                    <div class="row">
-
-                      <div class="col-12">
-                        <p class="descripcion-producto m-0">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-                      </div>
-
-                      <div class="col-12 mt-2 d-flex justify-content-start align-items-center">
-                        <p class="costo" style="font-size: 18px;">$45,99</p>
-                        <p class="preciopromedio pl-2">Precio promedio</p>
-                      </div>
-
-                    </div>
-                  </div>
-
-                </div>
-              </a>
-
-            </div>
-          </div>
-
-          <!-- Eliminar producto -->
-
-          <div class="col-2 col-sm-1 d-flex align-items-center justify-content-start mb-3">
-            <button class="delete-product" type="button" name="delete-product">
-              <span class="icon-exit-circle m-0" style="color: #69B948;"></span>
-            </button>
-          </div>
-
-          <!-- Producto -->
-
-          <div class="col-10 col-sm-11 pr-0 mb-3">
-            <div class="card card-hover">
-
-              <!-- Foto + Descripcion -->
-
-              <a class="" href="producto_descripcion.php">
-                <div class="row py-3 mx-0">
-
-                  <div class="col-4">
-                    <img class="icon-happy-container py-2 d-flex justify-content-center" style="font-size: 40px;" src="" alt="">
-                  </div>
-
-                  <div class="col-8 pl-0">
-                    <div class="row">
-
-                      <div class="col-12">
-                        <p class="descripcion-producto m-0">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-                      </div>
-
-                      <div class="col-12 mt-2 d-flex justify-content-start align-items-center">
-                        <p class="costo" style="font-size: 18px;">$45,99</p>
-                        <p class="preciopromedio pl-2">Precio promedio</p>
-                      </div>
-
-                    </div>
-                  </div>
-
-                </div>
-              </a>
-
-            </div>
-          </div>
-
-          <!-- Eliminar producto -->
-
-          <div class="col-2 col-sm-1 d-flex align-items-center justify-content-start mb-3">
-            <button class="delete-product" type="button" name="delete-product">
-              <span class="icon-exit-circle m-0" style="color: #69B948;"></span>
-            </button>
-          </div>
-
+          @endforeach
 
 
         </div>
