@@ -160,15 +160,19 @@
 
                     <div class="col-12">
                       <h6 class="email-profile green brd-bottom-green">Mi domicilio</h6>
-                      <p class="personal-info mt-3 brd-bottom-grey"><b>Dirección: </b>{{auth()->user()->address->address}}</p>
-                      <p class="personal-info brd-bottom-grey"><b>Departamento: </b> {{auth()->user()->address->apartment}}</p>
-                      <p class="personal-info brd-bottom-grey"><b>Ciudad: </b>{{auth()->user()->address->city}}</p>
-                      <p class="personal-info brd-bottom-grey"><b>Provincia: </b> {{auth()->user()->address->province}}</p>
-                      <p class="personal-info"><b>C.Postal: </b> {{auth()->user()->address->zip_code}}</p>
+                      <p class="personal-info mt-3 brd-bottom-grey"><b>Dirección: </b>{{auth()->user()->address->address ?? " "}}</p>
+                      <p class="personal-info brd-bottom-grey"><b>Departamento: </b> {{auth()->user()->address->apartment ?? " "}}</p>
+                      <p class="personal-info brd-bottom-grey"><b>Ciudad: </b>{{auth()->user()->address->city ?? " "}}</p>
+                      <p class="personal-info brd-bottom-grey"><b>Provincia: </b> {{auth()->user()->address->province ?? " "}}</p>
+                      <p class="personal-info"><b>C.Postal: </b> {{auth()->user()->address->zip_code ?? " "}}</p>
                     </div>
 
                     <div class="col-12">
-                      <a class="btn-ingresar" href="{{ url('/users/edit') }}">Editar</a>
+                    @if(auth()->user()->address!=null)                  
+                      <a class="btn-ingresar" href="{{ url('/addresses/edit') }}">Editar</a>
+                    @else
+                        <a class="btn-ingresar" href="{{ url('/addresses/new') }}">Ingresá tu dirección</a>
+                    @endif
                     </div>
 
                   </div>
