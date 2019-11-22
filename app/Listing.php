@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Listing extends Model
 {
+  protected $withCount = [
+    'products',
+  ];
 
   protected $fillable = [
-    'name',
+    'name', 'quantity', 
   ];
 
     public function user()

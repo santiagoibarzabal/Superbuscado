@@ -13,12 +13,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
   <!-- styles CSS -->
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/sidebar_style.css">
-  <link rel="stylesheet" href="/css/landing_style.css">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
 
   <!-- icons -->
-  <link rel="stylesheet" href="css/icons/icons.css">
+  <link rel="stylesheet" href="{{ asset('css/icons/icons.css') }}">
 
   <!-- Scrollbar Custom CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -128,7 +128,7 @@
                   <a class="nav-link btn-account" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="button-account">
                       <p class="my-account">Mi cuenta</p>
-                      <p class="user-account"><?=$_SESSION['user']['email'] ?? ''?></p>
+                      <p class="user-account"> {{auth()->user()->email}} </p>
                     </div>
                     <span class="icon-arrow-down white"></span>
                   </a>
@@ -222,7 +222,7 @@
             <p class="preciopromedio">Precio promedio</p>
           </a>
 
-          <form class="btn-agregar" action="{{ url('/listings') }}" method="post">
+          <form class="btn-agregar" action="{{ url('/listings/' . $listing->id . '/products/add/' . $product->id) }}" method="post">
             @csrf
             <button style="border: none; background-color: transparent; color: #fff; font-weight: 700;">Agregar a la lista</button>
           </form>

@@ -111,13 +111,11 @@ Route::group(['middleware'=>'auth'],function(){
 
   Route::get('/listings/{listing}/products/add', 'ListingProductsController@index');
 
-  Route::post('/listings/{listing}/products/add', 'ListingProductsController@add');
+  Route::post('/listings/{listing}/products/add/{id}', 'ListingProductsController@add');
 
-  // Route::get('/listings/{id}/products/{id}/add', 'ListingProductsController@show');
-
-  Route::post('/listings/{id}/products/add', 'ListingProductsController@store');
-
-  Route::delete('/listings/{id}/products/{product}', 'ListingProductsController@destroy');
+  // Route::post('/listings/{id}/products/add', 'ListingProductsController@store');
+  //
+  Route::delete('/listings/{listing}/products/{product}', 'ListingProductsController@destroy');
 });
 
 

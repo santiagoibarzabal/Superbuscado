@@ -71,7 +71,7 @@ class ListingsController extends Controller
      */
     public function edit($id)
     {
-      $listing = Listing::find($id);
+      $listing = Listing::with('products')->find($id);
 
       return view('listings.edit', [
         'listing' => $listing,
