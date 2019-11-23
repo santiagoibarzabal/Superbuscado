@@ -22,7 +22,8 @@ class Category extends Model
 
   // --------- Categorías Hijas
 
-  public function children() {
+  public function children()
+  {
     return $this->hasMany(self::class, 'category_id')->orderBy('name', 'asc');
   }
 

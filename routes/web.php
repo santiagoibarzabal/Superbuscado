@@ -113,6 +113,8 @@ Route::group(['middleware'=>'auth'],function(){
 
   Route::post('/listings/{listing}/products/add/{id}', 'ListingProductsController@add');
 
+  Route::post('/listings/{listing}/products/{id}', 'ListingProductsController@update');
+
   // Route::post('/listings/{id}/products/add', 'ListingProductsController@store');
   //
   Route::delete('/listings/{listing}/products/{product}', 'ListingProductsController@destroy');
@@ -192,24 +194,25 @@ Route::get('/stores/{id}', 'StoresController@show');
 
 Route::group(['middleware'=>'auth'],function(){
 
-Route::get('/users', 'UsersController@index');
+  Route::get('/users', 'UsersController@index');
 
-Route::get('/users/new', 'UsersController@create');
+  Route::get('/users/new', 'UsersController@create');
 
-Route::post('/users', 'UsersController@store');
+  Route::post('/users', 'UsersController@store');
 
-Route::get('/users/edit', 'UsersController@edit');
+  Route::get('/users/edit', 'UsersController@edit');
 
-Route::patch('/users', 'UsersController@update');
+  Route::patch('/users', 'UsersController@update');
 
-Route::delete('/users/{id}', 'UsersController@destroy');
+  Route::delete('/users/{id}', 'UsersController@destroy');
 
-Route::get('/users/{id}', 'UsersController@show');
+  Route::get('/users/{id}', 'UsersController@show');
 
-// --------------------- Profile --------------------- //
 
-Route::get('/profile', 'UsersController@profile');
+  // --------------------- Profile --------------------- //
 
-Route::patch('/profile', 'UsersController@update');
+  Route::get('/profile', 'UsersController@profile');
+
+  Route::patch('/profile', 'UsersController@update');
 
 });

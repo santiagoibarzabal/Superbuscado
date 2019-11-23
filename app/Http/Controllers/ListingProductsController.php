@@ -8,6 +8,8 @@ use App\Product;
 
 use App\Listing;
 
+use App\Category;
+
 class ListingProductsController extends Controller
 {
     /**
@@ -17,10 +19,21 @@ class ListingProductsController extends Controller
      */
     public function index($id)
     {
-      $products = Product::all();
+      // Buscar la lista que seleccionamos por $id
       $listing = Listing::find($id);
+      // Traer todos los productos
+      $products = Product::all();
+      // Buscar la categoria de los productos
+      $categories = Category::parent()->with('children')->find($products);
 
-      return view('products.index', ['products' => $products,'listing' => $listing]);
+      // $productsInList = $listing->products->pluck('id');
+      // $products = Product::whereNotIn('id', $productsInList)->get();
+
+      return view('products.index', [
+        'products' => $products,
+        'listing' => $listing,
+        'categories' => $categories
+      ]);
     }
 
     /**
@@ -30,17 +43,37 @@ class ListingProductsController extends Controller
      */
     public function add(Listing $listing, $id)
     {
+      // Buscar de todos los productos, el $id seleccionado
       $product = Product::find($id);
 
+      // Agregar a la lista el producto en la tabla pivot en la columna quantity
       $listing->products()->attach([
         $product->id => ['quantity' => 1]
       ]);
 
+      // Actualizar la lista en la columna quantity y refrescar el valor cada vez que se agrega un nuevo producto (independientemente del id que sea ese producto). products_count esta declarado en el modelo de li
       $listing->update([
         'quantity' => $listing->fresh()->products_count
       ]);
 
       return redirect ("/listings/".$listing->id."/edit");
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Listing $listing, $id)
+    {
+      \DB::table('listing_product')->where([
+        'listing_id' => $listing->id,
+        'product_id' => $id,
+      ])->increment('quantity');
+
+      return redirect("/listings/".$listing->id."/edit");
     }
 
     /**
@@ -74,18 +107,6 @@ class ListingProductsController extends Controller
     public function edit($id)
     {
         // modificar la cantidad de un producto especifico de la lista
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**

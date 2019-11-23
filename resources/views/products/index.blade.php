@@ -199,8 +199,18 @@
 
   <section class="container container-index">
     <div class="row">
+
+      @foreach ($products as $product)
+
       <div class="col-12">
-        <h5 class="mt-3 titulo-categoria"><b>Almacén /</b> Aderezos y especias</h5>
+        <h5 class="mt-3 titulo-categoria">
+          <b>
+          @foreach($categories as $category)
+            {{$category->name}}
+          @endforeach
+          </b>
+          {{'/ ' . $product->category->name}}
+        </h5>
       </div>
     </div>
   </section>
@@ -209,8 +219,6 @@
 
   <section class="container">
     <div class="row d-flex justify-content-center">
-
-      @foreach ($products as $product)
 
       <div class="col-6 col-md-4 col-lg-3 col-xl-2">
         <div class="card card-hover my-3 p-3">
@@ -222,198 +230,28 @@
             <p class="preciopromedio">Precio promedio</p>
           </a>
 
-          <form class="btn-agregar" action="{{ url('/listings/' . $listing->id . '/products/add/' . $product->id) }}" method="post">
-            @csrf
-            <button style="border: none; background-color: transparent; color: #fff; font-weight: 700;">Agregar a la lista</button>
-          </form>
+          @if ($listing->products->contains('id', $product->id))
+
+            <form class="btn-agregar" action="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}" method="post">
+              @csrf
+              <button style="border: none; background-color: transparent; color: #fff; font-weight: 700;">Sumar otro producto</button>
+
+            </form>
+
+          @else
+
+            <form class="btn-agregar" action="{{ url('/listings/' . $listing->id . '/products/add/' . $product->id) }}" method="post">
+              @csrf
+              <button style="border: none; background-color: transparent; color: #fff; font-weight: 700;">Agregar a la lista</button>
+            </form>
+
+          @endif
+
 
         </div>
       </div>
-
+      
       @endforeach
-
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container mb-3 d-flex justify-content-center" src="http://static.cotodigital.com.ar/sitios/fotos/full/00014000/00014076.jpg?3.0.93" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container mb-3 d-flex justify-content-center" src="{{ asset('img/happy-container.jpg') }}" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Titulo categoría -->
-
-  <section class="container">
-    <div class="row">
-      <div class="col-12">
-        <h5 class="mt-3 titulo-categoria"><b>Alimentos Congelados /</b> Pescados y mariscos</h5>
-      </div>
-    </div>
-  </section>
-
-  <!-- Productos -->
-
-  <section class="container">
-    <div class="row d-flex justify-content-center">
-
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
 
     </div>
   </section>

@@ -11,7 +11,7 @@ class Listing extends Model
   ];
 
   protected $fillable = [
-    'name', 'quantity', 
+    'name', 'quantity',
   ];
 
     public function user()
@@ -21,7 +21,7 @@ class Listing extends Model
 
     public function products()
     {
-      return $this->belongsToMany("App\Product");
+      return $this->belongsToMany("App\Product")->withPivot('quantity');
     }
 
     public function listings()
