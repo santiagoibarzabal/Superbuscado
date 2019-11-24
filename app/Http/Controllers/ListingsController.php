@@ -44,7 +44,7 @@ class ListingsController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-        'name' => 'required|string|max:13',
+        'name' => 'required|string|max:20',
       ]);
 
       auth()->user()->listings()->create($request->all());
@@ -73,6 +73,9 @@ class ListingsController extends Controller
     {
       $listing = Listing::with('products')->find($id);
 
+      // $totalProducts = Listing::withCount('products')->find($id);
+      //
+      // dd($totalProducts);
       return view('listings.edit', [
         'listing' => $listing,
       ]);
@@ -101,7 +104,7 @@ class ListingsController extends Controller
       if(auth()->id() != $listing->user_id) {
         return redirect('/listings');
       }
-
+      $listing->products()->detach();
       $listing->delete();
 
       return redirect('/listings');

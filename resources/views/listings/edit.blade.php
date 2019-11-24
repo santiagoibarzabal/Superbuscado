@@ -129,25 +129,20 @@
 
   <section class="container container-index">
     <div class="row">
+
       <div class="col-12 d-flex align-items-center mb-3">
         <a class="d-contents" href="{{ url('/listings') }}"><span class="icon-arrow-left green pr-2"></span></a>
 
         <h5 class="titulo-categoria mb-0"><b>{{$listing->name}}</b></h5>
       </div>
-    </div>
-  </section>
 
-  <!-- Descripción lista de productos -->
-
-  <section class="container">
-    <div class="row">
       <div class="col-12 col-lg-4">
         <div class="row">
 
           <div class="col-4 pr-0">
             <div class="card card-quantity d-flex justify-content-center">
               <p class="quantity-list">
-                {{ $listing->products_count }}
+                {{ $listing->quantity }}
               </p>
               <p class="productos-list-1">Productos</p>
             </div>
@@ -183,7 +178,7 @@
 
       </div>
 
-      <!-- Productos -->
+      <!-- Descripción lista de productos -->
 
       <div class="col-12 col-lg-8">
         <div class="row">
@@ -191,6 +186,7 @@
           <!-- Producto -->
 
           @foreach($listing->products as $product)
+
             <div class="col-10 col-sm-11 pr-0 mb-3">
             <div class="card card-hover">
 
@@ -211,8 +207,10 @@
                       </div>
 
                       <div class="col-12 mt-2 d-flex justify-content-start align-items-center">
-                        <p class="costo" style="font-size: 18px;">$45,99</p>
-                        <p class="preciopromedio pl-2">Precio promedio</p>
+                        <p class="costo" style="font-size: 18px;">{{'$149'}}</p>
+                        <p class="preciopromedio px-2">a</p>
+                        <p class="costo" style="font-size: 18px;">{{'$180'}}</p>
+                        <p class="preciopromedio px-2">{{ 'total de productos ' . $product->pivot->quantity }}</p>
                       </div>
 
                     </div>
@@ -223,21 +221,14 @@
 
             </div>
           </div>
-          
 
+          <!-- Eliminar producto -->
 
-        <!-- Eliminar producto -->
-        <form class="col-2 col-sm-1 d-flex align-items-center justify-content-start mb-3" action="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}" method="POST">
-          @csrf
-          @method('delete')
-          <button class="delete-product icon-exit-circle m-0" style="color: #69B948;"></button>
-        </form>
-
-          {{-- <div class="col-2 col-sm-1 d-flex align-items-center justify-content-start mb-3">
-            <button class="delete-product" type="button" name="delete-product">
-              <span class="icon-exit-circle m-0" style="color: #69B948;"></span>
-            </button>
-          </div> --}}
+          <form class="col-2 col-sm-1 d-flex align-items-center justify-content-start mb-3" action="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}" method="POST">
+            @csrf
+            @method('delete')
+            <button class="delete-product icon-exit-circle m-0" style="color: #69B948;"></button>
+          </form>
 
           @endforeach
 

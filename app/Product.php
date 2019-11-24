@@ -20,7 +20,7 @@ class Product extends Model
 
   public function listings()
   {
-    return $this->belongsToMany("App\Listing");
+    return $this->belongsToMany("App\Listing")->withPivot('quantity');
   }
 
 
