@@ -52,9 +52,12 @@ class ListingProductsController extends Controller
       ]);
 
       // Actualizar la lista en la columna quantity y refrescar el valor cada vez que se agrega un nuevo producto (independientemente del id que sea ese producto). products_count esta declarado en el modelo de li
-      $listing->update([
-        'quantity' => $listing->fresh()->products_count
-      ]);
+
+      // $listing->update([
+      //   'quantity' => $listing->fresh()->products_count
+      // ]);
+
+      $listing->increment('quantity');
 
       return redirect ("/listings/".$listing->id."/edit");
     }
@@ -68,10 +71,14 @@ class ListingProductsController extends Controller
      */
     public function update(Listing $listing, $id)
     {
-      \DB::table('listing_product')->where([
+      \DB::table('listing_product')
+      ->where([
         'listing_id' => $listing->id,
         'product_id' => $id,
-      ])->increment('quantity');
+      ])
+      ->increment('quantity');
+
+      $listing->increment('quantity');
 
       return redirect("/listings/".$listing->id."/edit");
     }

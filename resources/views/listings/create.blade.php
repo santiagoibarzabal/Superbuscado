@@ -14,9 +14,9 @@
 
   <!-- styles CSS -->
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/sidebar_style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/landing_style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/lists_style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/listings.css') }}">
 
   <!-- icons -->
   <link rel="stylesheet" href="{{ asset('css/icons/icons.css') }}">
@@ -61,7 +61,7 @@
                   <a class="nav-link btn-account" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="button-account">
                       <p class="my-account">Mi cuenta</p>
-                      <p class="user-account">{{auth()->user()->email}}</p>
+                      <p class="user-account"> {{auth()->user()->email}} </p>
                     </div>
                     <span class="icon-arrow-down white"></span>
                   </a>
@@ -80,15 +80,15 @@
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="{{ route('logout') }}"
-                         onclick="event.preventDefault();
-                                       document.getElementById('logout-form').submit();">
-                          {{ __('Salir') }}
-                      </a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                            {{ __('Salir') }}
+                        </a>
 
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                          @csrf
-                      </form>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
 
                   </ul>
@@ -99,6 +99,30 @@
 
         </div>
       </div>
+    </nav>
+
+    <!-- _____________________ Nav sections _____________________ -->
+
+    <nav class="second-navbar py-2">
+      <nav class="container">
+        <div class="row">
+
+          <!-- Ubicación -->
+
+          <nav class="display-flex col-12">
+            @if(auth()->user()->address != null)
+              <a class="btn-location" href="{{url('/addresses/edit')}}">
+            @else
+                <a class="btn-location" href="{{url('/addresses/new')}}">
+            @endif
+              <span class="icon-location green"></span>
+              <p class="location">{{auth()->user()->address->address ?? "Ingresá tu dirección"}}</p>
+            </a>
+          </nav>
+
+
+        </div>
+      </nav>
     </nav>
 
   </header>

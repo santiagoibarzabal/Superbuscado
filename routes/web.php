@@ -82,7 +82,7 @@ Route::delete('/categories/{id}', 'CategoriesController@destroy');
 Route::get('/categories/{id}', 'CategoriesController@show');
 
 
-// --------------------- Lists --------------------- //
+// --------------------- Listings --------------------- //
 // Validacion de User logeado para acceso a todas las Rutas
 
 Route::group(['middleware'=>'auth'],function(){

@@ -14,9 +14,9 @@
 
   <!-- styles CSS -->
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/sidebar_style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/landing_style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/lists_style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/listings.css') }}">
 
   <!-- icons -->
   <link rel="stylesheet" href="{{ asset('css/icons/icons.css') }}">
