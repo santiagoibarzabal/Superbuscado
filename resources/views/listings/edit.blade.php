@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="{{ asset('css/listings.css') }}">
 
   <!-- icons -->
-  <link rel="stylesheet" href="{{ asset('css/icons/icons.css') }} ">
+  <link rel="stylesheet" href="{{ asset('css/icons/icons.css') }}">
 
   <!-- Scrollbar Custom CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -28,7 +28,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap" rel="stylesheet">
 
   <!-- favicon -->
-  <link rel="shortcut icon" href="{{ asset('iso-superbuscado.ico')}}" />
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
 </head>
 
@@ -61,14 +61,14 @@
                   <a class="nav-link btn-account" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="button-account">
                       <p class="my-account">Mi cuenta</p>
-                      <p class="user-account">{{auth()->user()->first_name}}</p>
+                      <p class="user-account">{{auth()->user()->email}}</p>
                     </div>
                     <span class="icon-arrow-down white"></span>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                     <li>
-                      <a class="dropdown-item" href="{{ url('/listings/{id}') }}">Mis listas</a>
+                      <a class="dropdown-item" href="{{ url('/listings') }}">Mis listas</a>
                     </li>
 
                     <li>
@@ -110,9 +110,13 @@
           <!-- Ubicación -->
 
           <nav class="display-flex col-12">
-            <a class="btn-location" href="#">
+            @if(auth()->user()->address != null)
+              <a class="btn-location" href="{{url('/addresses/edit')}}">
+            @else
+                <a class="btn-location" href="{{url('/addresses/new')}}">
+            @endif
               <span class="icon-location green"></span>
-              <p class="location">Capital Federal 1429</p>
+              <p class="location">{{auth()->user()->address->address ?? "Ingresá tu dirección"}}</p>
             </a>
           </nav>
 
@@ -172,8 +176,9 @@
 
         <!-- Botón comprar -->
 
-        <form class="card btn-buy btn-border-hover text-center my-3" action="cart.php" method="post">
-          <input class="sinbordefondo-green" type="button" name="cart" value="COMPRAR">
+        <form class="card btn-buy btn-border-hover text-center my-3" action="{{url('/carts')}}" method="post">
+          @csrf
+          <input class="sinbordefondo-green" type="submit" name="cart" value="COMPRAR">
         </form>
 
       </div>
@@ -192,28 +197,29 @@
 
               <!-- Foto + Descripcion -->
 
-              <a class="" href="producto_descripcion.php">
+              <a class="" href="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}">
                 <div class="row py-3 mx-0">
 
-                  <div class="col-4">
-                    <img class="icon-happy-container py-2 d-flex justify-content-center" style="font-size: 40px;" src="" alt="">
+                  <div class="col-4 col-lg-2">
+                    <img class="icon-happy-container d-flex justify-content-center" style="font-size: 40px;" src="{{$product->avatar ?? asset('img/no-img.jpg')}}" alt="">
                   </div>
 
                   <div class="col-8 pl-0">
-                    <div class="row">
 
-                      <div class="col-12">
-                        <p class="descripcion-producto m-0">{{$product->name}}</p>
-                      </div>
 
-                      <div class="col-12 mt-2 d-flex justify-content-start align-items-center">
+
+                      <p class="descripcion-producto m-0">{{$product->name}}</p>
+
+
+                      <div class="my-1 d-flex justify-content-start align-items-center">
                         <p class="costo" style="font-size: 18px;">{{'$149'}}</p>
                         <p class="preciopromedio px-2">a</p>
                         <p class="costo" style="font-size: 18px;">{{'$180'}}</p>
-                        <p class="preciopromedio px-2">{{ 'total de productos ' . $product->pivot->quantity }}</p>
-                      </div>
 
-                    </div>
+                      </div>
+                      <p class="preciopromedio">Total de productos <b> {{$product->pivot->quantity }}</b></p>
+
+
                   </div>
 
                 </div>

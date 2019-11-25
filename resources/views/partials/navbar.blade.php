@@ -31,7 +31,7 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                   <li>
-                    <a class="dropdown-item" href="{{ url('/listings/{id}') }}">Mis listas</a>
+                    <a class="dropdown-item" href="{{ url('/listings') }}">Mis listas</a>
                   </li>
 
                   <li>
