@@ -195,6 +195,14 @@ p.products-lists {
   margin: auto;
 }
 
+.card-contains {
+  border: 1px solid #61BC31;
+}
+
+.card-contains:hover {
+  border: 1px solid rgba(0,0,0,.125);
+}
+
 .card-hover:hover{
   border: 1px solid #61BC31;
 }
@@ -217,11 +225,9 @@ p.costo {
 }
 
 p.preciopromedio {
-  color: #61BC31;
-  font-size: 16px;
-  font-weight: 700;
+  color: #909090;
+  font-size: 14px;
   padding-top: 0px;
-  text-align: center;
   margin: 0;
 }
 
@@ -229,7 +235,7 @@ p.preciopromedio {
 .btn-agregar:focus {
   border-radius: 7px;
   background-color: #61BC31;
-  color: #fff;
+  border: 1px solid  #61BC31;
   font-size: 14px;
   font-weight: 700;
   text-align: center;
@@ -237,9 +243,20 @@ p.preciopromedio {
 }
 
 .btn-agregar:hover {
-  color:  #61BC31;
+  color: #61BC31;
   border: 1px solid  #61BC31;
   background-color: #fff;
+}
+
+button.btn-dsplay-none {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  font-weight: 700;
+}
+
+button.btn-dsplay-none:hover{
+  color: #61BC31;
 }
 
 /* ---------------------------------------------------
