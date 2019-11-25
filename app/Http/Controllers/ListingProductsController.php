@@ -17,14 +17,25 @@ class ListingProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index(Request $request, $id)
     {
       // Buscar la lista que seleccionamos por $id
       $listing = Listing::find($id);
+
       // Traer todos los productos
       $products = Product::all();
+      
       // Buscar la categoria de los productos
       $categories = Category::parent()->with('children')->find($products);
+
+      // Para buscar productos
+      if($request->has('query')){
+        $products = Product::where('name','like', '%' . $request->get('query') . '%')
+        ->paginate(12)
+        ->appends($request->only('query'));
+      } else {
+        $products = Product::paginate(12)->appends($request->only('query'));
+      }
 
       // $productsInList = $listing->products->pluck('id');
       // $products = Product::whereNotIn('id', $productsInList)->get();
@@ -100,9 +111,34 @@ class ListingProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, Listing $listing, $id)
     {
-        //descripcion del producto
+      // Buscar la lista que seleccionamos por $id
+      Listing::find($listing);
+
+      // Encontrar el producto
+      $product = Product::find($id);
+
+      // Traer productos relacionados
+      $products = Product::all();
+
+      // Buscar la categoria de los productos
+      $categories = Category::parent()->with('children')->find($products);
+
+      // Para buscar productos
+      if($request->has('query')){
+        $products = Product::where('name','like', '%' . $request->get('query') . '%')
+        ->paginate(12)
+        ->appends($request->only('query'));
+      } else {
+        $products = Product::paginate(12)->appends($request->only('query'));
+      }
+
+      return view('products.show', [
+        'products' => $products,
+        'listing' => $listing,
+        'categories' => $categories
+      ]);
     }
 
     /**

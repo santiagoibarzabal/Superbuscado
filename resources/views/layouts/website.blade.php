@@ -17,7 +17,6 @@
   <link rel="stylesheet" href="{{ asset('css/listings.css') }}">
   <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
   <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/faq.css') }}">
   <link rel="stylesheet" href="{{ asset('css/location.css') }}">
   <link rel="stylesheet" href="{{ asset('css/login_register_contact.css') }}">
   <link rel="stylesheet" href="{{ asset('css/product_description.css') }}">
@@ -34,7 +33,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap" rel="stylesheet">
 
   <!-- favicon -->
-  <link rel="shortcut icon" href="{{ asset('iso-superbuscado.ico')}}" />
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
 </head>
 

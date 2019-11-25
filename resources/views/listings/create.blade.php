@@ -28,7 +28,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap" rel="stylesheet">
 
   <!-- favicon -->
-  <link rel="shortcut icon" href="{{ asset('iso-superbuscado.ico')}}" />
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
 </head>
 

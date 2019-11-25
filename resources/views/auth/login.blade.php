@@ -26,18 +26,24 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap" rel="stylesheet">
 
   <!-- favicon -->
-  <link rel="shortcut icon" href="iso-superbuscado.ico" />
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
 </head>
 
 <body class="bg-grey">
 
-  <!-- _____________________ Login _____________________ -->
-
-  <section class="container container-index">
+  <section class="container">
     <div class="row d-flex justify-content-center">
 
-      <div class="col-12 col-md-8 col-lg-5">
+      <div class="col-12 d-flex justify-content-center my-5">
+        <a href="{{ url('/') }}">
+          <img class="logo-navbar-green" src="{{ asset("img/logos/logo-superbuscado-gray.png")}}" alt="">
+        </a>
+      </div>
+
+      <!-- _____________________ Login _____________________ -->
+
+      <div class="col-12 col-md-8 col-lg-5 mb-5">
         <div class="card card-shadow d-flex align-items-center">
 
           <div class="row">

@@ -15,7 +15,7 @@
 
         <div class="col-12">
           <p class="title-create-list">Crea tu primer lista del super!</p>
-          <a class="icon-plus-circle d-flex justify-content-center" href="{{asset('listings/new')}}"></a>
+          <a class="icon-plus-circle d-flex justify-content-center" href="{{ url('/listings/new')}}"></a>
         </div>
 
       </div>

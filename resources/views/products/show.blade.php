@@ -13,13 +13,13 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
   <!-- styles CSS -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/sidebar_style.css">
-  <link rel="stylesheet" href="css/producto_descripcion_style.css">
-  <link rel="stylesheet" href="css/landing_style.css">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/product_description.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
 
   <!-- icons -->
-  <link rel="stylesheet" href="assets/icons/icons.css">
+  <link rel="stylesheet" href="{{ asset('css/icons/icons.css') }}">
 
   <!-- Scrollbar Custom CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -28,7 +28,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap" rel="stylesheet">
 
   <!-- favicon -->
-  <link rel="shortcut icon" href="iso-superbuscado.ico" />
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
 </head>
 
@@ -102,14 +102,19 @@
 
           <!-- logo -->
           <div class="col-4 col-sm-4 col-md-3 col-lg-2">
-            <a href="index.php"><img class="logo-navbar" src="assets/img/logo-superbuscado-white.png" alt=""></a>
+            <a href="{{ url('/listings/' . $listing->id . '/products/add') }}"><img class="logo-navbar" src="{{ asset('img/logos/logo-superbuscado-white.png') }}" alt=""></a>
           </div>
+
+          <!-- cart -->
+          {{-- <div class="col-1 col-sm-1 col-md-1 col-lg-1 d-flex align-items-center">
+            <a class="btn-carrito" href="mis_listas.php"><span class="icon-shopping-cart"></span></a>
+          </div> --}}
 
           <!-- search -->
           <div class="display-flex col-7 col-sm-7 col-md-8 col-lg-6">
-            <form class="form-search" action="index.php" method="post">
+            <form class="form-search" action="">
 
-              <input class="input-search" type="search" name="buscar" placeholder="Nombre de producto o marca">
+              <input class="input-search" type="search" name="query" placeholder="Nombre de producto o marca" value="{{ old('query') }}">
               <button class="icon-search" type="button" name="button"></button>
 
             </form>
@@ -129,26 +134,34 @@
                   <a class="nav-link btn-account" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="button-account">
                       <p class="my-account">Mi cuenta</p>
-                      <p class="user-account"><?=$_SESSION['user']['email']  ?? ''?></p>
+                      <p class="user-account">{{auth()->user()->email}}</p>
                     </div>
                     <span class="icon-arrow-down white"></span>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                     <li>
-                      <a class="dropdown-item" href="mis_listas.php">Mis listas</a>
+                      <a class="dropdown-item" href="{{ url('/listings') }}">Mis listas</a>
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="#">Compras</a>
+                      <a class="dropdown-item" href="{{ url('/carts') }}">Compras</a>
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="profile.php">Mis datos</a>
+                      <a class="dropdown-item" href="{{ url('/profile') }}">Mis datos</a>
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="logout.php">Salir</a>
+                      <a class="dropdown-item" href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                          {{ __('Salir') }}
+                      </a>
+
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
                     </li>
 
                   </ul>
@@ -165,33 +178,44 @@
 
     <nav class="second-navbar py-2">
       <nav class="container">
-          <div class="row">
+        <div class="row">
 
-            <nav class="display-flex col-6 col-md-3 col-lg-2">
-              <a class="btn-category" id="sidebarCollapse" href="#">
-                <span class="icon-star green"></span>
-                <div class="btn-sections">
-                  <p class="category-lists">Categoría</p>
-                  <p class="products-lists">Destacados</p>
-                </div>
-                <span class="icon-arrow-down green"></span>
-              </a>
-            </nav>
+          <nav class="display-flex col-6 col-md-3 col-lg-2">
+            <a class="btn-category" id="sidebarCollapse" href="#">
+              <span class="icon-star green"></span>
+              <div class="btn-sections">
+                <p class="category-lists">Categoría</p>
+                <p class="products-lists">Destacados</p>
+              </div>
+              <span class="icon-arrow-down green"></span>
+            </a>
+          </nav>
 
-            <!-- Ubicación -->
+          <!-- Ubicación -->
 
-            <nav class="display-flex col-6 col-md-9 col-lg-10 border-left">
-              <a class="btn-location" href="#">
-                <span class="icon-location green"></span>
-                <p class="location">Capital Federal 1429</p>
-              </a>
-            </nav>
+          <nav class="display-flex col-6 col-md-9 col-lg-10 border-left">
+            @if(auth()->user()->address != null)
+              <a class="btn-location" href="{{url('/addresses/edit')}}">
+            @else
+                <a class="btn-location" href="{{url('/addresses/new')}}">
+            @endif
+              <span class="icon-location green"></span>
+              <p class="location">{{auth()->user()->address->address ?? "Ingresá tu dirección"}}</p>
+            </a>
+          </nav>
 
 
-          </div>
+        </div>
       </nav>
     </nav>
 
+    <!-- _____________________ Botón carrito _____________________ -->
+
+    <div class="col-12">
+      <div>
+        <a class="btn-carrito" href="mis_listas.php"><span class="icon-shopping-cart"></span></a>
+      </div>
+    </div>
   </header>
 
   <!-- _____________________ Descripción Producto _____________________ -->
@@ -410,14 +434,6 @@
 
     </div>
   </section>
-
-  <!-- _____________________ Botón carrito _____________________ -->
-
-  <div class="col-12">
-    <div>
-      <a class="btn-carrito" href="mis_listas.php"><span class="icon-shopping-cart"></span></a>
-    </div>
-  </div>
 
   <!-- _____________________ Footer _____________________  -->
 

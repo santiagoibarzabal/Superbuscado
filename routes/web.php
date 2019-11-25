@@ -115,8 +115,8 @@ Route::group(['middleware'=>'auth'],function(){
 
   Route::post('/listings/{listing}/products/{id}', 'ListingProductsController@update');
 
-  // Route::post('/listings/{id}/products/add', 'ListingProductsController@store');
-  //
+  Route::get('/listings/{listing}/products/{id}', 'ListingProductsController@show');
+
   Route::delete('/listings/{listing}/products/{product}', 'ListingProductsController@destroy');
 });
 
