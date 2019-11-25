@@ -27,7 +27,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap" rel="stylesheet">
 
   <!-- favicon -->
-  <link rel="shortcut icon" href="iso-superbuscado.ico" />
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
 </head>
 
@@ -101,14 +101,19 @@
 
           <!-- logo -->
           <div class="col-4 col-sm-4 col-md-3 col-lg-2">
-            <a href="{{ url('/') }}"><img class="logo-navbar" src="{{ asset('img/logos/logo-superbuscado-white.png') }}" alt=""></a>
+            <a href="{{ url('/listings/' . $listing->id . '/products/add') }}"><img class="logo-navbar" src="{{ asset('img/logos/logo-superbuscado-white.png') }}" alt=""></a>
           </div>
+
+          <!-- cart -->
+          {{-- <div class="col-1 col-sm-1 col-md-1 col-lg-1 d-flex align-items-center">
+            <a class="btn-carrito" href="mis_listas.php"><span class="icon-shopping-cart"></span></a>
+          </div> --}}
 
           <!-- search -->
           <div class="display-flex col-7 col-sm-7 col-md-8 col-lg-6">
-            <form class="form-search" action="index.html" method="post">
+            <form class="form-search" action="">
 
-              <input class="input-search" type="search" name="buscar" placeholder="Nombre de producto o marca">
+              <input class="input-search" type="search" name="query" placeholder="Nombre de producto o marca" value="{{ old('query') }}">
               <button class="icon-search" type="button" name="button"></button>
 
             </form>
@@ -128,26 +133,34 @@
                   <a class="nav-link btn-account" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="button-account">
                       <p class="my-account">Mi cuenta</p>
-                      <p class="user-account"> {{auth()->user()->email}} </p>
+                      <p class="user-account">{{auth()->user()->email}}</p>
                     </div>
                     <span class="icon-arrow-down white"></span>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                     <li>
-                      <a class="dropdown-item" href="mis_listas.php">Mis listas</a>
+                      <a class="dropdown-item" href="{{ url('/listings') }}">Mis listas</a>
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="#">Compras</a>
+                      <a class="dropdown-item" href="{{ url('/carts') }}">Compras</a>
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="profile.php">Mis datos</a>
+                      <a class="dropdown-item" href="{{ url('/profile') }}">Mis datos</a>
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="landing.php">Salir</a>
+                      <a class="dropdown-item" href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                          {{ __('Salir') }}
+                      </a>
+
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
                     </li>
 
                   </ul>
@@ -180,9 +193,13 @@
           <!-- Ubicación -->
 
           <nav class="display-flex col-6 col-md-9 col-lg-10 border-left">
-            <a class="btn-location" href="#">
+            @if(auth()->user()->address != null)
+              <a class="btn-location" href="{{url('/addresses/edit')}}">
+            @else
+                <a class="btn-location" href="{{url('/addresses/new')}}">
+            @endif
               <span class="icon-location green"></span>
-              <p class="location">Capital Federal 1429</p>
+              <p class="location">{{auth()->user()->address->address ?? "Ingresá tu dirección"}}</p>
             </a>
           </nav>
 
@@ -191,7 +208,15 @@
       </nav>
     </nav>
 
+    <!-- _____________________ Botón carrito _____________________ -->
+
+    <div class="col-12">
+      <div>
+        <a class="btn-carrito" href="mis_listas.php"><span class="icon-shopping-cart"></span></a>
+      </div>
+    </div>
   </header>
+
 
   <!-- _____________________ Product catalog _____________________ -->
 
@@ -200,49 +225,76 @@
   <section class="container container-index">
     <div class="row">
 
-      @foreach ($products as $product)
+      @foreach($categories as $category)
 
       <div class="col-12">
         <h5 class="mt-3 titulo-categoria">
           <b>
-          @foreach($categories as $category)
+
             {{$category->name}}
-          @endforeach
+
           </b>
+          @foreach ($products as $product)
           {{'/ ' . $product->category->name}}
+        @endforeach
         </h5>
       </div>
+
     </div>
   </section>
 
   <!-- Productos -->
 
   <section class="container">
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-first">
+
+      @foreach ($products as $product)
+
+      @if ($listing->products->contains('id', $product->id))
+
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+        <div class="card card-contains my-3 p-3">
+          <a class="mb-3" href="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}">
+            <img class="icon-happy-container mb-3 d-flex justify-content-center" src="{{$product->avatar ?? asset('img/no-img.jpg')}}" alt="">
+            <p class="descripcion-producto">{{$product->name}}</p>
+            <hr class="linea-separacion">
+            <div class="d-flex align-items-center">
+              <p class="preciopromedio pl-0 pr-2">Desde:</p>
+              <p class="costo">{{' $' . $product->min_price}}</p>
+            </div>
+            <div class="d-flex align-items-center">
+              <p class="preciopromedio pl-0 pr-2">Hasta:</p>
+              <p class="costo d-flex justify-contents-end">{{' $' . $product->max_price}}</p>
+            </div>
+          </a>
+
+          <form class="btn-agregar" action="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}" method="post">
+            @csrf
+            <button class="btn-dsplay-none">Sumar otro producto</button>
+
+          </form>
+
+      @else
 
       <div class="col-6 col-md-4 col-lg-3 col-xl-2">
         <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="producto_descripcion.php">
-            <img class="icon-happy-container mb-3 d-flex justify-content-center" src="{{$product->avatar}}" alt="">
+          <a class="mb-3" href="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}">
+            <img class="icon-happy-container mb-3 d-flex justify-content-center" src="{{$product->avatar ?? asset('img/no-img.jpg')}}" alt="">
             <p class="descripcion-producto">{{$product->name}}</p>
             <hr class="linea-separacion">
-            <p class="costo">{{'$' . $product->suggested_price}}</p>
-            <p class="preciopromedio">Precio promedio</p>
+            <div class="d-flex align-items-center">
+              <p class="preciopromedio pl-0 pr-2">Desde:</p>
+              <p class="costo">{{' $' . $product->min_price}}</p>
+            </div>
+            <div class="d-flex align-items-center">
+              <p class="preciopromedio pl-0 pr-2">Hasta:</p>
+              <p class="costo d-flex justify-contents-end">{{' $' . $product->max_price}}</p>
+            </div>
           </a>
-
-          @if ($listing->products->contains('id', $product->id))
-
-            <form class="btn-agregar" action="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}" method="post">
-              @csrf
-              <button style="border: none; background-color: transparent; color: #fff; font-weight: 700;">Sumar otro producto</button>
-
-            </form>
-
-          @else
 
             <form class="btn-agregar" action="{{ url('/listings/' . $listing->id . '/products/add/' . $product->id) }}" method="post">
               @csrf
-              <button style="border: none; background-color: transparent; color: #fff; font-weight: 700;">Agregar a la lista</button>
+              <button class="btn-dsplay-none">Agregar a la lista</button>
             </form>
 
           @endif
@@ -250,19 +302,14 @@
 
         </div>
       </div>
-      
+
       @endforeach
+
 
     </div>
   </section>
 
-  <!-- _____________________ Botón carrito _____________________ -->
-
-  <div class="col-12">
-    <div>
-      <a class="btn-carrito" href="mis_listas.php"><span class="icon-shopping-cart"></span></a>
-    </div>
-  </div>
+  @endforeach
 
   <!-- _____________________ Footer _____________________  -->
 
