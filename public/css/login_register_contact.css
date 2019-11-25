@@ -2,6 +2,10 @@
     Login
 ----------------------------------------------------- */
 
+.logo-navbar-green {
+  height: 45px;
+}
+
 .navbar-login {
   height: 64px;
 }
