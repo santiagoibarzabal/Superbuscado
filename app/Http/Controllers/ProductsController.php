@@ -59,7 +59,8 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+      Product::find($id);
+      return redirect('/products/' . $id);
     }
 
     /**
