@@ -47,46 +47,26 @@
 
     <ul class="list-unstyled">
 
-      <!-- Destacados -->
+      @foreach ($categories as $category)
+        <li>
+          <a href="#category-{{ $category->id }}" data-toggle="collapse" aria-expanded="false">{{ $category->name }}</a>
 
-      <li>
-        <a href="#" aria-expanded="false">Destacados</a>
-      </li>
+          <ul class="collapse list-unstyled" id="category-{{ $category->id }}">
+            @foreach ($category->children as $child)
+            <li>
+              {{-- Revisar ----------------------- --}}
+              <a href="{{url('/listings/' . $listing->id . '/products/' . $category->name . '/' . $child->name) }}">
+              {{-- ----------------------------------}}
+                {{ $child->name }}</a>
+            </li>
+            @endforeach
+          </ul>
 
-      <!-- Almacén -->
+        </li>
+      @endforeach
 
-      <li>
-        <a href="#almacen" data-toggle="collapse" aria-expanded="false">Almacén</a>
-        <ul class="collapse list-unstyled" id="almacen">
-          <li>
-            <a href="#">Aceites</a>
-          </li>
-          <li>
-            <a href="#">Aderezos y especias</a>
-          </li>
-          <li>
-            <a href="#">Conservas</a>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Alimentos congelados -->
-
-      <li>
-        <a href="#congelados" data-toggle="collapse" aria-expanded="false">Alimentos congelados</a>
-        <ul class="collapse list-unstyled" id="congelados">
-          <li>
-            <a href="#">Helados</a>
-          </li>
-          <li>
-            <a href="#">Pescados y mariscos</a>
-          </li>
-          <li>
-            <a href="#">Vegetales</a>
-          </li>
-        </ul>
-      </li>
     </ul>
+
   </nav>
 
   <div class="overlay"></div>
@@ -252,50 +232,67 @@
 
       @if ($listing->products->contains('id', $product->id))
 
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2 d-flex">
         <div class="card card-contains my-3 p-3">
-          <a class="mb-3" href="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}">
+
+          <a href="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}">
             <img class="icon-happy-container mb-3 d-flex justify-content-center" src="{{$product->avatar ?? asset('img/no-img.jpg')}}" alt="">
             <p class="descripcion-producto">{{$product->name}}</p>
-            <hr class="linea-separacion">
-            <div class="d-flex align-items-center">
-              <p class="preciopromedio pl-0 pr-2">Desde:</p>
-              <p class="costo">{{' $' . $product->min_price}}</p>
-            </div>
-            <div class="d-flex align-items-center">
-              <p class="preciopromedio pl-0 pr-2">Hasta:</p>
-              <p class="costo d-flex justify-contents-end">{{' $' . $product->max_price}}</p>
-            </div>
           </a>
 
-          <form class="btn-agregar" action="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}" method="post">
-            @csrf
-            <button class="btn-dsplay-none">Sumar otro producto</button>
+          <div class="mt-auto">
 
-          </form>
+            <a href="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}">
+              <hr class="linea-separacion">
+              <div class="d-flex align-items-center">
+                <p class="preciopromedio pl-0 pr-2">Desde:</p>
+                <p class="costo">{{' $' . $product->min_price}}</p>
+              </div>
+              <div class="d-flex align-items-center">
+                <p class="preciopromedio pl-0 pr-2">Hasta:</p>
+                <p class="costo d-flex justify-contents-end">{{' $' . $product->max_price}}</p>
+              </div>
+            </a>
+
+            <form class="btn-agregar mt-3" action="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}" method="post">
+              @csrf
+              <button class="btn-dsplay-none">Sumar otro</button>
+            </form>
+
+          </div>
+
 
       @else
 
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2 d-flex">
         <div class="card card-hover my-3 p-3">
+
           <a class="mb-3" href="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}">
             <img class="icon-happy-container mb-3 d-flex justify-content-center" src="{{$product->avatar ?? asset('img/no-img.jpg')}}" alt="">
             <p class="descripcion-producto">{{$product->name}}</p>
-            <hr class="linea-separacion">
-            <div class="d-flex align-items-center">
-              <p class="preciopromedio pl-0 pr-2">Desde:</p>
-              <p class="costo">{{' $' . $product->min_price}}</p>
-            </div>
-            <div class="d-flex align-items-center">
-              <p class="preciopromedio pl-0 pr-2">Hasta:</p>
-              <p class="costo d-flex justify-contents-end">{{' $' . $product->max_price}}</p>
-            </div>
           </a>
 
-            <form class="btn-agregar" action="{{ url('/listings/' . $listing->id . '/products/add/' . $product->id) }}" method="post">
+          <div class="mt-auto">
+
+            <a href="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}">
+              <hr class="linea-separacion">
+              <div class="d-flex align-items-center">
+                <p class="preciopromedio pl-0 pr-2">Desde:</p>
+                <p class="costo">{{' $' . $product->min_price}}</p>
+              </div>
+              <div class="d-flex align-items-center">
+                <p class="preciopromedio pl-0 pr-2">Hasta:</p>
+                <p class="costo d-flex justify-contents-end">{{' $' . $product->max_price}}</p>
+              </div>
+            </a>
+
+            <form class="btn-agregar mt-3" action="{{ url('/listings/' . $listing->id . '/products/add/' . $product->id) }}" method="post">
               @csrf
               <button class="btn-dsplay-none">Agregar a la lista</button>
             </form>
+
+          </div>
+
 
           @endif
 

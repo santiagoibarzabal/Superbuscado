@@ -43,12 +43,12 @@
 
       <ul class="list-unstyled">
 
-        @foreach ($categorias as $categoria)
+        @foreach ($categories as $category)
           <li>
-            <a href="#category-{{ $categoria->id }}" data-toggle="collapse" aria-expanded="false">{{ $categoria->name }}</a>
+            <a href="#category-{{ $category->id }}" data-toggle="collapse" aria-expanded="false">{{ $category->name }}</a>
 
-            <ul class="collapse list-unstyled" id="category-{{ $categoria->id }}">
-              @foreach ($categoria->children as $child)
+            <ul class="collapse list-unstyled" id="category-{{ $category->id }}">
+              @foreach ($category->children as $child)
               <li>
                 <a href="#">{{ $child->name }}</a>
               </li>
