@@ -24,7 +24,7 @@ class ListingProductsController extends Controller
 
       // Traer todos los productos
       $products = Product::all();
-      
+
       // Buscar la categoria de los productos
       $categories = Category::parent()->with('children')->find($products);
 
@@ -138,6 +138,48 @@ class ListingProductsController extends Controller
         'products' => $products,
         'listing' => $listing,
         'categories' => $categories
+      ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+     // REVISAR CONTROLADOR -------------------------
+    public function find(Request $request, Listing $listing, $category, $child)
+    {
+      // Buscar la lista que seleccionamos por $id
+      Listing::find($listing);
+
+      // Encontrar la categoria
+      $category = Category::parent($category);
+
+
+      $child = Category::
+
+      // Traer productos relacionados
+      $products = Product::all();
+
+      // Buscar la categoria de los productos
+      $categories = Category::parent()->with('children')->find($products);
+
+      // Para buscar productos
+      if($request->has('query')){
+        $products = Product::where('name','like', '%' . $request->get('query') . '%')
+        ->paginate(12)
+        ->appends($request->only('query'));
+      } else {
+        $products = Product::paginate(12)->appends($request->only('query'));
+      }
+
+      return view('products.show', [
+        'products' => $products,
+        'listing' => $listing,
+        'categories' => $categories,
+        'category' => $category
       ]);
     }
 

@@ -117,7 +117,12 @@ Route::group(['middleware'=>'auth'],function(){
 
   Route::get('/listings/{listing}/products/{id}', 'ListingProductsController@show');
 
+  // Revisar ---------------
+  Route::get('/listings/{listing}/products/{category}/{child}', 'ListingProductsController@find');
+  // --------------------------
+
   Route::delete('/listings/{listing}/products/{product}', 'ListingProductsController@destroy');
+
 });
 
 
