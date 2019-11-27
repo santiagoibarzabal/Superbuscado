@@ -47,15 +47,15 @@
 
     <ul class="list-unstyled">
 
-      @foreach ($categories as $category)
+      @foreach ($sidebarCategories as $sidebarCategory)
         <li>
-          <a href="#category-{{ $category->id }}" data-toggle="collapse" aria-expanded="false">{{ $category->name }}</a>
+          <a href="#category-{{ $sidebarCategory->id }}" data-toggle="collapse" aria-expanded="false">{{ $sidebarCategory->name }}</a>
 
-          <ul class="collapse list-unstyled" id="category-{{ $category->id }}">
-            @foreach ($category->children as $child)
+          <ul class="collapse list-unstyled" id="category-{{ $sidebarCategory->id }}">
+            @foreach ($sidebarCategory->children as $child)
             <li>
               {{-- Revisar ----------------------- --}}
-              <a href="{{url('/listings/' . $listing->id . '/products/' . $category->name . '/' . $child->name) }}">
+              <a href="{{url('/listings/' . $listing->id . '/products/' . $sidebarCategory->name . '/' . $child->name) }}">
               {{-- ----------------------------------}}
                 {{ $child->name }}</a>
             </li>
@@ -203,32 +203,29 @@
   <!-- Titulo categoría -->
 
   <section class="container container-index">
-    <div class="row">
-
-      @foreach($categories as $category)
-
-      <div class="col-12">
-        <h5 class="mt-3 titulo-categoria">
-          <b>
-
-            {{$category->name}}
-
-          </b>
-          @foreach ($products as $product)
-          {{'/ ' . $product->category->name}}
-        @endforeach
-        </h5>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Productos -->
-
-  <section class="container">
     <div class="row d-flex justify-content-first">
 
-      @foreach ($products as $product)
+    <div class="col-12 mt-4 mb-2">
+      <a class="d-contents d-flex align-items-center" href="{{ url('/listings/' . $listing->id . '/edit') }}"><span class="icon-arrow-left green pr-2"></span>
+
+      <h5 class="titulo-categoria mb-0"><b>Ir a</b>{{' ' . $listing->name}}</h5>
+      </a>
+    </div>
+    
+    @foreach($categories as $category)
+      @foreach ($category->children as $child)
+
+
+        <div class="col-12">
+          <h5 class="mt-3 titulo-categoria d-flex">
+            <b>{{$category->name . ' /'}}</b>
+            <p class="m-0 ml-1">{{$child->name}}</p>
+          </h5>
+        </div>
+
+      @foreach ($child->products as $product)
+
+      <!-- Productos -->
 
       @if ($listing->products->contains('id', $product->id))
 
@@ -261,8 +258,7 @@
 
           </div>
 
-
-      @else
+          @else
 
       <div class="col-6 col-md-4 col-lg-3 col-xl-2 d-flex">
         <div class="card card-hover my-3 p-3">
@@ -293,20 +289,19 @@
 
           </div>
 
-
           @endif
-
 
         </div>
       </div>
 
+
       @endforeach
 
+      @endforeach
 
+    @endforeach
     </div>
   </section>
-
-  @endforeach
 
   <!-- _____________________ Footer _____________________  -->
 
@@ -370,6 +365,8 @@
               $('a[aria-expanded=true]').attr('aria-expanded', 'false');
           });
       });
+
+      var categories = @json($categories)
   </script>
 
 </body>
