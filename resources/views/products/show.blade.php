@@ -220,22 +220,20 @@
 
   <!-- _____________________ Descripción Producto _____________________ -->
 
-  <!-- Titulo categoría -->
+  <!-- Descripción -->
 
   <section class="container container-index">
     <div class="row">
-      <div class="col-12">
-        <h5 class="mt-3 titulo-categorian"><b>Almacén /</b> Aderezos y especias</h5>
+
+      <div class="col-12 mt-4 mb-2">
+        <a class="d-contents d-flex align-items-center" href="{{ url('/listings/' . $listing->id . '/edit') }}"><span class="icon-arrow-left green pr-2"></span>
+
+        <h5 class="titulo-categoria mb-0"><b>Ir a</b>{{' ' . $listing->name}}</h5>
+        </a>
       </div>
-    </div>
-  </section>
-
-  <!-- Descripción -->
-
-  <section class="container">
-    <div class="row">
 
       <div class="col-12">
+
         <div class="card card-brd-green my-3 p-3">
 
           <div class="row">
@@ -246,20 +244,36 @@
                 <!-- img -->
 
                 <div class="col-12 col-md-6 d-flex align-items-center">
-                  <img class="icon-happy-container d-flex justify-content-center" src="" alt="">
+                  <img class="icon-happy-container d-flex justify-content-center" src="{{$product->avatar ?? asset('img/no-img.jpg')}}" alt="">
                 </div>
 
                 <!-- descripción -->
 
                 <div class="col-12 col-md-6">
-                  <p class="green">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
+                  <p class="green">{{$product->name}}</p>
                   <hr class="linea-separacion">
-                  <p class="costo-dscp">$45,99</p>
-                  <p class="preciopromedio-dscp">Precio promedio</p>
+                  <div class="my-1 d-flex justify-content-start align-items-center">
+                    <p class="costo" style="font-size: 18px;">{{'$' . $product->min_price}}</p>
+                    <p class="preciopromedio px-2">a</p>
+                    <p class="costo" style="font-size: 18px;">{{'$' . $product->max_price}}</p>
+                  </div>
 
-                  <a href="#" class="btn-agregar px-2">
-                    Agregar a la lista
-                  </a>
+                  @if ($listing->products->contains('id', $product->id))
+
+                  <form class="btn-agregar mt-3" action="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}" method="post">
+                    @csrf
+                    <button class="btn-dsplay-none">Sumar otro</button>
+                  </form>
+
+                  @else
+
+                  <form class="btn-agregar mt-3" action="{{ url('/listings/' . $listing->id . '/products/add/' . $product->id) }}" method="post">
+                    @csrf
+                    <button class="btn-dsplay-none">Agregar a la lista</button>
+                  </form>
+
+                  @endif
+
                 </div>
 
 
@@ -283,7 +297,7 @@
                         Contenido
                       </div>
                       <div class="col-6 text-right grey-light">
-                        237gr.
+                        {{$product->net_weight}}
                       </div>
                     </div>
                   </li>
@@ -294,7 +308,7 @@
                         Variedad
                       </div>
                       <div class="col-6 text-right grey-light">
-                        Aderezos
+                        {{$product->category->name}}
                       </div>
                     </div>
                   </li>
@@ -332,106 +346,84 @@
   <section class="container">
     <div class="row">
       <div class="col-12">
-        <h5 class="mt-3 titulo-categoria"><b>Otros productos que podrían interesarte</b></h5>
+        <h5 class="mt-3 titulo-categoria"><b>Otros productos similares</b></h5>
       </div>
     </div>
   </section>
 
   <!-- Productos -->
-
   <section class="container">
     <div class="row d-flex justify-content-center">
+      @foreach ($similarProducts as $similarProduct)
 
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+      @if ($listing->products->contains('id', $similarProduct->id))
+
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2 d-flex">
+        <div class="card card-contains my-3 p-3">
+
+          <a href="{{ url('/listings/' . $listing->id . '/products/' . $similarProduct->id) }}">
+            <img class="icon-happy-container mb-3 d-flex justify-content-center" src="{{$similarProduct->avatar ?? asset('img/no-img.jpg')}}" alt="">
+            <p class="descripcion-producto">{{$similarProduct->name}}</p>
+          </a>
+
+          <div class="mt-auto">
+
+            <a href="{{ url('/listings/' . $listing->id . '/products/' . $similarProduct->id) }}">
+              <hr class="linea-separacion">
+              <div class="d-flex align-items-center">
+                <p class="preciopromedio pl-0 pr-2">Desde:</p>
+                <p class="costo">{{' $' . $similarProduct->min_price}}</p>
+              </div>
+              <div class="d-flex align-items-center">
+                <p class="preciopromedio pl-0 pr-2">Hasta:</p>
+                <p class="costo d-flex justify-contents-end">{{' $' . $similarProduct->max_price}}</p>
+              </div>
+            </a>
+
+            <form class="btn-agregar mt-3" action="{{ url('/listings/' . $listing->id . '/products/' . $similarProduct->id) }}" method="post">
+              @csrf
+              <button class="btn-dsplay-none">Sumar otro</button>
+            </form>
+
+          </div>
+
+          @else
+
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2 d-flex">
         <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
+
+          <a class="mb-3" href="{{ url('/listings/' . $listing->id . '/products/' . $similarProduct->id) }}">
+            <img class="icon-happy-container mb-3 d-flex justify-content-center" src="{{$similarProduct->avatar ?? asset('img/no-img.jpg')}}" alt="">
+            <p class="descripcion-producto">{{$similarProduct->name}}</p>
           </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
+
+          <div class="mt-auto">
+
+            <a href="{{ url('/listings/' . $listing->id . '/products/' . $similarProduct->id) }}">
+              <hr class="linea-separacion">
+              <div class="d-flex align-items-center">
+                <p class="preciopromedio pl-0 pr-2">Desde:</p>
+                <p class="costo">{{' $' . $similarProduct->min_price}}</p>
+              </div>
+              <div class="d-flex align-items-center">
+                <p class="preciopromedio pl-0 pr-2">Hasta:</p>
+                <p class="costo d-flex justify-contents-end">{{' $' . $similarProduct->max_price}}</p>
+              </div>
+            </a>
+
+            <form class="btn-agregar mt-3" action="{{ url('/listings/' . $listing->id . '/products/add/' . $similarProduct->id) }}" method="post">
+              @csrf
+              <button class="btn-dsplay-none">Agregar a la lista</button>
+            </form>
+
+          </div>
+
+          @endif
+
         </div>
       </div>
 
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="card card-hover my-3 p-3">
-          <a class="mb-3" href="#">
-            <img class="icon-happy-container py-2 mb-3 d-flex justify-content-center" src="" alt="">
-            <p class="descripcion-producto">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-            <hr class="linea-separacion">
-            <p class="costo">$45,99</p>
-            <p class="preciopromedio">Precio promedio</p>
-          </a>
-          <a href="#" class="btn-agregar">
-            Agregar a la lista
-          </a>
-        </div>
-      </div>
-
+      @endforeach
     </div>
   </section>
 

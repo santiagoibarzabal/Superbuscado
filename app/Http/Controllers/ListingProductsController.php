@@ -22,11 +22,18 @@ class ListingProductsController extends Controller
       // Buscar la lista que seleccionamos por $id
       $listing = Listing::find($id);
 
-      // Traer todos los productos
-      $products = Product::all();
+      // Buscar la categoria de los productos random para la vista index
+      $categories = Category::parent()->inRandomOrder()->limit(3)->with([
+        'children' => function ($qe) {
+          return $qe->inRandomOrder()->limit(3);
+        },
+        'children.products' => function ($q) {
+          return $q->inRandomOrder()->limit(6);
+        }
+      ])->get();
 
-      // Buscar la categoria de los productos
-      $categories = Category::parent()->with('children')->find($products);
+      // Traer las categorias de los productos para el sidebar
+      $sidebarCategories = Category::parent()->with('children')->get();
 
       // Para buscar productos
       if($request->has('query')){
@@ -43,7 +50,8 @@ class ListingProductsController extends Controller
       return view('products.index', [
         'products' => $products,
         'listing' => $listing,
-        'categories' => $categories
+        'categories' => $categories,
+        'sidebarCategories' => $sidebarCategories
       ]);
     }
 
@@ -117,13 +125,15 @@ class ListingProductsController extends Controller
       Listing::find($listing);
 
       // Encontrar el producto
-      $product = Product::find($id);
+      $product = Product::with('category')->find($id);
 
-      // Traer productos relacionados
-      $products = Product::all();
+      // Traer productos similares
+      $categoryIds = $product->category->pluck('id');
 
-      // Buscar la categoria de los productos
-      $categories = Category::parent()->with('children')->find($products);
+      $similarProducts = Product::whereIn('id', $categoryIds)->whereNotIn('id', $product)->inRandomOrder()->limit(6)->get();
+
+      // categoria de los productos
+      $categories = Category::parent()->with('children')->get();
 
       // Para buscar productos
       if($request->has('query')){
@@ -135,7 +145,8 @@ class ListingProductsController extends Controller
       }
 
       return view('products.show', [
-        'products' => $products,
+        'product' => $product,
+        'similarProducts' => $similarProducts,
         'listing' => $listing,
         'categories' => $categories
       ]);
