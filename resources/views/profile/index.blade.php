@@ -15,9 +15,9 @@
   <!-- styles CSS -->
   <!-- styles CSS -->
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/sidebar_style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/landing_style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/lists_style.css')}}">
+  <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/lists.css')}}">
   <link rel="stylesheet" href="{{ asset('css/profile.css')}}">
   <link rel="stylesheet" href="{{ asset('css/login_register_contact.css')}}">
   <link rel="stylesheet" href="{{ asset('css/edit_profile.css')}}">
@@ -168,7 +168,7 @@
                     </div>
 
                     <div class="col-12">
-                    @if(auth()->user()->address!=null)                  
+                    @if(auth()->user()->address!=null)
                       <a class="btn-ingresar" href="{{ url('/addresses/edit') }}">Editar</a>
                     @else
                         <a class="btn-ingresar" href="{{ url('/addresses/new') }}">Ingresá tu dirección</a>
@@ -286,9 +286,9 @@
         </div>
 
         <div class="col-8 col-md-3 d-flex justify-content-around align-items-center">
-          <a class="icon-social-footer" href="https://www.facebook.com/Superbuscado-109530587096091/"><span class="icon-facebook-circle green icon-social-footer"></span></a>
-          <a class="icon-social-footer" href="https://www.instagram.com/superbuscado/"><span class="icon-instagram-circle green icon-social-footer"></span></a>
-          <a class="icon-social-footer" href="https://twitter.com/super_buscado"><span class="icon-twitter-circle green icon-social-footer"></span></a>
+          <a class="icon-social-footer" href="{{url ('https://www.facebook.com/Superbuscado-109530587096091/')}}"><span class="icon-facebook-circle green icon-social-footer"></span></a>
+          <a class="icon-social-footer" href="{{url('https://www.instagram.com/superbuscado/')}}"><span class="icon-instagram-circle green icon-social-footer"></span></a>
+          <a class="icon-social-footer" href="{{url('https://twitter.com/super_buscado')}}"><span class="icon-twitter-circle green icon-social-footer"></span></a>
         </div>
 
       </div>
