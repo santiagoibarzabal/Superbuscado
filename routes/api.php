@@ -13,6 +13,18 @@ use Illuminate\Http\Request;
 |
 */
 
+// api/user
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+// prueba api/products
+Route::get('/products', function () {
+  $products = \App\Product::paginate(10);
+  return response()->json($products);
+});
+
+// api/login
+Route::post('/login', function (Request $request) {
+  return response()->json($request->all());
 });
