@@ -15,12 +15,14 @@ class CreateStoresTable extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('market_id')->references('id')->on('markets');
-            $table->string('store');
-            $table->string('address');
-            $table->string('city');
-            $table->string('zip_code');
+            $table->unsignedBigInteger('market_id');
+            $table->string('store')->nullable();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('zip_code')->nullable();
             $table->timestamps();
+
+            $table->foreign('market_id')->references('id')->on('markets');
         });
     }
 

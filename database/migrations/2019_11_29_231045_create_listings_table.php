@@ -15,12 +15,14 @@ class CreateListingsTable extends Migration
     {
         Schema::create('listings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('user_id')->references('id')->on('user');
-            $table->string('name');
-            $table->integer('quantity');
-            $table->decimal('price', 7, 2);
-            $table->integer('total_price');
+            $table->unsignedBigInteger('user_id');
+            $table->string('name')->nullable();
+            $table->integer('quantity')->default(0);
+            $table->decimal('price', 7, 2)->nullable();
+            $table->integer('total_price')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

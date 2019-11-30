@@ -15,10 +15,13 @@ class CreateListingProductTable extends Migration
     {
         Schema::create('listing_product', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('listing_id')->references('id')->on('listing');
-            $table->foreign('product_id')->references('id')->on('product');
-            $table->integer('quantity');
+            $table->unsignedBigInteger('listing_id');
+            $table->unsignedBigInteger('product_id');
+            $table->integer('quantity')->nullable();
             $table->timestamps();
+
+            $table->foreign('listing_id')->references('id')->on('listings');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

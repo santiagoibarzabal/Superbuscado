@@ -15,9 +15,12 @@ class CreateListingStockTable extends Migration
     {
         Schema::create('listing_stock', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('listing_id')->references('id')->on('listing');
-            $table->foreign('stock_id')->references('id')->on('stock');
+            $table->unsignedBigInteger('listing_id');
+            $table->unsignedBigInteger('stock_id');
             $table->timestamps();
+
+            $table->foreign('listing_id')->references('id')->on('listings');
+            $table->foreign('stock_id')->references('id')->on('stocks');
         });
     }
 

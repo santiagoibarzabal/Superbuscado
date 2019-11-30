@@ -15,9 +15,12 @@ class CreateListingCartTable extends Migration
     {
         Schema::create('listing_cart', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('listing_id')->references('id')->on('listing');
-            $table->foreign('cart_id')->references('id')->on('cart');
+            $table->unsignedBigInteger('listing_id');
+            $table->unsignedBigInteger('cart_id');
             $table->timestamps();
+
+            $table->foreign('listing_id')->references('id')->on('listings');
+            $table->foreign('cart_id')->references('id')->on('carts');
         });
     }
 

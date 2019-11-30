@@ -15,8 +15,8 @@ class CreateMarketsTable extends Migration
     {
         Schema::create('markets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('logo');
+            $table->string('name')->nullable();
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }
