@@ -23,7 +23,7 @@ class ListingProductsController extends Controller
       $listing = Listing::find($id);
 
       // Buscar la categoria de los productos random para la vista index
-      $categories = Category::parent()->inRandomOrder()->limit(3)->with([
+      $categories = Category::parent()->with([
         'children' => function ($qe) {
           return $qe->inRandomOrder()->limit(3);
         },
@@ -128,9 +128,7 @@ class ListingProductsController extends Controller
       $product = Product::with('category')->find($id);
 
       // Traer productos similares
-      $categoryIds = $product->category->pluck('id');
-
-      $similarProducts = Product::whereIn('id', $categoryIds)->whereNotIn('id', $product)->inRandomOrder()->limit(6)->get();
+      $similarProducts = Product::where('category_id', $product->category->id)->whereNotIn('id', $product)->inRandomOrder()->limit(6)->get();
 
       // categoria de los productos
       $categories = Category::parent()->with('children')->get();
