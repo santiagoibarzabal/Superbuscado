@@ -1,24 +1,35 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+      <!-- _____________________ Register _____________________ -->
 
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
-                    @endif
+      <div class="col-12 col-md-8 col-lg-5 mb-5">
+        <div class="card card-shadow d-flex align-items-center">
+          <div class="row">
+            <div class="col-12">
 
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }}, <a href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>.
+              <div class="icon-piggy-bank mt-3"></div>
+              @if (session('resent'))
+                  <div class="title-login alert alert-success" role="alert">
+                      {{ __('Ya te enviamos un nuevo enlace de verificación.') }}
+                  </div>
+              @endif
+
+                <div class="row">
+
+                  <p class="redirect mt-4">
+                    {{ __('Antes de continuar, revisá si recibiste el link de verificación.') }} <br> <br>
+                    <a class="redirect-link mt-4" href="{{ route('verification.resend') }}">{{ __('Clickeá')}}</a>
+                    {{ __('si no lo recibiste') }}
+                  </p>
+
                 </div>
-            </div>
-        </div>
+
+              </div>
+
+          </div>
+      </div>
     </div>
-</div>
+  </section>
+
 @endsection
