@@ -55,7 +55,7 @@
             @foreach ($sidebarCategory->children as $child)
             <li>
               {{-- Revisar ----------------------- --}}
-              <a href="{{url('/listings/' . $listing->id . '/products/' . $sidebarCategory->name . '/' . $child->name) }}">
+              <a href="{{url('/listings/' . $listing->id . '/products/add/' . $sidebarCategory->name . '/' . $child->name) }}">
               {{-- ----------------------------------}}
                 {{ $child->name }}</a>
             </li>
@@ -211,7 +211,7 @@
       <h5 class="titulo-categoria mb-0"><b>Ir a</b>{{' ' . $listing->name}}</h5>
       </a>
     </div>
-    
+
     @foreach($categories as $category)
       @foreach ($category->children as $child)
 
