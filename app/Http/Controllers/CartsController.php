@@ -6,6 +6,16 @@ use Illuminate\Http\Request;
 
 use App\Cart;
 
+use App\Listing;
+
+use App\Product;
+
+use App\Stock;
+
+use App\Store;
+
+use App\Market;
+
 class CartsController extends Controller
 {
     /**
@@ -13,9 +23,47 @@ class CartsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return view('carts.index');
+
+      // $userAddress = auth()->user()->address;
+      //
+      // $geolocation = curl_init('https://maps.googleapis.com/maps/api/geocode/json?address=' . str_replace(' ', '+', $userAddress->address) . ',+' . str_replace(' ', '+', $userAddress->city) . ',+' . str_replace(' ', '+', $userAddress->province) . '&key='. env('GMAPS_KEY'));
+      //
+      // $json = curl_exec($geolocation);
+
+
+      // $url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=' . env('GMAPS_KEY');
+
+      // Buscar todos los products de la listing que estén en stock y traer los stores con su market
+      // $listing = Listing::with(['products' => function ($products) {
+      //   return $products->with('stocks')->whereHas('stocks', function ($stocks) {
+      //     return $stocks->with('store', 'store.market')->where('quantity', '>=', 0);
+      //   });
+      // }])->find($id);
+
+      $listing = Listing::with(['products' => function ($products) {
+        return $products->with(['stocks' => function ($stocks){
+          return $stocks->where('quantity', '>', 0)->with('store');
+        }]);
+      }])->find($id);
+
+
+      $nears = $listing->products->filter(function ($p) {
+        return $p->stocks->filter(function ($s) {
+          return $s->store->zip_code == auth()->user()->address->zip_code;
+        });
+      });
+
+      $markets = Market::all();
+      // dd($nears->toArray());
+
+
+      return view('carts.index', [
+        'listing' => $listing,
+        'nears' => $nears,
+        'markets' => $markets
+      ]);
     }
 
     /**

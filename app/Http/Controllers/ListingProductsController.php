@@ -184,7 +184,7 @@ class ListingProductsController extends Controller
         $products = Product::paginate(12)->appends($request->only('query'));
       }
 
-      return view('products.show', [
+      return view('products.find', [
         'products' => $products,
         'listing' => $listing,
         'categories' => $categories,

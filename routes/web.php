@@ -50,20 +50,23 @@ Route::get('/addresses', 'AddressesController@show');
 
 // --------------------- Cart --------------------- //
 
-Route::get('/carts', 'CartsController@index');
+Route::group(['middleware'=>'auth'],function(){
 
-Route::get('/carts/new', 'CartsController@create');
+  Route::get('/carts/new', 'CartsController@create');
 
-Route::post('/carts', 'CartsController@store');
+  Route::post('/carts', 'CartsController@store');
 
-Route::get('/carts/{id}/edit', 'CartsController@edit');
+  Route::get('/carts/{id}/edit', 'CartsController@edit');
 
-Route::patch('/carts/{id}', 'CartsController@update');
+  Route::get('/listings/{id}/carts', 'CartsController@index');
 
-Route::delete('/carts/{id}', 'CartsController@destroy');
+  Route::patch('/carts/{id}', 'CartsController@update');
 
-Route::get('/carts/{id}', 'CartsController@show');
+  Route::delete('/carts/{id}', 'CartsController@destroy');
 
+  Route::get('/carts/{id}', 'CartsController@show');
+
+});
 
 // --------------------- Categories --------------------- //
 
@@ -118,7 +121,7 @@ Route::group(['middleware'=>'auth'],function(){
   Route::get('/listings/{listing}/products/{id}', 'ListingProductsController@show');
 
   // Revisar ---------------
-  Route::get('/listings/{listing}/products/{category}/{child}', 'ListingProductsController@find');
+  Route::get('/listings/{listing}/products/add/{category}/{child}', 'ListingProductsController@find');
   // --------------------------
 
   Route::delete('/listings/{listing}/products/{product}', 'ListingProductsController@destroy');

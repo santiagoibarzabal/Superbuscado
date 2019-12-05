@@ -138,7 +138,7 @@
 
         <div class="card card-market">
           <div class="d-flex align-items-center">
-            <div class="icon-market mr-3" style="background-image: url(assets/img/iso_carrefour.png)"></div>
+            <div class="icon-market mr-3" style="background-image: url({{asset('img/logos/iso_carrefour.png')}})"></div>
             <p class="mb-0"><b>Carrefour</b> / Av Rivadavia 569, CABA</p>
           </div>
         </div>
@@ -225,145 +225,81 @@
 
       <!-- Comparación de precios -->
 
-      <form class="col-12 col-lg-6">
+      <div class="col-12 col-lg-6">
 
-        <h5 class="mb-3 titulo-categoria"><b>Comparación de precios</b></h5>
+        <h5 class="mb-3 titulo-categoria"><b>Seleccioná un Super</b></h5>
 
           <div class="row">
 
             <!-- Producto -->
+            {{-- @foreach ($nears as $near)
+              @foreach ($near->stocks as $stock)
+                {{$stock->store->zip_code}}
 
-            <div class="col-10 col-sm-11 pr-0 mb-3">
-              <div class="card card-hover">
+              @endforeach
+            @endforeach
+            @foreach ($listing->products as $product)
+              @foreach ($product->stocks as $stock)
 
-                <!-- Foto + Descripcion -->
+                  {{$stock->quantity}}
 
-                <a class="" href="producto_descripcion.php">
-                  <div class="row py-3 mx-0">
+              @endforeach
+            @endforeach --}}
 
-                    <div class="col-4">
-                      <img class="icon-happy-container py-2 d-flex justify-content-center" style="font-size: 40px;" src="" alt="">
-                    </div>
-
-                    <div class="col-8 pl-0">
-                      <div class="row">
-
-                        <div class="col-12">
-                          <p class="descripcion-producto m-0">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-                        </div>
-
-                        <div class="col-12 mt-2 d-flex justify-content-start align-items-center">
-                          <p class="costo" style="font-size: 18px;">$45,99</p>
-                          <p class="preciopromedio pl-2">Precio promedio</p>
-                        </div>
-
-                      </div>
-                    </div>
-
-                  </div>
-                </a>
-
-              </div>
-            </div>
-
-            <!-- Eliminar producto -->
-
-            <div class="col-2 col-sm-1 d-flex align-items-center justify-content-start">
-              <button class="delete-product" type="button" name="delete-product">
-                <span class="icon-exit-circle m-0" style="color: #69B948;"></span>
-              </button>
-            </div>
 
             <!-- Producto -->
+            @foreach ($markets as $market)
 
-            <div class="col-10 col-sm-11 pr-0 mb-3">
+
+            <form class="col-10 col-sm-11 pr-0 mb-3" action="" method="post">
+              @csrf
               <div class="card card-hover">
 
-                <!-- Foto + Descripcion -->
 
-                <a class="" href="producto_descripcion.php">
-                  <div class="row py-3 mx-0">
 
-                    <div class="col-4">
-                      <img class="icon-happy-container py-2 d-flex justify-content-center" style="font-size: 40px;" src="" alt="">
-                    </div>
+                  <button class="delete-product" href="producto_descripcion.php">
+                    <div class="row py-3 mx-0">
 
-                    <div class="col-8 pl-0">
-                      <div class="row">
+                      <div class="col-3 col-md-2">
+                        <div class="icon-market" style="background-image: url({{asset($market->logo)}})"></div>
+                      </div>
 
-                        <div class="col-12">
-                          <p class="descripcion-producto m-0">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-                        </div>
+                      <div class="col-9 col-md-10 pl-0">
+                        <p class="mb-0 text-align"><b>{{$market->name}}</b> / Av Rivadavia 569, CABA</p>
+                        <hr class="my-2">
 
-                        <div class="col-12 mt-2 d-flex justify-content-start align-items-center">
-                          <p class="costo" style="font-size: 18px;">$45,99</p>
-                          <p class="preciopromedio pl-2">Precio promedio</p>
+                        <div class="row">
+                          <div class="col-6 pr-0">
+                            <p class="preciopromedio text-align">Precio Total</p>
+                            <p class="text-align mb-0 total-price">$10563,99</p>
+                          </div>
+                          <div class="col-6 d-flex justify-content-end">
+                            <p class="preciopromedio">25 Productos</p>
+                          </div>
                         </div>
 
                       </div>
-                    </div>
 
-                  </div>
-                </a>
+                    </div>
+                  </button>
 
               </div>
-            </div>
+            </form>
 
             <!-- Eliminar producto -->
 
-            <div class="col-2 col-sm-1 d-flex align-items-center justify-content-start">
+            <form class="col-2 col-sm-1 d-flex align-items-center justify-content-start mb-3" action="" method="post">
+              @csrf
               <button class="delete-product" type="button" name="delete-product">
                 <span class="icon-exit-circle m-0" style="color: #69B948;"></span>
               </button>
-            </div>
-
-            <!-- Producto -->
-
-            <div class="col-10 col-sm-11 pr-0 mb-3">
-              <div class="card card-hover">
-
-                <!-- Foto + Descripcion -->
-
-                <a class="" href="producto_descripcion.php">
-                  <div class="row py-3 mx-0">
-
-                    <div class="col-4">
-                      <img class="icon-happy-container py-2 d-flex justify-content-center" style="font-size: 40px;" src="" alt="">
-                    </div>
-
-                    <div class="col-8 pl-0">
-                      <div class="row">
-
-                        <div class="col-12">
-                          <p class="descripcion-producto m-0">Mayonesa Light Doypack Hellmanns 237 Gr.</p>
-                        </div>
-
-                        <div class="col-12 mt-2 d-flex justify-content-start align-items-center">
-                          <p class="costo" style="font-size: 18px;">$45,99</p>
-                          <p class="preciopromedio pl-2">Precio promedio</p>
-                        </div>
-
-                      </div>
-                    </div>
-
-                  </div>
-                </a>
-
-              </div>
-            </div>
-
-            <!-- Eliminar producto -->
-
-            <div class="col-2 col-sm-1 d-flex align-items-center justify-content-start">
-              <button class="delete-product" type="button" name="delete-product">
-                <span class="icon-exit-circle m-0" style="color: #69B948;"></span>
-              </button>
-            </div>
+            </form>
 
 
+            @endforeach
 
           </div>
-      </form>
+      </div>
 
     </div>
   </section>
