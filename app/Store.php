@@ -10,4 +10,9 @@ class Store extends Model
     {
       $this->belongsTo("App\Market");
     }
+
+    public function stocks()
+    {
+      return $this->hasMany("App\Stock");
+    }
 }

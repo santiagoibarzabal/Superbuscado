@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stock extends Model
 {
-  public function market()
+  protected $with = ['store'];
+
+  public function store()
   {
-    return $this->belongsTo("App\Market");
+    return $this->belongsTo("App\Store");
   }
 
 
