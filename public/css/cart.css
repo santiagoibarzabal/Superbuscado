@@ -22,3 +22,17 @@
 .espacio-vacio {
   width: 44px;
 }
+
+.border-market {
+  border: 1px solid rgba(0,0,0,.125);
+}
+
+.text-align {
+  text-align: left;
+}
+
+.total-price {
+  color: #61BC31;
+  font-weight: 900;
+  font-size: 18px;
+}
