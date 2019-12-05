@@ -176,10 +176,9 @@
 
         <!-- Botón comprar -->
 
-        <form class="card btn-buy btn-border-hover text-center my-3" action="{{url('/carts')}}" method="post">
-          @csrf
-          <input class="sinbordefondo-green" type="submit" name="cart" value="COMPRAR">
-        </form>
+        <a class="card btn-buy btn-border-hover text-center my-3" href="{{url('/listings/' . $listing->id . '/carts')}}">
+          COMPRAR
+        </a>
 
       </div>
 
