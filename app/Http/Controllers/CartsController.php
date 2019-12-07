@@ -42,26 +42,33 @@ class CartsController extends Controller
       //   });
       // }])->find($id);
 
-      $listing = Listing::with(['products' => function ($products) {
-        return $products->with(['stocks' => function ($stocks){
-          return $stocks->where('quantity', '>', 0)->with('store');
+      $listing = Listing::with(['products' => function ($product) {
+        return $product->with(['stocks' => function ($stock){
+          return $stock->where('quantity', '>', 0)->with(['store' => function($store){
+            return $store->where('zip_code', auth()->user()->address->zip_code);
+          }]);
         }]);
       }])->find($id);
 
+      // dd($listing->products[0]->stocks[0]->store);
 
-      $nears = $listing->products->filter(function ($p) {
-        return $p->stocks->filter(function ($s) {
-          return $s->store->zip_code == auth()->user()->address->zip_code;
-        });
-      });
+      // $nears = $listing->products->filter(function ($p) {
+      //   return $p->stocks->filter(function ($s) {
+      //     return $s->store->zip_code == auth()->user()->address->zip_code;
+      //   });
+      // });
+
+      // $nears = Store::where('zip_code', auth()->user()->address->zip_code)->get();
+      //
+      // $markets = Market::with()->store;
+      // dd($markets);
 
       $markets = Market::all();
-      // dd($nears->toArray());
 
 
       return view('carts.index', [
         'listing' => $listing,
-        'nears' => $nears,
+        // 'nears' => $nears,
         'markets' => $markets
       ]);
     }

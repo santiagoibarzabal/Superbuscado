@@ -10,6 +10,8 @@ use App\Listing;
 
 use App\Category;
 
+use App\Stock;
+
 class ListingProductsController extends Controller
 {
     /**
@@ -23,14 +25,9 @@ class ListingProductsController extends Controller
       $listing = Listing::find($id);
 
       // Buscar la categoria de los productos random para la vista index
-      $categories = Category::parent()->with([
-        'children' => function ($qe) {
-          return $qe->inRandomOrder()->limit(3);
-        },
-        'children.products' => function ($q) {
-          return $q->inRandomOrder()->limit(6);
-        }
-      ])->get();
+      $categories = Category::parent()->with(['children' => function($child) {
+        return $child->limit(2);
+      }])->inRandomOrder()->limit(2)->get();
 
       // Traer las categorias de los productos para el sidebar
       $sidebarCategories = Category::parent()->with('children')->get();
@@ -42,10 +39,7 @@ class ListingProductsController extends Controller
         ->appends($request->only('query'));
       } else {
         $products = Product::paginate(12)->appends($request->only('query'));
-      }
-
-      // $productsInList = $listing->products->pluck('id');
-      // $products = Product::whereNotIn('id', $productsInList)->get();
+      }    
 
       return view('products.index', [
         'products' => $products,
@@ -158,22 +152,10 @@ class ListingProductsController extends Controller
      */
 
      // REVISAR CONTROLADOR -------------------------
-    public function find(Request $request, Listing $listing, $category, $child)
+    public function find(Request $request, $listing, $category, $child)
     {
       // Buscar la lista que seleccionamos por $id
-      Listing::find($listing);
-
-      // Encontrar la categoria
-      $category = Category::parent($category);
-
-
-      $child = Category::
-
-      // Traer productos relacionados
-      $products = Product::all();
-
-      // Buscar la categoria de los productos
-      $categories = Category::parent()->with('children')->find($products);
+      $listingId = Listing::find($listing);
 
       // Para buscar productos
       if($request->has('query')){
@@ -184,11 +166,22 @@ class ListingProductsController extends Controller
         $products = Product::paginate(12)->appends($request->only('query'));
       }
 
+      // Encontrar la categoria padre
+      $categoryId = Category::find($category);
+
+      // Encontrar la categoria hija
+      $childId = Category::with('products')->find($child);
+
+      // Buscar la categoria de los productos
+      $sidebarCategories = Category::parent()->with('children')->get();
+
+
       return view('products.find', [
-        'products' => $products,
-        'listing' => $listing,
-        'categories' => $categories,
-        'category' => $category
+        'listingId' => $listingId,
+        'categoryId'=> $categoryId,
+        'childId' => $childId,
+        'sidebarCategories' => $sidebarCategories,
+        'request' => $request
       ]);
     }
 

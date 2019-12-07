@@ -55,7 +55,7 @@
             @foreach ($sidebarCategory->children as $child)
             <li>
               {{-- Revisar ----------------------- --}}
-              <a href="{{url('/listings/' . $listing->id . '/products/add/' . $sidebarCategory->name . '/' . $child->name) }}">
+              <a href="{{url('/listings/' . $listing->id . '/products/add/' . $sidebarCategory->id . '/' . $child->id) }}">
               {{-- ----------------------------------}}
                 {{ $child->name }}</a>
             </li>
@@ -278,7 +278,15 @@
               </div>
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Hasta:</p>
-                <p class="costo d-flex justify-contents-end">{{' $' . $product->max_price}}</p>
+                <p class="costo d-flex justify-contents-end">
+
+                  @foreach ($product->stocks as $stock)
+
+                    {{' $' . $stock->list_price}}
+
+                  @endforeach
+
+                  </p>
               </div>
             </a>
 
@@ -300,6 +308,8 @@
       @endforeach
 
     @endforeach
+  </div>
+  </div>
     </div>
   </section>
 

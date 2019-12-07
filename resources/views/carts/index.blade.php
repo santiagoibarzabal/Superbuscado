@@ -232,19 +232,13 @@
           <div class="row">
 
             <!-- Producto -->
-            {{-- @foreach ($nears as $near)
-              @foreach ($near->stocks as $stock)
-                {{$stock->store->zip_code}}
-
-              @endforeach
-            @endforeach
             @foreach ($listing->products as $product)
               @foreach ($product->stocks as $stock)
 
-                  {{$stock->quantity}}
+                @dd($stock->store->zip_code)
 
               @endforeach
-            @endforeach --}}
+            @endforeach
 
 
             <!-- Producto -->
