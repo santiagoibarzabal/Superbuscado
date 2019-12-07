@@ -25,6 +25,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/auth/verified', function(){
+  return view ('/auth/verified');
+});
+
 
 // --------------------- Addresses --------------------- //
 
@@ -108,7 +112,7 @@ Route::group(['middleware'=>'auth'],function(){
 
 
 
-// --------------------- Listig Products --------------------- //
+// --------------------- Listing Products --------------------- //
 
 Route::group(['middleware'=>'auth'],function(){
 
