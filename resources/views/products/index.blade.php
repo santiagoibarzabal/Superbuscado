@@ -54,9 +54,9 @@
           <ul class="collapse list-unstyled" id="category-{{ $sidebarCategory->id }}">
             @foreach ($sidebarCategory->children as $child)
             <li>
-              {{-- Revisar ----------------------- --}}
-              <a href="{{url('/listings/' . $listing->id . '/products/add/' . $sidebarCategory->id . '/' . $child->id) }}">
-              {{-- ----------------------------------}}
+
+              <a href="{{url('/listings/' . $listing->id . '/products/find/' . $sidebarCategory->id . '/' . $child->id) }}">
+              
                 {{ $child->name }}</a>
             </li>
             @endforeach
@@ -91,7 +91,7 @@
 
           <!-- search -->
           <div class="display-flex col-7 col-sm-7 col-md-8 col-lg-6">
-            <form class="form-search" action="">
+            <form class="form-search" action="{{url('/listings/' . $listing->id . '/products/find/' . $sidebarCategory->id . '/' . $child->id) }}">
 
               <input class="input-search" type="search" name="query" placeholder="Nombre de producto o marca" value="{{ old('query') }}">
               <button class="icon-search" type="button" name="button"></button>
@@ -179,7 +179,7 @@
                 <a class="btn-location" href="{{url('/addresses/new')}}">
             @endif
               <span class="icon-location green"></span>
-              <p class="location">{{auth()->user()->address->address ?? "Ingresá tu dirección"}}</p>
+              <p class="location">{{'Mi ubicación: ' . auth()->user()->address->address ?? "Ingresá tu dirección"}}</p>
             </a>
           </nav>
 
@@ -190,11 +190,11 @@
 
     <!-- _____________________ Botón carrito _____________________ -->
 
-    <div class="col-12">
+    {{-- <div class="col-12">
       <div>
         <a class="btn-carrito" href="mis_listas.php"><span class="icon-shopping-cart"></span></a>
       </div>
-    </div>
+    </div> --}}
   </header>
 
 
@@ -274,17 +274,17 @@
               <hr class="linea-separacion">
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Desde:</p>
-                <p class="costo">{{' $' . $product->min_price}}</p>
+                <p class="costo">
+
+                  {{$priceRange[$product->id]->min_price}}
+
+                </p>
               </div>
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Hasta:</p>
                 <p class="costo d-flex justify-contents-end">
 
-                  @foreach ($product->stocks as $stock)
-
-                    {{' $' . $stock->list_price}}
-
-                  @endforeach
+                  {{$priceRange[$product->id]->max_price}}
 
                   </p>
               </div>
