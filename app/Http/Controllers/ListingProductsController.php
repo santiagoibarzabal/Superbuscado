@@ -29,6 +29,11 @@ class ListingProductsController extends Controller
         return $child->limit(2);
       }])->inRandomOrder()->limit(2)->get();
 
+      // Buscar todos los id de productos para encontrar el price MAX/MIN
+      $productId = Product::pluck('id');
+
+      $priceRange = \DB::table('stocks')->select('product_id',  \DB::raw('MAX(list_price) as max_price'), \DB::raw('MIN(list_price) as min_price'))->whereIn('product_id', $productId) ->groupBy('product_id') ->get();
+
       // Traer las categorias de los productos para el sidebar
       $sidebarCategories = Category::parent()->with('children')->get();
 
@@ -39,12 +44,12 @@ class ListingProductsController extends Controller
         ->appends($request->only('query'));
       } else {
         $products = Product::paginate(12)->appends($request->only('query'));
-      }    
+      }
 
       return view('products.index', [
-        'products' => $products,
         'listing' => $listing,
         'categories' => $categories,
+        'priceRange' => $priceRange,
         'sidebarCategories' => $sidebarCategories
       ]);
     }
@@ -151,37 +156,25 @@ class ListingProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     // REVISAR CONTROLADOR -------------------------
-    public function find(Request $request, $listing, $category, $child)
+    public function find(Request $request, Listing $listing, Category $category, Category $child)
     {
-      // Buscar la lista que seleccionamos por $id
-      $listingId = Listing::find($listing);
-
       // Para buscar productos
       if($request->has('query')){
-        $products = Product::where('name','like', '%' . $request->get('query') . '%')
-        ->paginate(12)
-        ->appends($request->only('query'));
+        $results = Product::with('category')->where('name', 'like', '%' . $request->get('query') . '%')->paginate(12)->appends($request->only('query'));
       } else {
-        $products = Product::paginate(12)->appends($request->only('query'));
+        $results = Product::with('category')->where('category_id', $child->id)->paginate(12);
       }
-
-      // Encontrar la categoria padre
-      $categoryId = Category::find($category);
-
-      // Encontrar la categoria hija
-      $childId = Category::with('products')->find($child);
 
       // Buscar la categoria de los productos
       $sidebarCategories = Category::parent()->with('children')->get();
 
-
       return view('products.find', [
-        'listingId' => $listingId,
-        'categoryId'=> $categoryId,
-        'childId' => $childId,
+        'listing' => $listing,
+        'categories'=> $category->with('children'),
+        'child' => $child,
         'sidebarCategories' => $sidebarCategories,
-        'request' => $request
+        'request' => $request,
+        'results' => $results,
       ]);
     }
 
