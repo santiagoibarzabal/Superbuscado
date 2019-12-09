@@ -232,24 +232,26 @@
           <div class="row">
 
             <!-- Producto -->
-            @foreach ($listing->products as $product)
-              @foreach ($product->stocks as $stock)
 
-                @dd($stock->store->zip_code)
 
-              @endforeach
-            @endforeach
+
+
+
 
 
             <!-- Producto -->
+
+            @foreach ($listing->products as $product)
+
+
+            @foreach ($product->stocks as $stock)
+
             @foreach ($markets as $market)
+              @if($stock->store['market_id'] == $market->id)
 
-
-            <form class="col-10 col-sm-11 pr-0 mb-3" action="" method="post">
+            <form class="col-12 mb-3" action="" method="post">
               @csrf
               <div class="card card-hover">
-
-
 
                   <button class="delete-product" href="producto_descripcion.php">
                     <div class="row py-3 mx-0">
@@ -259,7 +261,7 @@
                       </div>
 
                       <div class="col-9 col-md-10 pl-0">
-                        <p class="mb-0 text-align"><b>{{$market->name}}</b> / Av Rivadavia 569, CABA</p>
+                        <p class="mb-0 text-align"><b>{{$market->name . '/'}}</b> {{$stock->store['address']}}</p>
                         <hr class="my-2">
 
                         <div class="row">
@@ -268,7 +270,7 @@
                             <p class="text-align mb-0 total-price">$10563,99</p>
                           </div>
                           <div class="col-6 d-flex justify-content-end">
-                            <p class="preciopromedio">25 Productos</p>
+                            <p class="preciopromedio">{{$stock->list_price}}</p>
                           </div>
                         </div>
 
@@ -280,15 +282,11 @@
               </div>
             </form>
 
-            <!-- Eliminar producto -->
 
-            <form class="col-2 col-sm-1 d-flex align-items-center justify-content-start mb-3" action="" method="post">
-              @csrf
-              <button class="delete-product" type="button" name="delete-product">
-                <span class="icon-exit-circle m-0" style="color: #69B948;"></span>
-              </button>
-            </form>
-
+            @endif
+            @endforeach
+            @endforeach
+            @break
 
             @endforeach
 
