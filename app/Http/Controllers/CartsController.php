@@ -31,6 +31,11 @@ class CartsController extends Controller
       // $geolocation = curl_init('https://maps.googleapis.com/maps/api/geocode/json?address=' . str_replace(' ', '+', $userAddress->address) . ',+' . str_replace(' ', '+', $userAddress->city) . ',+' . str_replace(' ', '+', $userAddress->province) . '&key='. env('GMAPS_KEY'));
       //
       // $json = curl_exec($geolocation);
+      // dd($json['geometry']);
+
+
+
+
 
 
       // $url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=' . env('GMAPS_KEY');
@@ -42,6 +47,40 @@ class CartsController extends Controller
       //   });
       // }])->find($id);
 
+      $markets = Market::all();
+
+      // TRAER TODOS LOS PRODUCTOS DE LA LISTA AGRUPADOS POR STORE
+      // -------------------------------------------------------------
+
+      // $listing = Listing::with(['products' => function ($product) {
+      //    return $product;
+      //  }])->find($id);
+      //
+      // dd($listing);
+
+
+
+      // $listing = Listing::with(['products' => function ($product) {
+      //   return $product->with(['stocks' => function ($stock){
+      //     return $stock->with(['store' => function($store) {
+      //       return $store->where('zip_code', auth()->user()->address->zip_code);
+      //     }])->get()->groupBy('store_id');
+      //   }]);
+      // }])->find($id);
+
+      // dd($listing->products[0]->stocks);
+
+
+
+
+
+      // $query = \DB::getPdo()->query('select m.id MarketId, s.id StoreId, st.product_id ProductId, st.quantity InStock, sum(st.quantity) Units, st.list_price ListPrice from `markets` as m join stores as s on s.market_id = m.id join stocks as st on st.store_id = s.id where st.product_id in (259,260,272) group by st.store_id order by StoreId, ProductId')->fetch();
+      //
+      // dd($query);
+
+
+
+
       $listing = Listing::with(['products' => function ($product) {
         return $product->with(['stocks' => function ($stock){
           return $stock->where('quantity', '>', 0)->with(['store' => function($store){
@@ -49,6 +88,8 @@ class CartsController extends Controller
           }]);
         }]);
       }])->find($id);
+
+      // dd($listing->products->groupBy('stock')->toArray());
 
       // dd($listing->products[0]->stocks[0]->store);
 
@@ -58,13 +99,10 @@ class CartsController extends Controller
       //   });
       // });
 
-      // $nears = Store::where('zip_code', auth()->user()->address->zip_code)->get();
-      //
-      // $markets = Market::with()->store;
-      // dd($markets);
+      // REVISAR----------------
+      // $productsInList = $listing->products->pluck('id', 'name');
 
-      $markets = Market::all();
-
+      // dd($productsInList);
 
       return view('carts.index', [
         'listing' => $listing,
