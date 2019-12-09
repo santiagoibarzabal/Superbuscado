@@ -54,9 +54,9 @@
           <ul class="collapse list-unstyled" id="category-{{ $sidebarCategory->id }}">
             @foreach ($sidebarCategory->children as $child)
             <li>
-              {{-- Revisar ----------------------- --}}
-              <a href="{{url('/listings/' . $listing->id . '/products/add/' . $sidebarCategory->name . '/' . $child->name) }}">
-              {{-- ----------------------------------}}
+
+              <a href="{{url('/listings/' . $listing->id . '/products/find/' . $sidebarCategory->id . '/' . $child->id) }}">
+
                 {{ $child->name }}</a>
             </li>
             @endforeach
@@ -190,11 +190,11 @@
 
     <!-- _____________________ Botón carrito _____________________ -->
 
-    <div class="col-12">
+    {{-- <div class="col-12">
       <div>
         <a class="btn-carrito" href="mis_listas.php"><span class="icon-shopping-cart"></span></a>
       </div>
-    </div>
+    </div> --}}
   </header>
 
 
@@ -212,18 +212,7 @@
       </a>
     </div>
 
-    @foreach($categories as $category)
-      @foreach ($category->children as $child)
-
-
-        <div class="col-12">
-          <h5 class="mt-3 titulo-categoria d-flex">
-            <b>{{$category->name . ' /'}}</b>
-            <p class="m-0 ml-1">{{$child->name}}</p>
-          </h5>
-        </div>
-
-      @foreach ($child->products as $product)
+    @foreach ($results as $product)
 
       <!-- Productos -->
 
@@ -295,13 +284,15 @@
       </div>
 
 
-      @endforeach
 
       @endforeach
 
-    @endforeach
+      {{$results->links()}}
+
     </div>
   </section>
+
+
 
   <!-- _____________________ Footer _____________________  -->
 
