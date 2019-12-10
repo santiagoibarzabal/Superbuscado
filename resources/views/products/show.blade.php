@@ -48,45 +48,24 @@
 
     <ul class="list-unstyled">
 
-      <!-- Destacados -->
+      @foreach ($sidebarCategories as $sidebarCategory)
+        <li>
+          <a href="#category-{{ $sidebarCategory->id }}" data-toggle="collapse" aria-expanded="false">{{ $sidebarCategory->name }}</a>
 
-      <li>
-        <a href="#" aria-expanded="false">Destacados</a>
-      </li>
+          <ul class="collapse list-unstyled" id="category-{{ $sidebarCategory->id }}">
+            @foreach ($sidebarCategory->children as $child)
+            <li>
 
-      <!-- Almacén -->
+              <a href="{{url('/listings/' . $listing->id . '/products/find/' . $sidebarCategory->id . '/' . $child->id) }}">
 
-      <li>
-        <a href="#almacen" data-toggle="collapse" aria-expanded="false">Almacén</a>
-        <ul class="collapse list-unstyled" id="almacen">
-          <li>
-            <a href="#">Aceites</a>
-          </li>
-          <li>
-            <a href="#">Aderezos y especias</a>
-          </li>
-          <li>
-            <a href="#">Conservas</a>
-          </li>
-        </ul>
-      </li>
+                {{ $child->name }}</a>
+            </li>
+            @endforeach
+          </ul>
 
-      <!-- Alimentos congelados -->
+        </li>
+      @endforeach
 
-      <li>
-        <a href="#congelados" data-toggle="collapse" aria-expanded="false">Alimentos congelados</a>
-        <ul class="collapse list-unstyled" id="congelados">
-          <li>
-            <a href="#">Helados</a>
-          </li>
-          <li>
-            <a href="#">Pescados y mariscos</a>
-          </li>
-          <li>
-            <a href="#">Vegetales</a>
-          </li>
-        </ul>
-      </li>
     </ul>
   </nav>
 
@@ -112,7 +91,7 @@
 
           <!-- search -->
           <div class="display-flex col-7 col-sm-7 col-md-8 col-lg-6">
-            <form class="form-search" action="">
+            <form class="form-search" action="{{url('/listings/' . $listing->id . '/products/find/' . $sidebarCategory->id . '/' . $child->id) }}">
 
               <input class="input-search" type="search" name="query" placeholder="Nombre de producto o marca" value="{{ old('query') }}">
               <button class="icon-search" type="button" name="button"></button>
@@ -144,9 +123,9 @@
                       <a class="dropdown-item" href="{{ url('/listings') }}">Mis listas</a>
                     </li>
 
-                    <li>
+                    {{-- <li>
                       <a class="dropdown-item" href="{{ url('/carts') }}">Compras</a>
-                    </li>
+                    </li> --}}
 
                     <li>
                       <a class="dropdown-item" href="{{ url('/profile') }}">Mis datos</a>
@@ -211,11 +190,11 @@
 
     <!-- _____________________ Botón carrito _____________________ -->
 
-    <div class="col-12">
+    {{-- <div class="col-12">
       <div>
         <a class="btn-carrito" href="mis_listas.php"><span class="icon-shopping-cart"></span></a>
       </div>
-    </div>
+    </div> --}}
   </header>
 
   <!-- _____________________ Descripción Producto _____________________ -->
@@ -253,9 +232,9 @@
                   <p class="green">{{$product->name}}</p>
                   <hr class="linea-separacion">
                   <div class="my-1 d-flex justify-content-start align-items-center">
-                    <p class="costo" style="font-size: 18px;">{{'$' . $product->min_price}}</p>
+                    <p class="costo" style="font-size: 18px;">{{$priceRange[$product->id]->min_price}}</p>
                     <p class="preciopromedio px-2">a</p>
-                    <p class="costo" style="font-size: 18px;">{{'$' . $product->max_price}}</p>
+                    <p class="costo" style="font-size: 18px;">{{$priceRange[$product->id]->max_price}}</p>
                   </div>
 
                   @if ($listing->products->contains('id', $product->id))
@@ -368,17 +347,19 @@
 
           <div class="mt-auto">
 
+
             <a href="{{ url('/listings/' . $listing->id . '/products/' . $similarProduct->id) }}">
               <hr class="linea-separacion">
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Desde:</p>
-                <p class="costo">{{' $' . $similarProduct->min_price}}</p>
+                <p class="costo">{{' $' . $priceRange[$similarProduct->id]->min_price}}</p>
               </div>
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Hasta:</p>
-                <p class="costo d-flex justify-contents-end">{{' $' . $similarProduct->max_price}}</p>
+                <p class="costo d-flex justify-contents-end">{{' $' . $priceRange[$similarProduct->id]->max_price}}</p>
               </div>
             </a>
+
 
             <form class="btn-agregar mt-3" action="{{ url('/listings/' . $listing->id . '/products/' . $similarProduct->id) }}" method="post">
               @csrf
@@ -403,11 +384,11 @@
               <hr class="linea-separacion">
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Desde:</p>
-                <p class="costo">{{' $' . $similarProduct->min_price}}</p>
+                <p class="costo">{{$priceRange[$similarProduct->id]->min_price}}</p>
               </div>
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Hasta:</p>
-                <p class="costo d-flex justify-contents-end">{{' $' . $similarProduct->max_price}}</p>
+                <p class="costo d-flex justify-contents-end">{{$priceRange[$similarProduct->id]->max_price}}</p>
               </div>
             </a>
 

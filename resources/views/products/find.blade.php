@@ -123,9 +123,9 @@
                       <a class="dropdown-item" href="{{ url('/listings') }}">Mis listas</a>
                     </li>
 
-                    <li>
+                    {{-- <li>
                       <a class="dropdown-item" href="{{ url('/carts') }}">Compras</a>
-                    </li>
+                    </li> --}}
 
                     <li>
                       <a class="dropdown-item" href="{{ url('/profile') }}">Mis datos</a>
@@ -232,10 +232,14 @@
               <hr class="linea-separacion">
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Desde:</p>
-                <p class="costo">{{' $' . $product->min_price}}</p>
+                <p class="costo">
+                  {{$priceRange[$product->id]->min_price}}
+                </p>
               </div>
               <div class="d-flex align-items-center">
-                <p class="preciopromedio pl-0 pr-2">Hasta:</p>
+                <p class="preciopromedio pl-0 pr-2">Hasta:
+                  {{$priceRange[$product->id]->max_price}}
+                </p>
                 <p class="costo d-flex justify-contents-end">{{' $' . $product->max_price}}</p>
               </div>
             </a>
@@ -263,11 +267,11 @@
               <hr class="linea-separacion">
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Desde:</p>
-                <p class="costo">{{' $' . $product->min_price}}</p>
+                <p class="costo">{{$priceRange[$product->id]->min_price}}</p>
               </div>
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Hasta:</p>
-                <p class="costo d-flex justify-contents-end">{{' $' . $product->max_price}}</p>
+                <p class="costo d-flex justify-contents-end">{{$priceRange[$product->id]->max_price}}</p>
               </div>
             </a>
 
