@@ -13,12 +13,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
     <!-- styles CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/landing_style.css">
-    <link rel="stylesheet" href="css/login_register_contact.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login_register_contact.css')}}">
 
     <!-- icons -->
-    <link rel="stylesheet" href="assets/icons/icons.css">
+    <link rel="stylesheet" href="{{ asset('css/icons/icons.css') }}">
 
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap" rel="stylesheet">
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="iso-superbuscado.ico" />
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
 </head>
 
@@ -36,7 +36,7 @@
   <section class="container" style="height:80px">
     <div class="row d-flex justify-content-center">
       <div class="col-3 d-flex justify-content-center">
-        <a href="landing.php">
+        <a href="{{ url('/') }}">
           <img class="logo-navbar-green" src="assets/img/logo-superbuscado-green.png" alt="">
         </a>
       </div>
@@ -53,12 +53,13 @@
 
           <div class="row">
             <div class="col-12">
+              <a class="icon-contact-list mt-3 text-decoration d-flex justify-content-center" href="{{ url('/') }}">
 
-              <div class="icon-contact-list mt-3"></div>
-
+              </a>
               <p class="title-login">¿Necesitas que te ayudemos? <br> Escribinos!</p>
 
-              <form class="" action="index.html" method="post">
+              <form class="" action="{{url('/listings')}}" method="post">
+                @csrf
                 <div class="row">
 
                   <div class="col-12 d-flex justify-content-center">
@@ -105,7 +106,7 @@
         </div>
 
         <div class="col-10 col-md-3 col-lg-4 border-footer">
-          <a class="link-footer" href="contact.php"><p>Contactanos</p></a>
+          <a class="link-footer" href="{{ url('/contact') }}"><p>Contactanos</p></a>
           <a class="link-footer" href="#"><p class="mb-0">Preguntas frecuentes</p></a>
         </div>
 

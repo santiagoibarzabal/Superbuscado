@@ -34,9 +34,9 @@
                     <a class="dropdown-item" href="{{ url('/listings') }}">Mis listas</a>
                   </li>
 
-                  <li>
+                  {{-- <li>
                     <a class="dropdown-item" href="{{ url('/carts') }}">Compras</a>
-                  </li>
+                  </li> --}}
 
                   <li>
                     <a class="dropdown-item" href="{{ url('/profile') }}">Mis datos</a>

@@ -328,7 +328,7 @@
         </div>
 
         <div class="col-10 col-md-3 col-lg-4 border-footer">
-          <a class="link-footer" href="contact_index.php"><p>Contactanos</p></a>
+          <a class="link-footer" href="{{ url('/contact') }}"><p>Contactanos</p></a>
           <a class="link-footer" href="faq.php"><p class="mb-0">Preguntas frecuentes</p></a>
         </div>
 

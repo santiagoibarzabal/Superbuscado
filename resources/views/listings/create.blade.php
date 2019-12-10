@@ -68,12 +68,12 @@
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                     <li>
-                      <a class="dropdown-item" href="{{ url('/listings/{id}') }}">Mis listas</a>
+                      <a class="dropdown-item" href="{{ url('/listings') }}">Mis listas</a>
                     </li>
 
-                    <li>
+                    {{-- <li>
                       <a class="dropdown-item" href="{{ url('/carts') }}">Compras</a>
-                    </li>
+                    </li> --}}
 
                     <li>
                       <a class="dropdown-item" href="{{ url('/profile') }}">Mis datos</a>
@@ -178,7 +178,7 @@
         </div>
 
         <div class="col-10 col-md-3 col-lg-4 border-footer">
-          <a class="link-footer" href="contact_index.php"><p>Contactanos</p></a>
+          <a class="link-footer" href="{{ url('/contact') }}"><p>Contactanos</p></a>
           <a class="link-footer" href="#"><p class="mb-0">Preguntas frecuentes</p></a>
         </div>
 

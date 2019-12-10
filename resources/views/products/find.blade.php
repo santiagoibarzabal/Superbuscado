@@ -237,10 +237,10 @@
                 </p>
               </div>
               <div class="d-flex align-items-center">
-                <p class="preciopromedio pl-0 pr-2">Hasta:
+                <p class="preciopromedio pl-0 pr-2">Hasta:</p>
+                <p class="costo">
                   {{$priceRange[$product->id]->max_price}}
                 </p>
-                <p class="costo d-flex justify-contents-end">{{' $' . $product->max_price}}</p>
               </div>
             </a>
 
@@ -313,7 +313,7 @@
         </div>
 
         <div class="col-10 col-md-3 col-lg-4 border-footer">
-          <a class="link-footer" href="contact_index.php"><p>Contactanos</p></a>
+          <a class="link-footer" href="{{ url('/contact') }}"><p>Contactanos</p></a>
           <a class="link-footer" href="faq.php"><p class="mb-0">Preguntas frecuentes</p></a>
         </div>
 

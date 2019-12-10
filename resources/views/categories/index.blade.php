@@ -111,9 +111,9 @@
                         <a class="dropdown-item" href="mis_listas.php">Mis listas</a>
                       </li>
 
-                      <li>
+                      {{-- <li>
                         <a class="dropdown-item" href="#">Compras</a>
-                      </li>
+                      </li> --}}
 
                       <li>
                         <a class="dropdown-item" href="profile.php">Mis datos</a>
