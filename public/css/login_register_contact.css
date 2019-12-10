@@ -134,6 +134,15 @@ body.bg-grey-login-register {
   margin-top: 16px;
 }
 
+.text-decoration {
+  text-decoration:none;
+}
+
+.text-decoration:hover {
+  color: #707070;
+  text-decoration:none;
+}
+
 /* ---------------------------------------------------
     Media
 ----------------------------------------------------- */
