@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Listing;
 
+use App\Product;
+
 use Auth;
 
 class ListingsController extends Controller
@@ -73,11 +75,19 @@ class ListingsController extends Controller
     {
       $listing = Listing::with('products')->find($id);
 
+      // Buscar todos los id de productos para encontrar el price MAX/MIN
+      $productId = Product::pluck('id');
+
+      $priceRange = \DB::table('stocks')->select('product_id',  \DB::raw('MAX(list_price) as max_price'), \DB::raw('MIN(list_price) as min_price'))->whereIn('product_id', $productId) ->groupBy('product_id') ->get();
+
+
+
       // $totalProducts = Listing::withCount('products')->find($id);
       //
       // dd($totalProducts);
       return view('listings.edit', [
         'listing' => $listing,
+        'priceRange' => $priceRange
       ]);
     }
 
