@@ -211,9 +211,9 @@
 
 
                       <div class="my-1 d-flex justify-content-start align-items-center">
-                        <p class="costo" style="font-size: 18px;">{{'$149'}}</p>
+                        <p class="costo" style="font-size: 18px;">{{$priceRange[$product->id]->min_price}}</p>
                         <p class="preciopromedio px-2">a</p>
-                        <p class="costo" style="font-size: 18px;">{{'$180'}}</p>
+                        <p class="costo" style="font-size: 18px;">{{$priceRange[$product->id]->max_price}}</p>
 
                       </div>
                       <p class="preciopromedio">Total de productos <b> {{$product->pivot->quantity }}</b></p>
