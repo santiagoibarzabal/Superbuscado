@@ -129,8 +129,20 @@ class ListingProductsController extends Controller
       // Traer productos similares
       $similarProducts = Product::where('category_id', $product->category->id)->whereNotIn('id', $product)->inRandomOrder()->limit(6)->get();
 
+      // $similarProductId = Product::where('category_id', $product->category->id)->pluck('id');
+      //
+      // dd($similarProductId);
+
+
+      // $simPriceRange = \DB::table('stocks')->select('product_id',  \DB::raw('MAX(list_price) as max_price'), \DB::raw('MIN(list_price) as min_price'))->whereIn('product_id', $similarProductId) ->groupBy('product_id')->get();
+
       // categoria de los productos
       $categories = Category::parent()->with('children')->get();
+
+      // Buscar todos los id de productos para encontrar el price MAX/MIN
+      $productId = Product::pluck('id');
+
+      $priceRange = \DB::table('stocks')->select('product_id',  \DB::raw('MAX(list_price) as max_price'), \DB::raw('MIN(list_price) as min_price'))->whereIn('product_id', $productId) ->groupBy('product_id') ->get();
 
       // Para buscar productos
       if($request->has('query')){
@@ -141,11 +153,16 @@ class ListingProductsController extends Controller
         $products = Product::paginate(12)->appends($request->only('query'));
       }
 
+      $sidebarCategories = Category::parent()->with('children')->get();
+
+
       return view('products.show', [
         'product' => $product,
         'similarProducts' => $similarProducts,
         'listing' => $listing,
-        'categories' => $categories
+        'categories' => $categories,
+        'priceRange' => $priceRange,
+        'sidebarCategories' => $sidebarCategories
       ]);
     }
 
@@ -158,6 +175,11 @@ class ListingProductsController extends Controller
 
     public function find(Request $request, Listing $listing, Category $category, Category $child)
     {
+      // Buscar todos los id de productos para encontrar el price MAX/MIN
+      $productId = Product::pluck('id');
+
+      $priceRange = \DB::table('stocks')->select('product_id',  \DB::raw('MAX(list_price) as max_price'), \DB::raw('MIN(list_price) as min_price'))->whereIn('product_id', $productId) ->groupBy('product_id') ->get();
+
       // Para buscar productos
       if($request->has('query')){
         $results = Product::with('category')->where('name', 'like', '%' . $request->get('query') . '%')->paginate(12)->appends($request->only('query'));
@@ -172,6 +194,7 @@ class ListingProductsController extends Controller
         'listing' => $listing,
         'categories'=> $category->with('children'),
         'child' => $child,
+        'priceRange' => $priceRange,
         'sidebarCategories' => $sidebarCategories,
         'request' => $request,
         'results' => $results,
