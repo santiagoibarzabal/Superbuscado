@@ -19,6 +19,13 @@ Route::get('/', function() {
 });
 
 
+// --------------------- Contact --------------------- //
+
+Route::get('/contact', function(){
+    return view ('contact');
+});
+
+
 // --------------------- Login y Register --------------------- //
 
 Auth::routes();
