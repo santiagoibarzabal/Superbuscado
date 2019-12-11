@@ -25,6 +25,12 @@ Route::get('/contact', function(){
     return view ('contact');
 });
 
+// --------------------- FAQ --------------------- //
+
+Route::get('/faq', function(){
+    return view ('faq');
+});
+
 
 // --------------------- Login y Register --------------------- //
 
