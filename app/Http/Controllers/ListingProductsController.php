@@ -32,7 +32,7 @@ class ListingProductsController extends Controller
       // Buscar todos los id de productos para encontrar el price MAX/MIN
       $productId = Product::pluck('id');
 
-      $priceRange = \DB::table('stocks')->select('product_id',  \DB::raw('MAX(list_price) as max_price'), \DB::raw('MIN(list_price) as min_price'))->whereIn('product_id', $productId) ->groupBy('product_id') ->get();
+      $priceRange = \DB::table('stocks')->select('product_id',  \DB::raw('MAX(list_price) as max_price'), \DB::raw('MIN(list_price) as min_price'))->whereIn('product_id', $productId)->groupBy('product_id')->get();
 
       // Traer las categorias de los productos para el sidebar
       $sidebarCategories = Category::parent()->with('children')->get();
