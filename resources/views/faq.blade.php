@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('title')
-  Superbuscado - Login
+  Superbuscado - Preguntas frecuentes
 @endsection
 
 @section('content')
