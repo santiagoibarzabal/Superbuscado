@@ -14,9 +14,9 @@
 
   <!-- styles CSS -->
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/sidebar_style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/landing_style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/lists_style.css')}}">
+  <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/listings.css')}}">
   <link rel="stylesheet" href="{{ asset('css/profile.css')}}">
   <link rel="stylesheet" href="{{ asset('css/login_register_contact.css')}}">
   <link rel="stylesheet" href="{{ asset('css/edit_profile.css')}}">
@@ -266,7 +266,7 @@
 
         <div class="col-10 col-md-3 col-lg-4 border-footer">
           <a class="link-footer" href="{{ url('/contact') }}"><p>Contactanos</p></a>
-          <a class="link-footer" href="#"><p class="mb-0">Preguntas frecuentes</p></a>
+          <a class="link-footer" href="{{ url('/faq') }}"><p class="mb-0">Preguntas frecuentes</p></a>
         </div>
 
         <div class="col-8 col-md-3 d-flex justify-content-around align-items-center">
