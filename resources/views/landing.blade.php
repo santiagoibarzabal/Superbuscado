@@ -167,15 +167,15 @@
               <p class="subtitle">Selecciona tu ubicación, añade productos a tu lista de compras y compara precios. Elige un envío y recibe los productos en tu casa. </p>
             </div>
           </div>
-          <p class="subtitle-postal">Empieza a comprar</p>
+          {{-- <p class="subtitle-postal">Empieza a comprar</p> --}}
 
-          <div class="row form-postal">
+          {{-- <div class="row form-postal">
             <div class="col-6">
               <form action="index.html" method="post">
                 <input type="text" class="form-control" id="validationCustom04" placeholder="Código postal">
               </form>
             </div>
-          </div>
+          </div> --}}
 
         </div>
 
