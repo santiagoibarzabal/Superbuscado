@@ -19,12 +19,15 @@ class ListingsController extends Controller
      */
     public function index()
     {
-      $listings = auth()->user()->listings()->paginate(12);
+      if(!isset(auth()->user()->address)){
+        return redirect('/addresses/new');
+      } else {
+        $listings = auth()->user()->listings()->paginate(12);
+        return view('listings.index', [
+          'listings' => $listings,
+        ]);
+      }
 
-
-      return view('listings.index', [
-        'listings' => $listings,
-      ]);
     }
 
     /**
@@ -46,7 +49,7 @@ class ListingsController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-        'name' => 'required|string|max:20',
+        'name' => 'required|string|min:4|max:20',
       ]);
 
       auth()->user()->listings()->create($request->all());
