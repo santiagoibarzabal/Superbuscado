@@ -187,6 +187,7 @@ button .btn-exit {
 .btn-buy:hover,
 .sinbordefondo-green:hover {
   background-color: #4B9F1E;
+  color: #fff;
 }
 
 button.delete-product {
