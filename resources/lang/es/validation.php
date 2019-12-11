@@ -14,7 +14,7 @@ return [
     */
 
     'accepted' => 'El campo :attribute debe ser aceptado.',
-    'active_url' => 'El :attribute is not a valid URL.',
+    'active_url' => 'El campo :attribute no es una URL válida.',
     'after' => 'El :attribute must be a date after :date.',
     'after_or_equal' => 'El :attribute must be a date after or equal to :date.',
     'alpha' => 'El :attribute may only contain letters.',
@@ -24,9 +24,9 @@ return [
     'before' => 'El :attribute must be a date before :date.',
     'before_or_equal' => 'El :attribute must be a date before or equal to :date.',
     'between' => [
-        'numeric' => 'El :attribute must be between :min and :max.',
-        'file' => 'El :attribute must be between :min and :max kilobytes.',
-        'string' => 'El :attribute must be between :min and :max characters.',
+        'numeric' => 'El campo :attribute debe estar entre :min y :max.',
+        'file' => 'El campo :attribute debe ser de entre :min y :max kilobytes.',
+        'string' => 'El campo :attribute debe ser de entre :min y :max caracteres.',
         'array' => 'El :attribute must have between :min and :max items.',
     ],
     'boolean' => 'El campo :attribute debe ser verdadero o falso.',
@@ -39,10 +39,10 @@ return [
     'digits_between' => 'El :attribute must be between :min and :max digits.',
     'dimensions' => 'El :attribute has invalid image dimensions.',
     'distinct' => 'El :attribute field has a duplicate value.',
-    'email' => 'El :attribute debe ser un email válido.',
+    'email' => 'El campo :attribute debe ser un email válido.',
     'ends_with' => 'El :attribute must end with one of the following: :values',
     'exists' => 'El :attribute seleccionado no es válido.',
-    'file' => 'El :attribute debe ser un archivo.',
+    'file' => 'El campo :attribute debe ser un archivo.',
     'filled' => 'El :attribute field debe tener un valor.',
     'gt' => [
         'numeric' => 'El :attribute must be greater than :value.',
@@ -163,6 +163,7 @@ return [
       'city' => 'ciudad',
       'province' => 'provincia',
       'zip_code' => 'código postal',
+      'apartment' => 'departamento',
 
       // CATEGORIES
 
