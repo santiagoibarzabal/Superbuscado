@@ -88,7 +88,7 @@
                         </div>
                         <div id="collapseCinco" class="collapse" aria-labelledby="headingCinco" data-parent="#accordionExample">
                           <div class="d-flex justify-content-center card-body text-center">
-                            <a class="green text-decoration" href="{{url('/landing')}}">Encontrarás supermercados como Coto, Jumbo, Carrefour y Dia, entre otros.</a>
+                            <a class="green text-decoration" href="{{url('/')}}">Encontrarás supermercados como Coto, Jumbo, Carrefour y Dia, entre otros.</a>
                           </div>
                         </div>
                       </div>
