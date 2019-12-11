@@ -176,7 +176,7 @@
 
         <!-- Botón comprar -->
 
-        <a class="card btn-buy btn-border-hover text-center my-3" href="{{url('/listings/' . $listing->id . '/carts')}}">
+        <a class="card btn-buy btn-border-hover text-center my-3 py-1 name-list" href="{{url('/listings/' . $listing->id . '/carts')}}">
           COMPRAR
         </a>
 
@@ -199,7 +199,7 @@
               <a class="" href="{{ url('/listings/' . $listing->id . '/products/' . $product->id) }}">
                 <div class="row py-3 mx-0">
 
-                  <div class="col-4 col-lg-2">
+                  <div class="col-4 col-sm-2 col-lg-2">
                     <img class="icon-happy-container d-flex justify-content-center" style="font-size: 40px;" src="{{$product->avatar ?? asset('img/no-img.jpg')}}" alt="">
                   </div>
 
@@ -211,9 +211,17 @@
 
 
                       <div class="my-1 d-flex justify-content-start align-items-center">
-                        <p class="costo" style="font-size: 18px;">{{$priceRange[$product->id]->min_price}}</p>
+                        <p class="costo" style="font-size: 18px;">
+
+                          {{$priceRange[$product->id - 1]->min_price}}
+
+                        </p>
                         <p class="preciopromedio px-2">a</p>
-                        <p class="costo" style="font-size: 18px;">{{$priceRange[$product->id]->max_price}}</p>
+                        <p class="costo" style="font-size: 18px;">
+
+                          {{$priceRange[$product->id - 1]->max_price}}
+
+                        </p>
 
                       </div>
                       <p class="preciopromedio">Total de productos <b> {{$product->pivot->quantity }}</b></p>
