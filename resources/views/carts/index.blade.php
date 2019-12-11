@@ -62,7 +62,7 @@
                   <a class="nav-link btn-account" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="button-account">
                       <p class="my-account">Mi cuenta</p>
-                      <p class="user-account">{{auth()->user()->first_name}}</p>
+                      <p class="user-account">{{auth()->user()->email}}</p>
                     </div>
                     <span class="icon-arrow-down white"></span>
                   </a>
@@ -117,7 +117,7 @@
                 <a class="btn-location" href="{{url('/addresses/new')}}">
             @endif
               <span class="icon-location green"></span>
-              <p class="location">{{auth()->user()->address->address ?? "Ingresá tu dirección"}}</p>
+              <p class="location">{{auth()->user()->address->address . ' (' . auth()->user()->address->zip_code . ')' ?? "Ingresá tu dirección"}}</p>
             </a>
           </nav>
 
@@ -132,6 +132,68 @@
 
   <section class="container container-index">
     <div class="row">
+
+      {{------------- Comparación de precios ------------}}
+
+      <div class="col-12 col-lg-6">
+
+        <h5 class="mb-3 titulo-categoria"><b>Seleccioná un Super</b></h5>
+
+          <div class="row">
+
+            <!-- Producto -->
+            @foreach ($query as $q)
+              @if(auth()->user()->address->zip_code == $q->store_zip_code)
+
+              @if($list->id == $q->listing_id)
+
+            <!-- Markets -->
+
+
+            <form class="col-12 mb-3" action="" method="post">
+              @csrf
+              <div class="card card-hover">
+
+                  <button class="delete-product" href="producto_descripcion.php">
+                    <div class="row py-3 mx-0">
+
+                      <div class="col-3 col-md-2">
+                        <div class="icon-market" style="background-image: url({{asset($q->logo)}})"></div>
+                      </div>
+
+                      <div class="col-9 col-md-10 pl-0">
+                        <p class="mb-0 text-align"><b>{{$q->market_name . '/'}}</b> {{$q->store_address . ' (' . $q->store_zip_code . ')'}}</p>
+                        <hr class="my-2">
+
+                        <div class="row">
+                          <div class="col-6 pr-0">
+                            <p class="preciopromedio text-align">Precio Total</p>
+                            <p class="text-align mb-0 total-price">{{'$' . $q->total_price}}</p>
+                          </div>
+                          <div class="col-6 d-flex justify-content-end">
+                            <p class="preciopromedio">{{'Total de productos: ' . $q->total_quantity}}</p>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </button>
+
+              </div>
+            </form>
+
+
+            @endif
+            @endif
+
+            @endforeach
+
+          </div>
+      </div>
+
+      {{------------- Selección de Supermercado ------------}}
+
       <div class="col-12 col-lg-6">
 
         <h5 class="mb-3 titulo-categoria"><b>Supermercado seleccionado</b></h5>
@@ -139,28 +201,28 @@
         <div class="card card-market">
           <div class="d-flex align-items-center">
             <div class="icon-market mr-3" style="background-image: url({{asset('img/logos/iso_carrefour.png')}})"></div>
-            <p class="mb-0"><b>Carrefour</b> / Av Rivadavia 569, CABA</p>
+            <p class="mb-0 market-select"><b>Carrefour</b> / Av Rivadavia 569, CABA</p>
           </div>
         </div>
-
-
 
         <h5 class="mb-3 mt-4 titulo-categoria"><b>Detalle de orden</b></h5>
 
         <div class="detalle-orden">
 
-          <div class="d-flex">
-            <div class="p-2 flex-grow-1">
+          <div class="d-flex justify-content-end">
+            {{-- <div class="p-2 flex-grow-1">
               <b>Descripción</b>
-            </div>
-            <div class="p-2">
+            </div> --}}
+            <div class="py-2">
               <b>Cant.</b>
             </div>
-            <div class="p-2">
+            <div class="px-4 py-2">
               <b>Precio</b>
             </div>
-            <div class="p-2">
+            <div class="px-3 py-2">
               <b>Total</b>
+            </div>
+            <div class="p-2">
             </div>
             <div class="p-2 espacio-vacio"></div>
           </div>
@@ -221,76 +283,6 @@
           <input class="sinbordefondo-green" type="button" name="checkout" value="Proceder al pago y envío">
         </form>
 
-      </div>
-
-      <!-- Comparación de precios -->
-
-      <div class="col-12 col-lg-6">
-
-        <h5 class="mb-3 titulo-categoria"><b>Seleccioná un Super</b></h5>
-
-          <div class="row">
-
-            <!-- Producto -->
-
-
-
-
-
-
-
-            <!-- Producto -->
-
-            @foreach ($listing->products as $product)
-
-
-            @foreach ($product->stocks as $stock)
-
-            @foreach ($markets as $market)
-              @if($stock->store['market_id'] == $market->id)
-
-            <form class="col-12 mb-3" action="" method="post">
-              @csrf
-              <div class="card card-hover">
-
-                  <button class="delete-product" href="producto_descripcion.php">
-                    <div class="row py-3 mx-0">
-
-                      <div class="col-3 col-md-2">
-                        <div class="icon-market" style="background-image: url({{asset($market->logo)}})"></div>
-                      </div>
-
-                      <div class="col-9 col-md-10 pl-0">
-                        <p class="mb-0 text-align"><b>{{$market->name . '/'}}</b> {{$stock->store['address']}}</p>
-                        <hr class="my-2">
-
-                        <div class="row">
-                          <div class="col-6 pr-0">
-                            <p class="preciopromedio text-align">Precio Total</p>
-                            <p class="text-align mb-0 total-price">$10563,99</p>
-                          </div>
-                          <div class="col-6 d-flex justify-content-end">
-                            <p class="preciopromedio">{{$stock->list_price}}</p>
-                          </div>
-                        </div>
-
-                      </div>
-
-                    </div>
-                  </button>
-
-              </div>
-            </form>
-
-
-            @endif
-            @endforeach
-            @endforeach
-            @break
-
-            @endforeach
-
-          </div>
       </div>
 
     </div>
