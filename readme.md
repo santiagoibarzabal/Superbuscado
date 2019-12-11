@@ -1,6 +1,6 @@
 # Grupo 6 - Superbuscado
 
-Este proyecto se trata de un **ecommerce** orientado a personas interesadas ***completar cual seria el perfil de usuarios interesados en este sitio*** Cuando comenzamos a planificar este proyecto nos propusimos lograr que ***completar explicando cual era la idea inicial***. En esta aplicacion los usuarios registrados pueden ***completar describiendo que servicios y/o productos ofrece la aplicacion que la distinguen del resto de sus competidores***. En el futuro queremos expandir este desarrollo y lograr ***completar con objetivos a futuro***.
+Este proyecto se trata de un **ecommerce** orientado a personas interesadas ***en armar sus listas de compras del super de forma rápida y sencilla, creando listas personalizadas.*** Cuando comenzamos a planificar este proyecto nos propusimos lograr que ***el usuario pudiera comparar precios en diversos supermercados obteniendo las mejores promociones y descuentos en la mejor ubicación***. En esta aplicacion los usuarios registrados pueden ***armar su propia lista de supermercado y obtener para la misma una comparación de los mejores precios en las sucursales más cercana***. En el futuro queremos expandir este desarrollo y lograr ***incorporar un medio de pago mediante la integración con Mercado Pago y lograr obtener las sucursales más cercanas mediante geolocalización/Google Maps. También, incluir descuentos y promociones bancarias según cada supermercado y cada tarjeta de crédito/fidelización. ***.
 
 
 
@@ -13,12 +13,11 @@ Me considero una diseñadora multimedial todoterreno. Me encanta estar siempre a
 ***- Mi lema: Prohibido sentarse a esperar que suceda.***
 ***- Un Superpoder: Creatividad innata.***
 
-###### Angelo
-
 ###### Lucas
 
 ###### Santi
 
+###### Angelo
 
 
 ## Instalacion
