@@ -14,6 +14,6 @@ return [
     */
 
     'failed' => 'Los datos ingresados no son válidos.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'throttle' => 'Demasiados intentos de ingresar. Por favor volvé a intentar en :seconds segundos.',
 
 ];

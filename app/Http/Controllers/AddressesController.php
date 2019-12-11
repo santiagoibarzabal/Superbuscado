@@ -40,7 +40,7 @@ class AddressesController extends Controller
 
           $this->validate($request, [
             'address' => 'required|string|min:4|max:40',
-            'apartment' => 'required|string|min:2|max:10',
+            'apartment' => '',
             'city' => 'required|string|min:4|max:30',
             'province' => 'required|string|min:4|max:30',
             'zip_code' => 'required|string|min:4|max:10',
@@ -89,7 +89,7 @@ class AddressesController extends Controller
       {
         $this->validate($request, [
           'address' => 'required|string|min:4|max:40',
-          'apartment' => 'required|string|min:2|max:10',
+          'apartment' => '',
           'city' => 'required|string|min:4|max:30',
           'province' => 'required|string|min:4|max:30',
           'zip_code' => 'required|string|min:4|max:10',

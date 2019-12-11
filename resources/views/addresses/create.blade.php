@@ -129,7 +129,7 @@
                   <label for="">Direccion:</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
-                  <input class="form-control @error('address') is-invalid @enderror" type="text" name="address" value="">
+                  <input class="form-control @error('address') is-invalid @enderror" type="text" name="address" value="{{old('address')}}">
                 </div>
                 <div class="col-12 mb-2" style="color: #e03232; background-color: color: #f8d7da;">
                   @error('address')
@@ -146,7 +146,7 @@
                   <label for="">Depto.:</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
-                  <input class="form-control @error('apartment') is-invalid @enderror" type="text" name="apartment" value="">
+                  <input class="form-control @error('apartment') is-invalid @enderror" type="text" name="apartment" value="{{old('apartment')}}">
                 </div>
                 <div class="col-12 mb-2" style="color: #e03232; background-color: color: #f8d7da;">
                   @error('apartment')
@@ -162,7 +162,7 @@
                   <label for="">Ciudad</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
-                  <input class="form-control @error('city') is-invalid @enderror" type="text" name="city" value="">
+                  <input class="form-control @error('city') is-invalid @enderror" type="text" name="city" value="{{old('city')}}">
                 </div>
                 <div class="col-12 mb-2" style="color: #e03232; background-color: color: #f8d7da;">
                   @error('city')
@@ -178,7 +178,7 @@
                   <label for="">Provincia:</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
-                  <input class="form-control @error('province') is-invalid @enderror" type="text" name="province" value="">
+                  <input class="form-control @error('province') is-invalid @enderror" type="text" name="province" value="{{old('province')}}">
                 </div>
                 <div class="col-12 mb-2" style="color: #e03232; background-color: color: #f8d7da;">
                   @error('province')
@@ -194,7 +194,7 @@
                   <label for="">C.Postal:</label>
                 </div>
                 <div class="col-8 col-lg-9 col-xl-9 d-flex justify-content-start">
-                  <input class="form-control @error('zip_code') is-invalid @enderror" type="text" name="zip_code" value="">
+                  <input class="form-control @error('zip_code') is-invalid @enderror" type="text" name="zip_code" value="{{old('zip_code')}}">
                 </div>
                 <div class="col-12 mb-2" style="color: #e03232; background-color: color: #f8d7da;">
                   @error('zip_code')
