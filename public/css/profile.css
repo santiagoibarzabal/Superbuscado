@@ -68,6 +68,11 @@ p.address-info b {
   margin-bottom: 0;
 }
 
+.address-profile {
+  text-align: center;
+  font-weight: bold;
+}
+
 
 /* ---------- credit cards ---------- */
 
@@ -126,7 +131,8 @@ p.address-info b {
 
 @media (min-width: 430px) {
 
-  .email-profile {
+  .email-profile,
+  .address-profile {
     font-size: 1.25rem;
   }
 }

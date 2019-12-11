@@ -108,7 +108,7 @@
 
   <!-- _____________________ Address _____________________ -->
 
-  <section class="container" style="padding-top:8em;">
+  <section class="container container-index">
     <div class="row d-flex justify-content-center">
 
       <form class="col-12" action="{{url('/addresses')}}" method="post">
@@ -119,11 +119,11 @@
 
 
           <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
-            <div class="card card-profile pb-4">
+            <div class="card card-profile pb-4 mt-5">
 
               <!-- editar direccion -->
 
-              <h6 class="email-profile green brd-bottom-green mb-4">Ingresar domicilio</h6>
+              <h6 class="address-profile green brd-bottom-green mb-4 py-3">Ingresar domicilio</h6>
               <div class="row email-edit mb-2">
                 <div class="col-4 col-lg-3 col-xl-3 d-flex justify-content-start align-items-center">
                   <label for="">Direccion:</label>
@@ -201,12 +201,14 @@
                           {{ $message }}
                   @enderror
                 </div>
-              </div>
-              </div>
 
+              </div>
               <div class="d-flex justify-content-end">
                 <input class="btn-ingresar mb-0" type="submit" name="" value="¡Comenzar!">
               </div>
+              </div>
+
+
 
             </div>
           </div>
