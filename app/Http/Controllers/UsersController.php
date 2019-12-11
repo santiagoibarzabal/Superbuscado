@@ -80,8 +80,8 @@ class UsersController extends Controller
     {
         // validar
         $this->validate($request, [
-          'first_name' => 'string|min:4|max:255|',
-          'last_name' => 'string|min:4|max:255|',
+          'first_name' => 'string|min:4|max:30|',
+          'last_name' => 'string|min:4|max:30|',
           'phone' => 'string|min:4|max:30|',
           'dni' => 'string|min:8|max:15',
           'avatar' => 'file|image',
