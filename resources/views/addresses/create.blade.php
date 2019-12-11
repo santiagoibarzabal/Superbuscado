@@ -123,7 +123,7 @@
 
               <!-- editar direccion -->
 
-              <h6 class="email-profile green brd-bottom-green">Mi domicilio</h6>
+              <h6 class="email-profile green brd-bottom-green mb-4">Ingresar domicilio</h6>
               <div class="row email-edit mb-2">
                 <div class="col-4 col-lg-3 col-xl-3 d-flex justify-content-start align-items-center">
                   <label for="">Direccion:</label>
@@ -205,7 +205,7 @@
               </div>
 
               <div class="d-flex justify-content-end">
-                <input class="btn-ingresar mb-0" type="submit" name="" value="Guardar">
+                <input class="btn-ingresar mb-0" type="submit" name="" value="¡Comenzar!">
               </div>
 
             </div>
@@ -234,7 +234,7 @@
 
         <div class="col-10 col-md-3 col-lg-4 border-footer">
           <a class="link-footer" href="{{ url('/contact') }}"><p>Contactanos</p></a>
-          <a class="link-footer" href="#"><p class="mb-0">Preguntas frecuentes</p></a>
+          <a class="link-footer" href="{{ url('/faq') }}"><p class="mb-0">Preguntas frecuentes</p></a>
         </div>
 
         <div class="col-8 col-md-3 d-flex justify-content-around align-items-center">
