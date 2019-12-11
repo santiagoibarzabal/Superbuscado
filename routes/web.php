@@ -239,3 +239,8 @@ Route::group(['middleware'=>'auth'],function(){
   Route::patch('/profile', 'UsersController@update');
 
 });
+
+  Route::get('/init', function () {
+     Artisan::call('storage:link');
+     return 'ready!';
+  });
