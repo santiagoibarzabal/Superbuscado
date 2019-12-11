@@ -232,9 +232,9 @@
                   <p class="green">{{$product->name}}</p>
                   <hr class="linea-separacion">
                   <div class="my-1 d-flex justify-content-start align-items-center">
-                    <p class="costo" style="font-size: 18px;">{{$priceRange[$product->id]->min_price}}</p>
+                    <p class="costo" style="font-size: 18px;">{{'$' . $priceRange[$product->id - 1]->min_price}}</p>
                     <p class="preciopromedio px-2">a</p>
-                    <p class="costo" style="font-size: 18px;">{{$priceRange[$product->id]->max_price}}</p>
+                    <p class="costo" style="font-size: 18px;">{{'$' . $priceRange[$product->id - 1]->max_price}}</p>
                   </div>
 
                   @if ($listing->products->contains('id', $product->id))
@@ -352,11 +352,11 @@
               <hr class="linea-separacion">
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Desde:</p>
-                <p class="costo">{{' $' . $priceRange[$similarProduct->id]->min_price}}</p>
+                <p class="costo">{{' $' . $priceRange[$similarProduct->id - 1]->min_price}}</p>
               </div>
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Hasta:</p>
-                <p class="costo d-flex justify-contents-end">{{' $' . $priceRange[$similarProduct->id]->max_price}}</p>
+                <p class="costo d-flex justify-contents-end">{{' $' . $priceRange[$similarProduct->id - 1]->max_price}}</p>
               </div>
             </a>
 
@@ -384,11 +384,11 @@
               <hr class="linea-separacion">
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Desde:</p>
-                <p class="costo">{{$priceRange[$similarProduct->id]->min_price}}</p>
+                <p class="costo">{{'$' . $priceRange[$similarProduct->id - 1]->min_price}}</p>
               </div>
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Hasta:</p>
-                <p class="costo d-flex justify-contents-end">{{$priceRange[$similarProduct->id]->max_price}}</p>
+                <p class="costo d-flex justify-contents-end">{{'$' . $priceRange[$similarProduct->id - 1]->max_price}}</p>
               </div>
             </a>
 
