@@ -301,7 +301,7 @@
                     alimentaria de los productos a través nuestro
                     formulario de contacto.</p>
 
-                    <a href="contact_index.php" class="btn-agregar px-2">
+                    <a href="{{ url('/contact') }}" class="btn-agregar px-2">
                       Consultar
                     </a>
 
@@ -424,7 +424,7 @@
 
         <div class="col-10 col-md-3 col-lg-4 border-footer">
           <a class="link-footer" href="{{ url('/contact') }}"><p>Contactanos</p></a>
-          <a class="link-footer" href="#"><p class="mb-0">Preguntas frecuentes</p></a>
+          <a class="link-footer" href="{{ url('/faq') }}"><p class="mb-0">Preguntas frecuentes</p></a>
         </div>
 
         <div class="col-8 col-md-3 d-flex justify-content-around align-items-center">

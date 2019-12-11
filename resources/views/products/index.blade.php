@@ -329,7 +329,7 @@
 
         <div class="col-10 col-md-3 col-lg-4 border-footer">
           <a class="link-footer" href="{{ url('/contact') }}"><p>Contactanos</p></a>
-          <a class="link-footer" href="faq.php"><p class="mb-0">Preguntas frecuentes</p></a>
+          <a class="link-footer" href="{{ url('/faq') }}"><p class="mb-0">Preguntas frecuentes</p></a>
         </div>
 
         <div class="col-8 col-md-3 d-flex justify-content-around align-items-center">
