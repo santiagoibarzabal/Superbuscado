@@ -130,9 +130,9 @@
   <!-- _____________________ new_list _____________________ -->
 
   <section class="container container-index list-center">
-    <div class="row d-flex justify-content-center">
+    <div class="row">
 
-      <div class="col-12">
+      <div class="col-12 d-flex justify-content-center">
 
         <div class="card card-new-list">
           <div class="d-flex justify-content-end" style="height: 10px">
@@ -147,7 +147,7 @@
             <div class="row">
 
               <div class="col-12 d-flex justify-content-center">
-                <input type="text" name="name" class="input-name-list" placeholder="Ingresa un nombre para tu lista">
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror input-name-list" placeholder="Ingresa un nombre para tu lista" value="">
               </div>
 
               <div class="col-12 d-flex justify-content-center">
@@ -160,8 +160,16 @@
         </div>
       </div>
 
+
+
     </div>
   </section>
+
+          <div class="col-12 d-flex justify-content-center" style="color: #e03232; background-color: color: #f8d7da;">
+            @error('name')
+                    {{ $message }}
+            @enderror
+          </div>
 
   <!-- _____________________ Footer _____________________  -->
 
@@ -179,7 +187,7 @@
 
         <div class="col-10 col-md-3 col-lg-4 border-footer">
           <a class="link-footer" href="{{ url('/contact') }}"><p>Contactanos</p></a>
-          <a class="link-footer" href="#"><p class="mb-0">Preguntas frecuentes</p></a>
+          <a class="link-footer" href="{{ url('/faq') }}"><p class="mb-0">Preguntas frecuentes</p></a>
         </div>
 
         <div class="col-8 col-md-3 d-flex justify-content-around align-items-center">
