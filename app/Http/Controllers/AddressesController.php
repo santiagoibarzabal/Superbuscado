@@ -39,11 +39,11 @@ class AddressesController extends Controller
       {
 
           $this->validate($request, [
-            'address' => 'required|string',
-            'apartment' => 'required|string',
-            'city' => 'required|string',
-            'province' => 'required|string',
-            'zip_code' => 'required|string',
+            'address' => 'required|string|min:4|max:40',
+            'apartment' => 'required|string|min:2|max:10',
+            'city' => 'required|string|min:4|max:30',
+            'province' => 'required|string|min:4|max:30',
+            'zip_code' => 'required|string|min:4|max:10',
           ]);
 
           auth()->user()->address()->create($request->all());
