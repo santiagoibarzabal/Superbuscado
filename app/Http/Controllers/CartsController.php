@@ -73,6 +73,7 @@ class CartsController extends Controller
                   \DB::raw('SUM(stocks.list_price*listing_product.quantity) as total_price'),
                   \DB::raw('SUM(listing_product.quantity) as total_quantity'),
                   'stores.address as store_address',
+                  'stores.id as store_id',
                   'markets.name as market_name',
                   'markets.logo as logo',
                   'stores.zip_code as store_zip_code', 'listing_product.listing_id',
@@ -143,9 +144,110 @@ class CartsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $store)
     {
-        //
+
+      $list = Listing::find($id);
+
+      $storeId = Store::find($store);
+
+      $query = \DB::table('stocks')
+                  ->select(
+                  // \DB::raw('COUNT(listing_product.listing_id) as count'),
+                  \DB::raw('SUM(stocks.list_price*listing_product.quantity) as total_price'),
+                  \DB::raw('SUM(listing_product.quantity) as total_quantity'),
+                  'stores.address as store_address',
+                  'stores.id as store_id',
+                  'markets.name as market_name',
+                  'markets.logo as logo',
+                  'stores.zip_code as store_zip_code', 'listing_product.listing_id',
+                  'listing_product.product_id',
+                  'listing_product.quantity as product_quantity',
+                  'users.id as user_id',
+                  'addresses.zip_code as address_zip_code',
+                  'stocks.list_price',
+                  'stocks.quantity as stoks_quantity')
+
+                  ->join('stores', 'stocks.store_id', '=', 'stores.id')
+                  ->join('markets', 'stores.market_id', '=', 'markets.id')
+                  ->join('listing_product', 'stocks.product_id', '=', 'listing_product.product_id')
+                  ->join('listings', 'listing_product.listing_id', '=', 'listings.id')
+                  ->join('users', 'listings.user_id', '=', 'users.id')
+                  ->join('addresses', 'users.id', '=', 'addresses.user_id')
+                  ->where('stores.zip_code', auth()->user()->address->zip_code)
+                  ->groupBy('listings.id', 'stores.id')
+                  ->orderBy('total_price')
+
+                  // ->offset(20000)
+                  // ->limit(10)
+                  ->get();
+
+      $queryShow = \DB::table('stocks')
+                  ->select(
+                  // \DB::raw('COUNT(listing_product.listing_id) as count'),
+                  \DB::raw('SUM(stocks.list_price*listing_product.quantity) as total_price'),
+                  'stores.address as store_address',
+                  'stores.id as store_id',
+                  'markets.name as market_name',
+                  'markets.logo as logo',
+                  'stores.zip_code as store_zip_code', 'listing_product.listing_id',
+                  'listing_product.product_id',
+                  'listing_product.quantity as product_quantity',
+                  'users.id as user_id',
+                  'addresses.zip_code as address_zip_code',
+                  'stocks.list_price',
+                  'stocks.quantity as stoks_quantity',
+                  'products.name as product_name',
+                  'products.brand as product_brand')
+
+                  ->join('stores', 'stocks.store_id', '=', 'stores.id')
+                  ->join('markets', 'stores.market_id', '=', 'markets.id')
+                  ->join('listing_product', 'stocks.product_id', '=', 'listing_product.product_id')
+                  ->join('listings', 'listing_product.listing_id', '=', 'listings.id')
+                  ->join('products', 'listing_product.product_id', '=', 'products.id')
+                  ->join('users', 'listings.user_id', '=', 'users.id')
+                  ->join('addresses', 'users.id', '=', 'addresses.user_id')
+                  ->where('stores.zip_code', auth()->user()->address->zip_code)
+                  ->groupBy('listings.id', 'stores.id', 'products.id')
+                  ->orderBy('product_name')
+
+                  // ->offset(20000)
+                  // ->limit(10)
+                  ->get();
+
+                  
+
+
+              //     select
+            	// sum(stk.list_price*lspr.quantity) as total_price,
+              //     m.id MarketId,
+              //     st.id StoreId,
+              //     st.zip_code StoreZip_code,
+              //     us.id UserId,
+              //     ad.zip_code AddressUser,
+              //     lspr.listing_id ListingId,
+              //     lspr.product_id ProductId,
+              //     lspr.quantity QuantityProducts,
+              //     stk.list_price ListPrice
+              //
+              //     from stocks as stk
+              //     join stores as st on stk.store_id = st.id
+              //     join markets as m on st.market_id = m.id
+              //     join listing_product as lspr on stk.product_id = lspr.product_id
+              //     join listings as ls on lspr.listing_id = ls.id
+              //     join users as us on ls.user_id = us.id
+              //     join addresses as ad on us.id = ad.user_id
+              //
+              //     WHERE (st.zip_code = ad.zip_code)
+              //     GROUP by StoreId, ListingId, ProductId
+              //     ORDER BY ListingId
+
+      return view('carts.show', [
+        'query' => $query,
+        'list' => $list,
+        'storeId' => $storeId,
+        'queryShow' => $queryShow
+      ]);
     }
 
     /**

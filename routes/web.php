@@ -77,11 +77,11 @@ Route::group(['middleware'=>'auth'],function(){
 
   Route::get('/listings/{id}/carts', 'CartsController@index');
 
+  Route::get('/listings/{id}/carts/{store}', 'CartsController@show');
+
   Route::patch('/carts/{id}', 'CartsController@update');
 
   Route::delete('/carts/{id}', 'CartsController@destroy');
-
-  Route::get('/carts/{id}', 'CartsController@show');
 
 });
 

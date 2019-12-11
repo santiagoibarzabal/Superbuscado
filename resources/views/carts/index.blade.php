@@ -29,7 +29,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap" rel="stylesheet">
 
   <!-- favicon -->
-  <link rel="shortcut icon" href="{{ asset('iso-superbuscado.ico')}}" />
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
 </head>
 
@@ -149,9 +149,8 @@
 
             <!-- Markets -->
 
+            <a class="col-12 mb-3" href="{{ url('/listings/' . $list->id . '/carts/' . $q->store_id) }}">
 
-            <form class="col-12 mb-3" action="" method="post">
-              @csrf
               <div class="card card-hover">
 
                   <button class="delete-product" href="producto_descripcion.php">
@@ -181,7 +180,7 @@
                   </button>
 
               </div>
-            </form>
+            </a>
 
 
             @endif
@@ -194,7 +193,7 @@
 
       {{------------- Selección de Supermercado ------------}}
 
-      <div class="col-12 col-lg-6">
+      {{-- <div class="col-12 col-lg-6">
 
         <h5 class="mb-3 titulo-categoria"><b>Supermercado seleccionado</b></h5>
 
@@ -209,11 +208,9 @@
 
         <div class="detalle-orden">
 
-          <div class="d-flex justify-content-end">
-            {{-- <div class="p-2 flex-grow-1">
-              <b>Descripción</b>
-            </div> --}}
-            <div class="py-2">
+          <div class="d-flex justify-content-end"> --}}
+
+            {{-- <div class="py-2">
               <b>Cant.</b>
             </div>
             <div class="px-4 py-2">
@@ -275,15 +272,15 @@
             </div>
           </div>
 
-        </div>
+        </div> --}}
 
         <!-- Botón checkout -->
 
-        <form class="card btn-buy btn-border-hover text-center my-3" action="cart.php" method="post">
+        {{-- <form class="card btn-buy btn-border-hover text-center my-3" action="cart.php" method="post">
           <input class="sinbordefondo-green" type="button" name="checkout" value="Proceder al pago y envío">
         </form>
 
-      </div>
+      </div> --}}
 
     </div>
   </section>
