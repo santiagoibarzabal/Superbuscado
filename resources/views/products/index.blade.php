@@ -243,11 +243,19 @@
               <hr class="linea-separacion">
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Desde:</p>
-                <p class="costo">{{$priceRange[$product->id]->min_price}}}</p>
+                <p class="costo">
+
+                  {{$priceRange[$product->id - 1]->min_price}}
+
+                </p>
               </div>
               <div class="d-flex align-items-center">
                 <p class="preciopromedio pl-0 pr-2">Hasta:</p>
-                <p class="costo d-flex justify-contents-end">{{$priceRange[$product->id]->min_price}}</p>
+                <p class="costo d-flex justify-contents-end">
+
+                  {{$priceRange[$product->id - 1]->max_price}}
+
+                </p>
               </div>
             </a>
 
@@ -276,7 +284,7 @@
                 <p class="preciopromedio pl-0 pr-2">Desde:</p>
                 <p class="costo">
 
-                  {{$priceRange[$product->id]->min_price}}
+                  {{$priceRange[$product->id - 1]->min_price}}
 
                 </p>
               </div>
@@ -284,7 +292,7 @@
                 <p class="preciopromedio pl-0 pr-2">Hasta:</p>
                 <p class="costo d-flex justify-contents-end">
 
-                  {{$priceRange[$product->id]->max_price}}
+                  {{$priceRange[$product->id - 1]->max_price}}
 
                   </p>
               </div>
